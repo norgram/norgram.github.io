@@ -1,0 +1,39 @@
+.manual-brand-name {
+	font-family: "FounderGrotesk-Medium", Arial;
+}
+
+.manual-section-number {
+	font-family: Courier New, Courier, monospace;
+}
+
+.manual-section-name {
+	font-family: "FounderGrotesk-Medium", Arial;
+}
+
+#menu h1 {
+	font-family: "FounderGrotesk-Medium", Arial;
+}
+
+.section-hero-header-block > p,
+.section-hero-header-block > h1,
+.section-hero-header-block > h2,
+.section-hero-header-block > h3 {
+	margin: 0;
+	line-height: 1;
+}
+
+.manual-paragraph {
+	font-size: 20px;
+	font-weight: 300;
+}
+
+/* INTRO SECTION */
+.manual-section-header,
+.manual-section-sub-header {
+	font-size: 44px;
+}
+
+/* COLOR SECTION */
+.section-color-item-name {
+	font-family: "FounderGrotesk-Medium", Arial;
+}
