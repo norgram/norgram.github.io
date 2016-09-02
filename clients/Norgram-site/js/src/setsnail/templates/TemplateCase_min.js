@@ -1,0 +1,1 @@
+function TemplateCase(data){var _instance=Snail.extend(new PageTemplate(data));_instance.style.backgroundColor=UIColors.DRAK_GRAY;return _instance.init=function(){_instance.super.init(),trace("INIT TemplateCase")},_instance.templateIn=function(){_instance.init(),_instance.super.templateIn()},_instance}
