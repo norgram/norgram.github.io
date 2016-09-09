@@ -79,7 +79,7 @@ function ProfileEmployeeModule( data ) {
 	}
 
 	function addSlideNumber() {
-		_slideNumber = Text.getNewReg(90);
+		_slideNumber = Text.getNewMed(90);
 		_slideNumber.innerHTML = "1";
 		_slideNumber.style.color = UIColors.WHITE;
 

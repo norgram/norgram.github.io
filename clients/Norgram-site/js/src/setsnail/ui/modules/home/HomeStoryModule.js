@@ -1,7 +1,9 @@
-function HomeStoryModule( data ) {
+function HomeStoryModule( data, startRatio ) {
 
 	var _instance = Snail.extend(new Module());
 	_instance.style.backgroundColor = UIColors.WHITE;
+
+	_instance.onStoryClick;
 
 	var _width, _height;
 
@@ -21,9 +23,8 @@ function HomeStoryModule( data ) {
 	};
 
 	_instance.resize_desktop = function (width, height) {
-		// console.log("RESIZE");
-		_storyExpandedW = width * 0.5;
-		var storyCollapsedW = width * 0.17;
+		_storyExpandedW = width * startRatio;
+		var storyCollapsedW = width * 0.2;
 
 		_width = _storyExpandedW * _numOfStories;
 		_height = height;
@@ -39,7 +40,7 @@ function HomeStoryModule( data ) {
 			story.setCollapsedWidth( storyCollapsedW );
 			story.setHeight( _height );
 			story.setRatioOffset(i);
-			story.setRatio(_ratio);
+			story.setRatio(_ratio, true);
 
 			TweenMax.set(story, {x:xPos});
 
@@ -63,7 +64,6 @@ function HomeStoryModule( data ) {
 		Assets.SCROLL_CONTROLLER.removeEventListener(ScrollController.ON_SCROLL_MOVE, onScroll);
 	};
 
-
 	function onScroll() {
 		var scroll = Assets.SCROLL_CONTROLLER.currentScroll.y;
 		var offset = scroll;
@@ -83,7 +83,7 @@ function HomeStoryModule( data ) {
 
 			xPos += story.getWidth();
 		}
-	}
+	};
 
 	function addStories() {
 		var stories = ContentManager.getChildrenByAttr(data, "name", "story");
@@ -91,11 +91,12 @@ function HomeStoryModule( data ) {
 		var modelId = getLongestStoryId(stories);
 
 		var model = new TextAreaModel();
-		model.maxFontSize = 23;
+		model.maxFontSize = 20;
 
 		_numOfStories = stories.length;
 		for(var i = 0; i < _numOfStories; i++) {
 			var story = new HomeStory(stories[i], _numOfStories - i, model);
+			story.onStoryClick = onStoryClick;
 			if( modelId == i ) {
 				story.setBodyModelController();
 			}
@@ -105,19 +106,23 @@ function HomeStoryModule( data ) {
 		}
 	}
 
+	function onStoryClick( storyNumber ) {
+		if(_instance.onStoryClick != null) {
+			_instance.onStoryClick(_numOfStories - storyNumber + 1);
+		}
+	}
+
 	function getLongestStoryId( stories ) {
 		var highestCount = 0;
 		var highsetId = -1;
 		var l = stories.length;
 		for(var i = 0; i < l; i++) {
 			var bodyHtml = ContentManager.getChildByAttr(stories[i], "name", "body").innerHTML;
-			// console.log(bodyHtml.length);
 			if(bodyHtml.length > highestCount) {
 				highestCount = bodyHtml.length;
 				highsetId = i;
 			}
 		}
-
 		return highsetId;
 	}
 

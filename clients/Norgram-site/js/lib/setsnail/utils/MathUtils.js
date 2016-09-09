@@ -19,5 +19,10 @@ MathUtils.ratioFromRatio = function( start, end, ratio ) {
 	var diff = 1 / ( end - start );
 	var newRatio = diff * ratio;
 	newRatio -= start * diff;
+	if(newRatio > 1) {
+		newRatio = 1;
+	} else if( newRatio < 0 ) {
+		newRatio = 0;
+	}
 	return newRatio;
 };

@@ -1,0 +1,45 @@
+function CaseImageModule( data ) {
+
+	var _instance = Snail.extend(new Module());
+
+	var _image;
+
+	var _width, _height;
+
+	_instance.init = function() {
+		addImage();
+	};
+
+	_instance.resize_desktop = function(width, height) {
+		_width = width;
+		_height = height;
+
+		if(_image.isLoaded()) {
+			resizeImage();
+		}
+	};
+
+	_instance.getWidth = function() {
+		return _width;
+	};
+
+	function addImage() {
+		_image = new RetinaImage(data.innerHTML, null, onImgLoaded );
+		_image.init();
+		_instance.appendChild(_image);
+	}
+
+	function onImgLoaded() {
+		resizeImage();
+		_instance.callbackReposition();
+	}
+
+	function resizeImage() {
+		_image.setSize( "auto", _height );
+		_width = _image.getWidth();
+	}
+
+
+	return _instance;
+
+}

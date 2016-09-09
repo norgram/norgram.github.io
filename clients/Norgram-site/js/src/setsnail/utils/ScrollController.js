@@ -107,11 +107,13 @@ function ScrollController() {
 		updateBounds();
 	};
 
-	_instance.scrollToTop = function() {
+	_instance.scrollToTop = function( speed, ease ) {
 		if(_touchDragger){
 			_fakeDragItem.aniSetY( 0 );// = "0px";
 			touchMove();
 		} else {
+			_scrollToSpeed = speed != null ? speed : -1;
+			_scrollToEase = ease;
 			window.scrollTo(0, 0);
 		}
 	};

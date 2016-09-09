@@ -4,7 +4,7 @@ var ContentManager = {};
 // public static vars
 // should it automatically track the pages through Google Analytics?
 ContentManager.AUTOMATICALLY_TRACK_GOOGLE_ANALYTICS 		= false;//THIS IS OUTCOMMENTED
-ContentManager.SHOW_TRACES 									= true;
+ContentManager.SHOW_TRACES 									= false;
 
 // private static vars
 ContentManager._activeTemplates 							= new Array();
@@ -645,7 +645,7 @@ ContentManager.getChildByAttr = function(xml, attr, value) {
 	var children = xml.children;
 	var l = children.length;
 	var child;
-	var rVal;
+	var rVal = null;
 
 	for( i = 0; i < l; i += 1) {
 		child = children[i];

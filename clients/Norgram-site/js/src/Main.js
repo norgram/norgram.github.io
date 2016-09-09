@@ -72,11 +72,11 @@ function Main( ) {
 		ContentManager.AUTOMATICALLY_TRACK_GOOGLE_ANALYTICS = !Debug.isLocalhost();
 
 		ContentManager.addTemplate( "home", TemplateHome );
-		ContentManager.addTemplate( "caseoverview", TemplateCasesOverview );
+		ContentManager.addTemplate( "caseoverview-0", TemplateCasesOverview );
 		ContentManager.addTemplate( "princip", TemplatePrincip );
 		ContentManager.addTemplate( "profil", TemplateProfil );
 
-		ContentManager.addTemplate( "case", TemplateCase );
+		ContentManager.addTemplate( "case-0", TemplateCase );
 
 	}
 

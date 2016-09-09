@@ -107,6 +107,8 @@
 		<script src="js/src/setsnail/Assets.js"></script>
 		<script src="js/src/setsnail/ui/UIColors.js"></script>
 		<script src="js/src/setsnail/utils/GuideLines.js"></script>
+		<script src="js/src/setsnail/utils/LinedCircle.js"></script>
+		<script src="js/src/setsnail/utils/GroupedCircles.js"></script>
 		<script src="js/src/setsnail/utils/ScrollController.js"></script>
 
 		<script src="js/src/setsnail/ui/buttons/TextButton.js"></script>
@@ -123,10 +125,15 @@
 
 		<!-- Modules -->
 		<script src="js/src/setsnail/ui/modules/Module.js"></script>
+		<script src="js/src/setsnail/ui/modules/WhiteSpaceModule.js"></script>
 		<script src="js/src/setsnail/ui/modules/ReturnModule.js"></script>
 		<script src="js/src/setsnail/ui/modules/BasicHomeModule.js"></script>
 
         <script src="js/src/setsnail/ui/modules/home/HomeStoryModule.js"></script>
+
+		<script src="js/src/setsnail/ui/modules/case/CaseHomeModule.js"></script>
+		<script src="js/src/setsnail/ui/modules/case/CaseImageModule.js"></script>
+		<script src="js/src/setsnail/ui/modules/case/CaseTextModule.js"></script>
 
         <script src="js/src/setsnail/ui/modules/casesoverview/OverviewCaseModule.js"></script>
 
@@ -139,6 +146,7 @@
         <!-- Components -->
         <script src="js/src/setsnail/ui/components/Footer.js"></script>
         <script src="js/src/setsnail/ui/components/HomeStory.js"></script>
+		<script src="js/src/setsnail/ui/components/CasesInfoBox.js"></script>
 
 
 		<!-- Menu -->
@@ -153,7 +161,7 @@
 		<script src="js/src/setsnail/ui/menu/MenuSelector.js"></script>
 		<script src="js/src/setsnail/ui/menu/MenuSocial.js"></script>
 
-		<div style='display: none;' id='content'>
+<div style='display: none;' id='content'>
 
 	<div data-name="general-data">
 
@@ -308,7 +316,7 @@
 					<div data-name="image-tag-name">Project</div>
 
 					<div data-name="images">
-						<div data-name="image">assets/images/journal/twentythree_journal_01.png</div>	
+						<div data-name="image">assets/images/journal/twentythree_journal_01.png</div>
 					</div>
 				</div>
 				<div data-name="story">
@@ -450,6 +458,13 @@
 				<div data-name="headline">Our service</div>
 				<div data-name="body">We help brands create unique design language. Et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commod ocons equat or incididunt ut labore et dolore magna aliqua ut enim ad minim veniam.</div>
 
+				<div data-name="circles">
+					<div data-name="circle">Foundation</div>
+					<div data-name="circle">Concept</div>
+					<div data-name="circle">Design</div>
+					<div data-name="circle">Implementation</div>
+				</div>
+
 			</div>
 
 			<div data-name="process">
@@ -459,6 +474,7 @@
 			</div>
 
 		</div>
+
 
 		<div data-path='princip' data-template="princip">
 			<div data-name="menu">Principles</div>
@@ -515,77 +531,153 @@
 		</div>
 
 
-
-
-
-
-
-		<div data-path='caseoverview' data-template="caseoverview">
+		<div data-path='cases' data-template="caseoverview-0">
 			<div data-name="menu">Projects</div>
 
-            <div data-name="cases">
-                <div data-name="case" data-path="casemitte"></div>
-                <div data-name="case" data-path="casetwo"></div>
-                <div data-name="case" data-path="casethree"></div>
-            </div>
+			<div data-path='mitte' data-template="case-0" >
+				<div data-name="info">
+					<div data-name="headline">
+						Mitte 1<br>
+						Digital Identity
+					</div>
+					<div data-name="client">Mitte</div>
+					<div data-name="project">Digital Identity</div>
+					<div data-name="year">2016</div>
+				</div>
+
+				<div data-name="overviewimage">assets/images/cases/mitte/overview.png</div>
+
+				<div data-name="home">
+					<div data-name="headline">Mitte</div>
+
+					<div data-name="details">
+						Brand identity<br>
+						Retail design and architecture<br>
+						Naming<br>
+						Signage<br>
+						Brand strategy and platform<br>
+						Packaging design<br>
+						Application design<br>
+						Communication system<br>
+						Copywriting<br>
+						Brand identity guidelines<br>
+						Brand compliance support
+					</div>
+
+					<div data-name="body">
+						The Design Director duo of internationally recognized and awarded designers Sebastian Gram & Mathias Høst Normark. Our vision is to collaborate with brands in building the next generation of digital brands through digital identities, experiences & platforms.
+					</div>
+				</div>
+
+				<div data-name="modules">
+					<div data-name="moduleImage">assets/images/cases/mitte/overview.png</div>
+					<div data-name="moduleText">
+						<!--<div data-name="top"></div>-->
+						<div data-name="mid">
+							Assignment<br>
+							Stadium needed to change more than just its logotype. It needed to change everything: its visual identity, its stores, its merchandising and displays and a whole lot more. The team of SDL and TEA offered the chance to address these issues as a single.
+							<br><br>
+							Solution<br>
+							We were looking for a concept, or “fifth element”, that would add tangible value to the Stadium brand: ownership of an idea that was central to sport, and that could propel Stadium beyond the reach of its rivals. We found it in numbers. </div>
+						<div data-name="bot">
+							Result<br>
+							After 20 years of falling behind the competition, Stadium’s brand identity is fit for purpose. While other sports retailers compete purely on price, Stadium has found another gear. </div>
+					</div>
+					<div data-name="moduleImage">assets/images/cases/mitte/overview.png</div>
+					<div data-name="moduleText" data-width-scale="0.6" >
+						<div data-name="top">After 20 years of falling behind the competition, Stadium’s brand identity is fit for purpose. While other sports retailers compete purely on price, Stadium has found another gear. </div>
+						<div data-name="bot"><a href="http://www.google.com/">Visit website</a></div>
+					</div>
+					<div data-name="moduleImage">assets/images/cases/mitte/overview.png</div>
+				</div>
+			</div>
+
+			<div data-path='mitte2' data-template="case-0" >
+				<div data-name="info">
+					<div data-name="headline">
+						Mitte 2<br>
+						Digital Identity
+					</div>
+					<div data-name="client">Mitte</div>
+					<div data-name="project">Digital Identity</div>
+					<div data-name="year">2016</div>
+				</div>
+
+				<div data-name="overviewimage">assets/images/cases/mitte/overview.png</div>
+
+				<div data-name="home">
+					<div data-name="headline">Mitte</div>
+
+					<div data-name="details">
+						Brand identity<br>
+						Retail design and architecture<br>
+						Naming<br>
+						Signage<br>
+						Brand strategy and platform<br>
+						Packaging design<br>
+						Application design<br>
+						Communication system<br>
+						Copywriting<br>
+						Brand identity guidelines<br>
+						Brand compliance support
+					</div>
+
+					<div data-name="body">
+						The Design Director duo of internationally recognized and awarded designers Sebastian Gram & Mathias Høst Normark. Our vision is to collaborate with brands in building the next generation of digital brands through digital identities, experiences & platforms.
+					</div>
+				</div>
+
+				<div data-name="modules">
+					<div data-name="moduleImage">assets/images/cases/mitte/overview.png</div>
+				</div>
+			</div>
+
+			<div data-path='mitte3' data-template="case-0" >
+				<div data-name="info">
+					<div data-name="headline">
+						Mitte 3<br>
+						Digital Identity
+					</div>
+					<div data-name="client">Mitte</div>
+					<div data-name="project">Digital Identity</div>
+					<div data-name="year">2016</div>
+				</div>
+
+				<div data-name="overviewimage">assets/images/cases/mitte/overview.png</div>
+
+				<div data-name="home">
+					<div data-name="headline">Mitte</div>
+
+					<div data-name="details">
+						Brand identity<br>
+						Retail design and architecture<br>
+						Naming<br>
+						Signage<br>
+						Brand strategy and platform<br>
+						Packaging design<br>
+						Application design<br>
+						Communication system<br>
+						Copywriting<br>
+						Brand identity guidelines<br>
+						Brand compliance support
+					</div>
+
+					<div data-name="body">
+						The Design Director duo of internationally recognized and awarded designers Sebastian Gram & Mathias Høst Normark. Our vision is to collaborate with brands in building the next generation of digital brands through digital identities, experiences & platforms.
+					</div>
+				</div>
+
+				<div data-name="modules">
+					<div data-name="moduleImage">assets/images/cases/mitte/overview.png</div>
+					<div data-name="moduleImage">assets/images/cases/mitte/overview.png</div>
+				</div>
+			</div>
 
 		</div>
-
-		<div data-path='cases'data-template="case-0" >
-
-			<!--<div data-path='casemitte' data-template="case" >-->
-				<!--<div data-name="info">-->
-					<!--<div data-name="client">Mitte</div>-->
-					<!--<div data-name="project">Digital Identity</div>-->
-					<!--<div data-name="year">2016</div>-->
-				<!--</div>-->
-
-				<!--<div data-name="overviewimage">assets/images/cases/mitte/overview.png</div>-->
-
-				<!--<div data-name="modules">-->
-
-				<!--</div>-->
-
-			<!--</div>-->
-
-			<!--<div data-path='casetwo' data-template="case">-->
-				<!--<div data-name="info">-->
-					<!--<div data-name="client">Mitte</div>-->
-					<!--<div data-name="project">Digital Identity</div>-->
-					<!--<div data-name="year">2016</div>-->
-				<!--</div>-->
-
-				<!--<div data-name="overviewimage">assets/images/cases/mitte/overview.png</div>-->
-
-				<!--<div data-name="modules">-->
-
-				<!--</div>-->
-			<!--</div>-->
-
-			<!--<div data-path='casethree' data-template="case">-->
-				<!--<div data-name="info">-->
-					<!--<div data-name="client">Mitte</div>-->
-					<!--<div data-name="project">Digital Identity</div>-->
-					<!--<div data-name="year">2016</div>-->
-				<!--</div>-->
-
-				<!--<div data-name="overviewimage">assets/images/cases/mitte/overview.png</div>-->
-
-				<!--<div data-name="modules">-->
-
-				<!--</div>-->
-			<!--</div>-->
-
-		</div>
-
 	</div>
-
-
-
 </div>
 
-        
-        
+
 		<!-- Initialize site -->
 		<script>
 			window.onload = function() {

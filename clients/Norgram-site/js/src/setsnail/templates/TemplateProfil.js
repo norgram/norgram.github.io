@@ -1,6 +1,6 @@
 function TemplateProfil( data ) {
 	var _instance							= Snail.extend( new PageTemplate( data ) );
-	_instance.style.backgroundColor         = UIColors.WHITE;
+	_instance.style.backgroundColor         = UIColors.DARK;
 
 	var _guides								= null;
 

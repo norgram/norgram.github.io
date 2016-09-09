@@ -27,6 +27,7 @@ function TemplateHome( data ) {
 
 		_returnModule.setWidth(_instance.visibleWidth * 0.5 + SiteGuides.MAIN_MENU_WIDTH);
 		_instance.repositionModules(_returnModule);
+		snapToStory();
 	};
 
 	_instance.kill = function() {
@@ -37,22 +38,31 @@ function TemplateHome( data ) {
 	function snapToStory() {
 		var scrollX = Assets.SCROLL_CONTROLLER.currentScroll.y;
 		var storyX = _storyModule.aniGetX();
-		var storyWidth = _storyModule.getExpandedStoryWidth();
 		var numOfStories = _storyModule.getNumOfStories();
 
 		var ratio = scrollX / storyX / numOfStories;
 		var partRatio = 1 / numOfStories;
 
 		var index = Math.round(ratio / partRatio);
-		Assets.SCROLL_CONTROLLER.scrollTo( storyWidth * index, 1, Expo.easeInOut );
+
+		easeToStory(index);
+	}
+
+	function easeToStory( storyIndex ) {
+		var storyWidth = _storyModule.getExpandedStoryWidth();
+		Assets.SCROLL_CONTROLLER.scrollTo( storyWidth * storyIndex, 1, Expo.easeInOut );
 	}
 
 	function setupAndAddModules() {
 		var frontpageData = ContentManager.getChildByAttr( data.getXML(), "name", "frontpage" );
 		var storyData = ContentManager.getChildByAttr( data.getXML(), "name", "stories" );
 
-		_basicModule = new BasicHomeModule( frontpageData, onNextClick, 0.5 );
-		_storyModule = new HomeStoryModule(storyData);
+
+		var homeStartOffset = 0.5;
+
+		_basicModule = new BasicHomeModule( frontpageData, onNextClick, homeStartOffset );
+		_storyModule = new HomeStoryModule(storyData, homeStartOffset);
+		_storyModule.onStoryClick = onStoryClick;
 		_returnModule = new ReturnModule((Assets.RESIZE_MANAGER.getWindowWidth() - SiteGuides.MAIN_MENU_WIDTH) * 0.5 + SiteGuides.MAIN_MENU_WIDTH);
 		_returnModule.addLine( UIColors.LINE_ON_WHITE );
 
@@ -65,6 +75,9 @@ function TemplateHome( data ) {
 		_instance.scrollToNextModule();
 	}
 
+	function onStoryClick( storyNumber ) {
+		easeToStory(storyNumber)
+	}
 
 	return _instance;
 }

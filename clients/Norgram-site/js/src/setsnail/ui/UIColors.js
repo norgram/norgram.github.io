@@ -11,6 +11,8 @@ UIColors.FONT_NUMBER_ON_WHITE = "dfdfdf";
 UIColors.LINE_ON_WHITE = "#e5e5e5";
 UIColors.LINE_ON_DARK = "#35363a";
 
+UIColors.LINES_DARK = "#4b4c50";
+
 
 /**
  * CONST

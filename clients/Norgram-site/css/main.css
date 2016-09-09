@@ -22,12 +22,50 @@
     url('../assets/fonts/FoundersGroteskWeb-Light.woff') format('woff');
 }
 
+a, a:link, a:hover, a:visited, a:active{
+    text-decoration: none;
+    position: relative;
+    color: #1e1f24;
+}
 
+
+a:hover {
+    text-decoration: none;
+    position: relative;
+    color: #1e1f24;
+}
+a:link{
+    text-decoration: none;
+    position: relative;
+    color: #1e1f24;
+}
+a:visited {
+    text-decoration: none;
+    position: relative;
+    color: #1e1f24;
+}
+a:active {
+    text-decoration: none;
+    position: relative;
+    color: #1e1f24;
+}
+
+a:after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    border-bottom: 2px solid #1e1f24;
+    transition: 0.2s;
+}
+a:hover:after{
+    width: 100%;
+}
 
 .sliding-white .sliding-grey-small .sliding-grey{
     text-decoration: none;
     position: relative;
-    color: #3366FF;
 }
 
 .sliding-white:after {

@@ -57,6 +57,8 @@ function TextArea( text, font ) {
 
 	_instance.setSize = function( width, height ) {
 		if( _modelMode == TextAreaModel.MODE_LISTEN || _model == null ) {
+			_instance.style.width = font.style.width = width + "px";
+			// _instance.style.height = font.style.height = height + "px";
 			return;
 		}
 

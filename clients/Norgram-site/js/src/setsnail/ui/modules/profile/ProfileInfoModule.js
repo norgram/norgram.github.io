@@ -8,6 +8,15 @@ function ProfileInfoModule( data, infoShow, slideNumber ) {
 	var _slideNumber;
 	var _line;
 
+	var _circleContainer = document.createElement("div");
+	_circleContainer.style.position = "absolute";
+
+	_instance.appendChild(_circleContainer);
+
+	var _groupedCircle;
+
+	// var _circle;
+
 	var _body, _headline;
 
 	var _width, _height;
@@ -19,12 +28,14 @@ function ProfileInfoModule( data, infoShow, slideNumber ) {
 		addSiteLine();
 		addSlideNumber();
 
+		addCircles();
+
 		addHeadlineText();
 		addBodyText();
 	};
 
 	_instance.resize_desktop = function (width, height) {
-		_width = width;
+		_width = height * 1.2;
 		_height = height;
 
 		_body.setSize( _width / 3, _height / 4 );
@@ -40,6 +51,15 @@ function ProfileInfoModule( data, infoShow, slideNumber ) {
 
 		TweenMax.set( _line, { width:1, height:_height, x:1 });
 
+		if( _groupedCircle != null ) {
+			_groupedCircle.setSize( _width * 0.8, _height * 0.5 );
+			TweenMax.set(_groupedCircle, {
+				x:_width * 0.5 - _width * 0.75 * 0.55,
+				// x:0,
+				y:_height * 0.3
+			} );
+		}
+
 		TweenMax.set(_slideNumber, {
 			x: START_OFFSET_X + 11,
 			y: _height - _slideNumber.offsetHeight - SiteGuides.OFFSET_BOTOM + 12
@@ -51,8 +71,22 @@ function ProfileInfoModule( data, infoShow, slideNumber ) {
 	};
 
 	_instance.kill = function () {
-
+		_groupedCircle.kill();
 	};
+
+	function addCircles() {
+		var settings = new LinedCircleSettings();
+		settings.thickness = 1;
+		settings.radius = 150;
+		settings.spacing = 6;
+		settings.offset = 0;
+		settings.color = UIColors.LINES_DARK;
+
+		_groupedCircle = new GroupedCircle( data, settings, 0.8 );
+		_instance.appendChild( _groupedCircle );
+
+		_groupedCircle.init();
+	}
 
 	function addSiteLine() {
 		_line = document.createElement("div");
@@ -63,7 +97,7 @@ function ProfileInfoModule( data, infoShow, slideNumber ) {
 	}
 
 	function addSlideNumber() {
-		_slideNumber = Text.getNewReg(90);
+		_slideNumber = Text.getNewMed(90);
 		_slideNumber.innerHTML = slideNumber;
 		_slideNumber.style.color = UIColors.WHITE;
 
@@ -88,7 +122,6 @@ function ProfileInfoModule( data, infoShow, slideNumber ) {
 		_body = new TextArea( textData.innerHTML, Text.getNewLight(28) );
 		_body.style.color = UIColors.FONT_MED_ON_DARK;
 		_body.init();
-
 
 		_instance.appendChild(_body);
 	}

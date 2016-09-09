@@ -67,7 +67,7 @@ function ReturnModule( width ) {
 	}
 
 	function onClick() {
-		Assets.SCROLL_CONTROLLER.scrollToTop();
+		Assets.SCROLL_CONTROLLER.scrollToTop(1, Expo.easeInOut);
 	}
 
 	return _instance;

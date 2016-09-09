@@ -1,10 +1,15 @@
 function HomeStory( data, storyNumber, bodyTextModel ) {
 	var _instance = document.createElement("div");
 	_instance.style.position = "absolute";
-	// _instance.style.backgroundColor = ColorUtils.getRandomColor();
 	_instance.style.backgroundColor = ColorUtils.WHITE;
 
-	var _ratio, _ratioOffset = 0;
+	_instance.style.cursor = "pointer";
+
+	_instance.onStoryClick;
+
+	Touchable.apply(_instance);
+
+	var _ratio, _oldRatio, _ratioOffset = 0;
 
 	var _widthExpanded, _widthCollapsed;
 
@@ -15,12 +20,20 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 
 	var _mode = TextAreaModel.MODE_LISTEN;
 
+	var _leftButton, _rightButton;
+	var _buttonContainer = document.createElement("div");
+	_buttonContainer.style.position = "absolute";
+
 	_instance.setBodyModelController = function() {
 		_mode = TextAreaModel.MODE_CONTROL;
 	};
 
 	_instance.init = function() {
+		// Touchable.apply(_instance);
+		_instance.onClick(onEverywhereClick);
+
 		addSiteLine();
+		addSlideButtons();
 		addImageSlide();
 		addHeadline();
 		addImgTag();
@@ -52,7 +65,7 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 		_ratioOffset = offsetStart;
 	};
 
-	_instance.setRatio = function(ratio) {
+	_instance.setRatio = function(ratio, forceUpdate) {
 		_ratio = MathUtils.ratioFromRatio(_ratioOffset, _ratioOffset + 1, ratio);
 		if(_ratio < 0) {
 			_ratio = 0;
@@ -62,10 +75,20 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 
 		_instance.style.width = _instance.getWidth() + "px";
 
-		updateToRatio();
+		updateToRatio(forceUpdate);
 	};
 
-	function updateToRatio() {
+	function onEverywhereClick(){
+		if(_instance.onStoryClick != null) {
+			_instance.onStoryClick( storyNumber );
+		}
+	}
+
+	function updateToRatio( force ) {
+		if(!force && _ratio == _oldRatio ) {
+			return;
+		}
+
 		var delta = _widthExpanded - _widthCollapsed;
 		var deltaRatio = delta * _ratio;
 
@@ -74,7 +97,7 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 
 		var imgYPos = SiteGuides.getCenterOffset() + 125;
 
-		var collapsedImgHeight = (_widthCollapsed - doubleMargin) * 0.57;
+		var collapsedImgHeight = (_widthCollapsed - doubleMargin) * 0.51;
 		var expImgHeight = _height - imgYPos;
 
 		var imgHeight = collapsedImgHeight + (expImgHeight - collapsedImgHeight) * _ratio;
@@ -87,6 +110,12 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 
 		//UPDATE HEADLINE
 		TweenMax.set(_headline, {x:deltaRatio + margin, y:SiteGuides.getCenterOffset() - Text.getOffsetY(_headline),  width:_widthCollapsed - doubleMargin });
+
+		//UPATE BUTTONS
+		var buttonLeftEase = Back.easeOut.getRatio(MathUtils.ratioFromRatio(0.1, 0.8, _ratio));
+		var buttonRightEase = Back.easeOut.getRatio(MathUtils.ratioFromRatio(0.3, 1, _ratio));
+		TweenMax.set(_leftButton, {y:imgYPos + 40 - 72 * buttonLeftEase, x:margin});
+		TweenMax.set(_rightButton, {y:imgYPos + 40 - 72 * buttonRightEase, x:margin + 32});
 
 		//UPDATE IMAGE
 		TweenMax.set(_imageSlider, {y:imgYPos , x:margin});
@@ -107,6 +136,8 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 
 		//UPDATE DATE
 		TweenMax.set(_date, {x:deltaRatio + margin, y:SiteGuides.getCenterOffset() - Text.getOffsetY(_date) - 40,  width:_widthCollapsed - doubleMargin });
+
+		_oldRatio = _ratio;
 	}
 
 	function addSiteLine() {
@@ -115,6 +146,22 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 		_line.style.backgroundColor = UIColors.LINE_ON_WHITE;
 
 		_instance.appendChild(_line);
+	}
+
+	function addSlideButtons() {
+		_leftButton = new RetinaImage("assets/images/logo/arrow_short.png", Assets.RETINA_HANDLE);
+		_rightButton = new RetinaImage("assets/images/logo/arrow_short.png", Assets.RETINA_HANDLE);
+		_leftButton.init();
+		_rightButton.init();
+
+		_leftButton.getContent().style.transform = "rotatey(" + 180 + "deg)";
+
+		// TweenMax.set( _leftButton, { width:40, height:40 } );
+		// TweenMax.set( _rightButton, { width:40, height:40 } );
+
+		_buttonContainer.appendChild(_leftButton);
+		_buttonContainer.appendChild(_rightButton);
+		_instance.appendChild(_buttonContainer);
 	}
 
 	function addImageSlide() {
@@ -130,7 +177,6 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 		// _imageSlider.setSize(_width, _height);
 
 		_instance.appendChild(_imageSlider);
-
 	}
 
 	function addNumber() {
