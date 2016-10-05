@@ -14,8 +14,9 @@ function ProfileInfoModule( data, infoShow, slideNumber ) {
 	_instance.appendChild(_circleContainer);
 
 	var _groupedCircle;
+	var _circleText = [];
 
-	// var _circle;
+	var _circleType = "";
 
 	var _body, _headline;
 
@@ -35,7 +36,7 @@ function ProfileInfoModule( data, infoShow, slideNumber ) {
 	};
 
 	_instance.resize_desktop = function (width, height) {
-		_width = height * 1.2;
+		_width = Math.floor(height * 1.3);
 		_height = height;
 
 		_body.setSize( _width / 3, _height / 4 );
@@ -44,7 +45,7 @@ function ProfileInfoModule( data, infoShow, slideNumber ) {
 
 		var headOffsetY = SiteGuides.OFFSET_TOP - Text.getOffsetY(_headline.getTextInstance());
 		TweenMax.set( _headline, { x:11, y:headOffsetY } );
-		TweenMax.set( _body, { x:11, y:headOffsetY + parseInt(_body.getTextInstance().style.lineHeight) + 8} );
+		TweenMax.set( _body, { x:11, y:headOffsetY + parseInt(_body.getTextInstance().style.lineHeight) + 8 } );
 
 		_instance.style.width = _instance.getWidth() + "px";
 		_instance.style.height = height + "px";
@@ -52,12 +53,31 @@ function ProfileInfoModule( data, infoShow, slideNumber ) {
 		TweenMax.set( _line, { width:1, height:_height, x:1 });
 
 		if( _groupedCircle != null ) {
-			_groupedCircle.setSize( _width * 0.8, _height * 0.5 );
-			TweenMax.set(_groupedCircle, {
-				x:_width * 0.5 - _width * 0.75 * 0.55,
-				// x:0,
-				y:_height * 0.3
-			} );
+			switch( _circleType ) {
+				case "round" : {
+					var width = _width * 0.8;
+					var height = _height * 0.8;
+					_groupedCircle.setSize( width, height );
+					TweenMax.set(_groupedCircle, {
+						x:_width * 0.5 - width * 0.4,
+						y:_height * 0.15
+					} );
+					break;
+				}
+				case "straight": {
+					var width = _width * 0.8;
+					var height = _height * 0.5;
+					_groupedCircle.setSize( width, height );
+					TweenMax.set(_groupedCircle, {
+						x:_width * 0.5 - width * 0.5,
+						y:_height * 0.3
+					} );
+					break;
+				}
+			}
+
+			updateCircleTextPositions();
+
 		}
 
 		TweenMax.set(_slideNumber, {
@@ -70,23 +90,76 @@ function ProfileInfoModule( data, infoShow, slideNumber ) {
 		return _width;
 	};
 
-	_instance.kill = function () {
-		_groupedCircle.kill();
-	};
-
 	function addCircles() {
-		var settings = new LinedCircleSettings();
-		settings.thickness = 1;
-		settings.radius = 150;
-		settings.spacing = 6;
-		settings.offset = 0;
-		settings.color = UIColors.LINES_DARK;
+		var circleData = ContentManager.getChildByAttr(data, "name", "circles");
+		if(circleData == null) {
+			return;
+		}
 
-		_groupedCircle = new GroupedCircle( data, settings, 0.8 );
+		var numOfCirles = circleData.children.length;
+		_circleType = circleData.getAttribute("data-type");
+		switch( _circleType ) {
+			case "round" : {
+				_groupedCircle = new CirclesInACircle( 200, 300, numOfCirles - 1 );
+				break;
+			}
+			case "straight": {
+				_groupedCircle = new CirclesOnALine( 200, 300, numOfCirles );
+				break;
+			}
+		}
+
 		_instance.appendChild( _groupedCircle );
 
-		_groupedCircle.init();
+
+		for( var i = 0; i < numOfCirles; i++ ) {
+			var text = Text.getNewLight(18);
+			text.style.color = UIColors.LINE_ON_WHITE;
+			text.innerHTML = circleData.children[i].innerHTML;
+			_instance.appendChild(text);
+			_circleText.push( text );
+		}
+
 	}
+
+
+	function updateCircleTextPositions() {
+		var l = _circleText.length;
+		var currGroupIndex = 0;
+		var currShapeIndex = 0;
+
+		var scale = _width / SiteGuides.BASE_DESIGN_WIDTH;
+
+		for( var i = 0; i < l; i++ ) {
+			var group = _groupedCircle.getGroupAt(currGroupIndex);
+			if( group.numOfShapes() <= currShapeIndex ) {
+				currGroupIndex++;
+
+
+				currShapeIndex = 0;
+				group =_groupedCircle.getGroupAt(currGroupIndex);
+			}
+
+			var fontSize = 23 * scale;
+
+			if(fontSize < 12) {
+				fontSize = 12;
+			}
+
+			_circleText[i].style.fontSize = fontSize + "px";
+
+			TweenMax.set( _circleText[i], {
+				x:group.getShapeAt(currShapeIndex).getScaledPosition().x + _groupedCircle._gsTransform.x + _groupedCircle.getCanvasOffset().x - _circleText[i].offsetWidth * 0.5,
+				y:group.getShapeAt(currShapeIndex).getScaledPosition().y + _groupedCircle._gsTransform.y + _groupedCircle.getCanvasOffset().y - parseInt(_circleText[i].style.fontSize ) * 0.5
+			} );
+
+
+
+			currShapeIndex++;
+		}
+	}
+
+
 
 	function addSiteLine() {
 		_line = document.createElement("div");

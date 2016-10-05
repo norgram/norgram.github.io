@@ -32,19 +32,30 @@ function MenuContent() {
 		updateLayout();
 	};
 
+	_instance.openWide = function( speed ) {
+		if(speed == null) {
+			speed = 0.5;
+		}
+
+		TweenMax.to(_instance, speed, {x:MainMenu.BORDER_WIDTH, width:Assets.RESIZE_MANAGER.getScreenWidth() - MainMenu.BORDER_WIDTH, ease:Expo.easeInOut});
+		TweenMax.to(Assets.LAYER_TEMPLATE_OFFSET, speed, {x:Assets.RESIZE_MANAGER.getScreenWidth(), roundProps:["x"], ease:Expo.easeInOut});
+	};
+
 	_instance.open = function( speed) {
 		if(speed == null) {
 			speed = 0.5;
 		}
-		TweenMax.to(_instance, speed, {x:MainMenu.BORDER_WIDTH, ease:Expo.easeOut});
+		TweenMax.to(_instance, speed, {x:MainMenu.BORDER_WIDTH, width:_width, ease:Expo.easeOut});
 		_isOpen = true;
 	};
 
-	_instance.close = function(speed) {
+	_instance.close = function(speed, ease) {
 		if(speed == null) {
 			speed = 0.2;
 		}
-		TweenMax.to(_instance, speed, {x:-_width, ease:Quart.easeOut});
+
+		ease = ease != null ? ease : Quart.easeOut;
+		TweenMax.to(_instance, speed, {x:-_width, width:_width, ease:ease});
 		_isOpen = false;
 	};
 
@@ -88,8 +99,8 @@ function MenuContent() {
 	}
 
 	function updateLayout() {
-		_guides.setWidthTo("contact", Assets.RESIZE_MANAGER.getScreenWidth());
-		_guides.setWidthTo("end", Assets.RESIZE_MANAGER.getScreenWidth());
+		_guides.setWidthTo("contact", Assets.RESIZE_MANAGER.getWindowWidth());
+		_guides.setWidthTo("end", Assets.RESIZE_MANAGER.getWindowWidth());
 
 		_width = _guides.getGuide("end");
 

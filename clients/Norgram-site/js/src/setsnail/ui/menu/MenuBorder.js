@@ -2,9 +2,6 @@ function MenuBorder( thickness ) {
 
 	var _instance = document.createElement("div");
 	_instance.style.position = "absolute";
-	_instance.style.cursor = "pointer";
-
-	Touchable.apply( _instance );
 
 	var PICKER_HEIGHT = 30;
 
@@ -14,16 +11,35 @@ function MenuBorder( thickness ) {
 
 	var _state;
 
+	var _clickAreaLogo = new Touchable();
+	var _clickAreaBar = new Touchable();
+	_clickAreaLogo.style.position = "absolute";
+	_clickAreaBar.style.position = "absolute";
+
+	_clickAreaBar.style.cursor = "pointer";
+	_clickAreaLogo.style.cursor = "pointer";
+
+
 	_instance.init = function() {
 		addLogo();
 		addLine();
 		addPicker();
+
+		_instance.appendChild(_clickAreaBar);
+		_instance.appendChild(_clickAreaLogo);
 
 		Assets.RESIZE_MANAGER.addEventListener(ResizeEvents.RESIZE, updateLayout);
 
 		_instance.setState(MainMenu.CLOSED);
 
 		updateLayout();
+	};
+
+	_instance.onLogoClick = function( callback ) {
+		_clickAreaLogo.onClick( callback );
+	};
+	_instance.onBarClick = function(callback) {
+		_clickAreaBar.onClick( callback );
 	};
 
 	_instance.toggleState = function() {
@@ -74,8 +90,15 @@ function MenuBorder( thickness ) {
 	}
 
 	function updateLayout() {
+		var logoOffset = 100;
+
+		var height = Assets.RESIZE_MANAGER.getWindowHeight();
+
 		_instance.style.width = thickness + "px";
-		_instance.style.height = Assets.RESIZE_MANAGER.getWindowHeight() + "px";
+		_instance.style.height = height + "px";
+
+		TweenMax.set(_clickAreaLogo, { height:logoOffset, width:thickness });
+		TweenMax.set(_clickAreaBar, { y:logoOffset , height:height - logoOffset, width:thickness });
 
 		var lineThickness = 1;
 		_line.style.width = lineThickness + "px";

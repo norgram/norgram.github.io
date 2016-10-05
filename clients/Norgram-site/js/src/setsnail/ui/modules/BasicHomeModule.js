@@ -21,6 +21,8 @@ function BasicHomeModule(data, onArrowClick, scaleWidth ) {
 	var _width = 0;
 	var _height = 0;
 
+	var _extendedWidth = 0;
+
 	_instance.init = function() {
 		_instance.super.init();
 
@@ -41,7 +43,15 @@ function BasicHomeModule(data, onArrowClick, scaleWidth ) {
 		_width = width * _widthScale;
 		_height = height;
 
-		_instance.style.width = _width + "px";
+		if(_story != null && _width < 700) {
+			_width = width;
+			_extendedWidth = Math.floor(_width * 0.7);
+		} else {
+			_extendedWidth = 0;
+		}
+
+
+		_instance.style.width = _width + _extendedWidth + "px";
 		_instance.style.height = _height + "px";
 
 		var endLine = _width * 0.8 - MainMenu.BORDER_WIDTH;
@@ -57,10 +67,44 @@ function BasicHomeModule(data, onArrowClick, scaleWidth ) {
 		_header.setSize( _width * 0.2, 60 );
 		TweenMax.set(_header, {x:_guides.getGuide("start"), y:SiteGuides.OFFSET_TOP});
 
+		var headerEndX =_header.offsetWidth + _guides.getGuide("start");
+
 		// console.log(width * 0.5);
 		if(_story != null) {
-			_story.setSize(_width * 0.3, _height * 0.15 );
-			TweenMax.set(_story, {x:endLine - _story.getModel().maxWidth, y:SiteGuides.OFFSET_TOP});
+			var storyX = 0;
+			var storyY = SiteGuides.OFFSET_TOP;
+			if( _extendedWidth > 0 ) {
+				storyX = _width + _guides.getGuide("start");
+				storyY = SiteGuides.getCenterOffset();
+				// console.log(_extendedWidth);
+
+				_story.getModel().maxWidth = 999999;
+				_story.getModel().minWidth = 0;
+
+				_story.getModel().minFontSize = 8;
+				_story.getModel().maxFontSize = 30;
+
+
+				_story.setSize(_extendedWidth - _guides.getGuide("start") * 2, _height - storyY );
+				_story.setColumns(1, 0);
+
+			} else {
+
+				_story.getModel().minWidth = 468;
+				_story.getModel().maxWidth = 468;
+				_story.getModel().minFontSize = 13;
+				_story.getModel().maxFontSize = 13;
+
+				_story.setSize(_width * 0.3, _height * 0.15 );
+				_story.setColumns(2, 20);
+				storyX = endLine - _story.getModel().maxWidth;
+				if(storyX < headerEndX) {
+					storyX = headerEndX + 10;
+				}
+			}
+
+
+			TweenMax.set(_story, {x:storyX, y:storyY});
 		}
 
 		_body.setSize(endLine, bodyHeight);
@@ -76,7 +120,7 @@ function BasicHomeModule(data, onArrowClick, scaleWidth ) {
 	};
 
 	_instance.getWidth = function() {
-		return _width;
+		return _width + _extendedWidth;
 	};
 
 	_instance.getHeight = function() {
@@ -172,7 +216,7 @@ function BasicHomeModule(data, onArrowClick, scaleWidth ) {
 
 
 	function onArrowLoaded() {
-		TweenMax.set(_arrow, {x:_width - _arrow.getWidth() + ARROW_OFFSET_X, y:SiteGuides.getCenterOffset()});
+		TweenMax.set(_arrow, {x:_width - _arrow.getWidth() + ARROW_OFFSET_X, y:SiteGuides.getCenterOffset() + 4});
 		_instance.appendChild(_arrow);
 	}
 

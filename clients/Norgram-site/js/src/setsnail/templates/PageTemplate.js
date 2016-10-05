@@ -1,9 +1,7 @@
 function PageTemplate( data /* ofType TemplateData */ ) {
 	var _instance					= document.createElement( "div" );
 	_instance.style.position		= "absolute";
-	// _instance.style.backgroundColor = "#FF0000";
 
-	var templatePath				= ContentManager.composeFullPathFromXML( data.getXML() );
 	var _scrollController			= null;
 	var _modules					= [];
 
@@ -15,11 +13,6 @@ function PageTemplate( data /* ofType TemplateData */ ) {
 
 	var _modulesLoaded				= 0;
 	var _timeoutAllModulesLoaded	= null;
-
-	var _transitionCoverHolder		= null;
-	var _transitionCover			= null;
-	var _useTransitionOut			= true;
-	var _useTransitionIn			= true;
 
 	_instance.init = function(layer, useTransition) {
 		// trace( "INIT PageTemplate" );
@@ -35,8 +28,25 @@ function PageTemplate( data /* ofType TemplateData */ ) {
 
 		_instance.setPageHeight( _instance.pageHeight );
 
+		document.onkeydown = onKeyPress;
+
 		_scrollController.addEventListener( ScrollController.ON_SCROLL_MOVE, onPageScroll );
 	};
+
+	function onKeyPress( e ) {
+		if(_scrollController.isScrolling()) {
+			return;
+		}
+
+		var key = e.keyCode;
+		if( key == 37) {
+			//LEFT
+			_instance.scrollToPrevModule();
+		} else if( key == 39 ) {
+			//RIGHT
+			_instance.scrollToNextModule();
+		}
+	}
 
 	_instance.addModule = function(module, insertAfterThisModule) {
 		if(typeof module["resize_desktop"] !== 'function') {
@@ -98,15 +108,7 @@ function PageTemplate( data /* ofType TemplateData */ ) {
 	};
 
 	function onAllModulesLoaded() {
-//		trace("onAllModulesLoaded();");
-		// Assets.SCROLL_CONTROLLER.enableScroll();
-		// _instance.setMenuPath();
-
-		// if(_useTransitionIn === true) {
-			// animateIn();
-		// } else {
-			ContentManager.nextTemplate();
-		// }
+		ContentManager.nextTemplate();
 	}
 
 
@@ -114,62 +116,54 @@ function PageTemplate( data /* ofType TemplateData */ ) {
 // 	 * Transitions
 // 	 */
 	_instance.templateIn = function() {
-		// must be overriden in template and call PageTemplate.init();
-		// trace("templateIn();");
+		if(_scrollController != null) {
+			_scrollController.scrollTo(0, 0);
+		}
 
-		TweenMax.to(Assets.LAYER_BOT, 1.4, {
-			x:0,
-			onComplete:function() {
+		if(!Assets.MAIN_MENU.isCollapsed()) {
+			Assets.MAIN_MENU.collapseMenu( 1, Expo.easeInOut );
+
+			setTimeout( function() {
 				ContentManager.nextTemplate();
-			},
-			ease:Expo.easeInOut
-		} );
+			}, 1000 );
 
-// 		if(_modules.length <= 0) {
-// 			ContentManager.nextTemplate();
-		// }
+		} else {
+			TweenMax.to(Assets.LAYER_BOT, 1, {
+				x:0,
+				onComplete:function() {
+					ContentManager.nextTemplate();
+				},
+				ease:Expo.easeInOut
+			} );
+		}
 	};
 
 	_instance.templateOut = function() {
-		// trace("templateOut(); " +_instance.visibleWidth);
-		_scrollController.scrollTo(0);
+		if(!Assets.MAIN_MENU.isCollapsed()) {
+			Assets.MAIN_MENU.openWide(0.6);
 
-		Assets.MAIN_MENU.collapseMenu();
-
-		TweenMax.to(Assets.LAYER_BOT, 0.6, {
-			x:_instance.visibleWidth,
-			onComplete:function() {
+			setTimeout( function() {
+				_scrollController.scrollTo(0, 0);
 				_instance.kill();
 				ContentManager.nextTemplate();
-			},
-			ease:Expo.easeInOut
-		} );
-
-		// Assets.SCROLL_CONTROLLER.disableScroll();
-
-		// if( Assets.MAIN_MENU.isExpanded ) {
-		// 	Assets.MAIN_MENU.collapse( 0.6, Quart.easeInOut );
-		// }
-
-		// if(data.getNextTemplateData().getTemplateName() === "search-0") {
-		// 	ContentManager.nextTemplate();
-		// 	setTimeout( function() {
-		// 		_instance.kill();
-		// 	}, 1000 );
-		// } else {
-		// 	if(_useTransitionOut === true) {
-		// 		animateOut();
-		// 	} else {
-		// 		_instance.kill();
-		// 		ContentManager.nextTemplate();
-		// 	}
-		// }
+			}, 600 );
+		} else {
+			_scrollController.scrollTo(0, 0.6, Expo.easeInOut);
+			TweenMax.to(Assets.LAYER_BOT, 0.6, {
+				x:_instance.visibleWidth,
+				onComplete:function() {
+					_instance.kill();
+					ContentManager.nextTemplate();
+				},
+				ease:Expo.easeInOut
+			} );
+		}
 	};
 
 
 	_instance.onResize = function() {
-		_instance.visibleWidth				= Assets.RESIZE_MANAGER.getWindowWidth() - MainMenu.BORDER_WIDTH;// - (Assets.RESIZE_MANAGER.getBreakPoint() === "mobile" ? 0 : Assets.MAIN_MENU.menuOffsetW);
-		_instance.visibleHeight				= Assets.RESIZE_MANAGER.getWindowHeight();// - Assets.MAIN_MENU.menuOffsetH;
+		_instance.visibleWidth				= Assets.RESIZE_MANAGER.getWindowWidth() - MainMenu.BORDER_WIDTH;
+		_instance.visibleHeight				= Assets.RESIZE_MANAGER.getWindowHeight();
 
 		_instance.style.width				= _instance.visibleWidth + "px";
 		_instance.style.height				= _instance.visibleHeight + "px";
@@ -185,7 +179,7 @@ function PageTemplate( data /* ofType TemplateData */ ) {
 			return;
 		}
 
-		var xPos = 0;//Assets.MAIN_MENU.menuOffsetH;
+		var xPos = 0;
 
 		if(!target) {
 			for(var i = 0; i < l; i += 1) {
@@ -224,7 +218,7 @@ function PageTemplate( data /* ofType TemplateData */ ) {
 			return;
 		}
 
-		var yPos 		= Assets.MAIN_MENU.menuOffsetH;
+		var xPos 		= Assets.MAIN_MENU.menuOffsetH;
 		var index 		= target ? _modules.indexOf(target) : 0;
 
 		if(index === - 1) {
@@ -233,27 +227,27 @@ function PageTemplate( data /* ofType TemplateData */ ) {
 
 		if(target && index !== 0) {
 			module = _modules[ index - 1 ];
-			yPos = parseInt( module.aniGetX(), 10 ) + module.getWidth();
+			xPos = parseInt( module.aniGetX(), 10 ) + module.getWidth();
 		}
 
 		for(var i = index; i < l; i += 1) {
 			module = _modules[ i ];
 
-			module.aniSetX( yPos );
+			module.aniSetX( xPos );
 			module.aniRender();
-			yPos += module.getWidth();
+			xPos += module.getWidth();
 		}
 
-		if(l > 1 && module && yPos < _instance.visibleHeight) {
-			yPos = _instance.visibleWidth - module.getWidth();
-			module.aniSetX( yPos );// + "px";
+		if(l > 1 && module && xPos < _instance.visibleHeight) {
+			xPos = _instance.visibleWidth - module.getWidth();
+			module.aniSetX( xPos );// + "px";
 			module.aniRender();
-			_instance.visibleWidth = yPos;
-		} else if(yPos < _instance.visibleHeight) {
-			yPos = _instance.visibleWidth;
+			_instance.visibleWidth = xPos;
+		} else if(xPos < _instance.visibleHeight) {
+			xPos = _instance.visibleWidth;
 		}
 
-		_instance.pageHeight = yPos;
+		_instance.pageHeight = xPos;
 		_instance.setPageHeight( _instance.pageHeight );
 
 		setModuleVisibilty();
@@ -273,37 +267,56 @@ function PageTemplate( data /* ofType TemplateData */ ) {
 	_instance.kill = function() {
 		Assets.RESIZE_MANAGER.removeEventListener( ResizeEvents.RESIZE, _instance.onResize );
 		_scrollController.removeEventListener( ScrollController.ON_SCROLL_MOVE, onPageScroll );
-		// _scrollController.removeEventListener( ScrollController.ON_200_PX_SCROLLED, _instance.onScrollHideMenu );
 
 		killModules();
 		_instance.parentNode.removeChild( _instance );
 	};
 
+	var _afterIgnore;
+	_instance.ignoreScrollAfter = function( height ) {
+		_afterIgnore = height;
+	};
+
 	_instance.pageScrollRatio = function( ratio ) {
-		// Assets.LAYER_TEMPLATE.aniSetX( -_scrollController.currentScroll.y + SiteGuides.MAIN_MENU_WIDTH );
-		// Assets.LAYER_TEMPLATE.aniRender();
+		var totalHeight = _scrollController.getPageHeight();
 
-		TweenMax.set( Assets.LAYER_TEMPLATE, {x:-Assets.SCROLL_CONTROLLER.currentScroll.y} );
+		var offset = 0;
+		var height = totalHeight - _scrollController.getScrollRatio() * totalHeight;
+		if(_afterIgnore != null && height < _afterIgnore) {
+			var ratio = (_afterIgnore - height) / _afterIgnore;
+			offset = _afterIgnore * Power1.easeIn.getRatio(ratio);
+		}
 
-		// Assets.LAYER_TEMPLATE.style.left = -Assets.SCROLL_CONTROLLER.currentScroll.y + "px";
-
+		TweenMax.set( Assets.LAYER_TEMPLATE, {x:-Assets.SCROLL_CONTROLLER.currentScroll.y + offset} );
 		setModuleVisibilty();
 	};
 
-	_instance.scrollToNextModule = function() {
+	_instance.getCurrentScrolledIndex = function() {
 		var l			= _modules.length;
-		var module		= null;
-
 		for(var i = 0; i < l; i += 1) {
-			module = _modules[i];
-			var ratio = 1 / module.getWidth() * (_scrollController.currentScroll.y - module.aniGetX() + _instance.visibleWidth);
-			if(ratio > 0 && ratio < 1) {
-				// console.log("NextModuleFound:: " + module.moduleId);
-				break;
+			var offset = _scrollController.currentScroll.y - _modules[i].aniGetX();
+			if( offset < -1) {
+				return i - 1;
 			}
 		}
-		_scrollController.scrollTo(module.aniGetX(), 1, Expo.easeInOut);
+		return 0;
+	};
 
+	_instance.scrollToNextModule = function() {
+		var index =  _instance.getCurrentScrolledIndex() + 1;
+		if(index >= _modules.length) {
+			index = _modules.length - 1;
+		}
+
+		_scrollController.scrollTo(_modules[ index ].aniGetX(), 1, Expo.easeInOut);
+	};
+
+	_instance.scrollToPrevModule = function() {
+		var index =  _instance.getCurrentScrolledIndex() - 1;
+		if(index < 0 ) {
+			index = 0;
+		}
+		_scrollController.scrollTo(_modules[ index ].aniGetX(), 1, Expo.easeInOut);
 	};
 
 
@@ -321,17 +334,8 @@ function PageTemplate( data /* ofType TemplateData */ ) {
 		}
 	}
 
-// 	_instance.onScrollHideMenu = function() {
-// 		if( !_scrollController.isDragging() ) {
-// 			Assets.MAIN_MENU.collapse();
-// 		}
-// 	};
-
 	function onPageScroll() {
 		_instance.pageScrollRatio( _scrollController.getScrollRatio() );
-		// if(BrowserDetect.MOBILE === false) {
-		// 	Assets.MAIN_MENU.collapseMenu();
-		// }
 	}
 
 	return _instance;

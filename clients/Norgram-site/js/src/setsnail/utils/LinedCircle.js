@@ -12,10 +12,7 @@ function LinedCircle( settings ) {
 		settings = new LinedCircleSettings();
 	}
 
-
-
-
-
+	var _centerOffset = 50000;
 	var _context = _container.getContext("2d");
 
 	_instance.init = function() {
@@ -35,14 +32,22 @@ function LinedCircle( settings ) {
 		settings.removeEventListener( LinedCircleSettings.ON_UPDATE, _instance.updateLines);
 	};
 
-	function drawLines() {
+	_instance.getCenterLineOffset = function() {
+		return _centerOffset;
+	};
 
+	function drawLines() {
+		// _centerOffset = 5000;
 		var l = Math.floor( settings.radius / settings.spacing );
+
+		_centerOffset = settings.spacing + settings.offset;
+
 
 		for( var i = 0; i < l; i++) {
 			var ratio = i / l;
+			var yPos = -settings.radius + settings.radius * 2 * ratio;// + settings.spacing + settings.offset;
 
-			var yPos = -settings.radius + settings.radius * 2 * ratio + settings.spacing + settings.offset;
+			// _centerOffset = getClosetToZero(yPos, _centerOffset);
 
 			var hypotenuseL = settings.radius * settings.radius;
 			var sidedL = yPos * yPos;
@@ -54,6 +59,23 @@ function LinedCircle( settings ) {
 
 			drawLine( xPos, yPos, xlength * 2 );
 		}
+	}
+
+	function getClosetToZero(numOne, numTwo) {
+		var numOneAbs = numOne;
+		var numTwoAbs = numTwo;
+		if(numOneAbs < 0) {
+			numOneAbs = numOneAbs * -1;
+		}
+		if(numTwoAbs < 0) {
+			numTwoAbs = numTwoAbs * -1;
+		}
+
+		// console.log(numTwoAbs + " " + numOneAbs + " : " + numTwo + " " + numOne );
+		if(numTwoAbs < numOneAbs) {
+			return numTwo;
+		}
+		return numOne;
 	}
 
 	function drawLine( x, y, length ) {

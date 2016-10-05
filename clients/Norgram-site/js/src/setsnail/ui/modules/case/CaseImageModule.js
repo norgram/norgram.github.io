@@ -1,4 +1,4 @@
-function CaseImageModule( data ) {
+function CaseImageModule( data, imageIndex ) {
 
 	var _instance = Snail.extend(new Module());
 

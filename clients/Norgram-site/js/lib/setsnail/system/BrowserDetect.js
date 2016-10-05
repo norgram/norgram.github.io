@@ -5,9 +5,9 @@ var BrowserDetect =
 
 BrowserDetect.init = function()
 {
-
     BrowserDetect.MOBILE = BrowserDetect.checkMobile();
     BrowserDetect.TABLET = BrowserDetect.checkTablet();
+    BrowserDetect.DESKTOP = !BrowserDetect.MOBILE && !BrowserDetect.TABLET;
 
     BrowserDetect.BROWSER_NAME = this.searchString(this.dataBrowser) || "An unknown browser";
 
@@ -17,6 +17,7 @@ BrowserDetect.init = function()
     if (BrowserDetect.BROWSER_NAME == "Firefox" && BrowserDetect.BROWSER_VERSION >= 10)
 {
     BrowserDetect.TRANSLATE3D_SUPPORT = true;
+
 }
 
 
@@ -274,6 +275,7 @@ BrowserDetect.OS = null;
 
 BrowserDetect.MOBILE = false;
 BrowserDetect.TABLET = false;
+BrowserDetect.DESKTOP = true;
 
 BrowserDetect.TRANSLATE3D_SUPPORT = 'WebKitCSSMatrix' in window && 'm11' in new WebKitCSSMatrix();
 

@@ -26,7 +26,7 @@ function Main( ) {
 		setupContentManager();
 		addMainMenu();
 
-		SiteGuides.drawDebugLines();
+		// SiteGuides.drawDebugLines();
 
 		ContentManager.init( Assets.CONTENT_PAGES, "home" );
 	}
@@ -34,8 +34,8 @@ function Main( ) {
 	function setupResizeManager(){
 		// resize manager
 		var settings = new ResizeManagerSettings( );
-		settings.setMinWidth( 300 );
-		settings.setMinHeight( 350 );
+		// settings.setMinWidth( 1024 );
+		// settings.setMinHeight( 620 );
 		settings.setRoundWidthTo( 1 );
 
 		if(BrowserDetect.TABLET !== true && BrowserDetect.MOBILE !== true) {
@@ -72,9 +72,9 @@ function Main( ) {
 		ContentManager.AUTOMATICALLY_TRACK_GOOGLE_ANALYTICS = !Debug.isLocalhost();
 
 		ContentManager.addTemplate( "home", TemplateHome );
-		ContentManager.addTemplate( "caseoverview-0", TemplateCasesOverview );
-		ContentManager.addTemplate( "princip", TemplatePrincip );
-		ContentManager.addTemplate( "profil", TemplateProfil );
+		ContentManager.addTemplate( "projects-0", TemplateCasesOverview );
+		ContentManager.addTemplate( "principles", TemplatePrincip );
+		ContentManager.addTemplate( "profile", TemplateProfil );
 
 		ContentManager.addTemplate( "case-0", TemplateCase );
 

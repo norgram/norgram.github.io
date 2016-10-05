@@ -7,32 +7,47 @@ function OverviewCaseModule( data, prcWidth, index ) {
 	_instance.onModuleClick;
 
 	var _width, _height;
+	var _offset = 0;
 
 	var _image;
+
+	var _offsetWidth = 0;
 
 	_instance.init = function () {
 		_instance.super.init();
 		Touchable.apply(_instance);
 
 		_instance.onClick(onModuleClick);
-
 		addImage();
+	};
+
+	_instance.setOffset = function( offset ) {
+		_offset = offset;
 	};
 
 	_instance.getData = function() {
 		return data;
 	};
 
+	_instance.offsetWidth2 = function( offsetWidth ) {
+		_offsetWidth = offsetWidth;
+	};
+
 	_instance.resize_desktop = function (width, height) {
-		_width = width * prcWidth;
+		_width = Math.floor(width + _offset);
+		// console.log(_offsetWidth);
+		if(_offsetWidth != 0) {
+			_width = width - _offsetWidth;
+		}
 		_height = height;
 
 		_instance.style.width = _instance.getWidth() + "px";
 		_instance.style.height = height + "px";
 
-		if( _image.isLoaded() ) {
-			updateImgSize();
-		}
+		_image.setSize(_instance.getWidth(), _height);
+		// if( _image.isLoaded() ) {
+		// 	updateImgSize();
+		// }
 	};
 
 	_instance.getWidth = function() {
@@ -52,7 +67,10 @@ function OverviewCaseModule( data, prcWidth, index ) {
 	function addImage() {
 		var url = ContentManager.getChildByAttr(data, "name", "overviewimage").innerHTML;
 
+		var colorOne = (index % 2) == 0 ? UIColors.PRELOADER_COLOR_ONE : UIColors.PRELOADER_COLOR_TWO;
+		var colorTwo = (index % 2) == 0 ? UIColors.PRELOADER_COLOR_TWO : UIColors.PRELOADER_COLOR_ONE;
 		_image = new RetinaImage( url, null, updateImgSize);
+		_image.setPreloader( new SlidePreloader( colorOne, colorTwo ) );
 		_image.init();
 		_image.setResizeMode("insideBox");
 		_image.setPosition("center/center");

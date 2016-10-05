@@ -25,24 +25,6 @@ function TextButton( text, color, path ) {
 		_path = path;
 	};
 
-	// _instance.enableAnimation = function() {
-	// 	// _instance.addEventListener("mouseover", onBtnOver);
-	// 	// _instance.addEventListener("mouseout", onBtnOut);
-	// };
-	//
-	// _instance.disableAnimation = function() {
-	// 	// _instance.removeEventListener("mouseover", onBtnOver);
-	// 	// _instance.removeEventListener("mouseout", onBtnOut);
-	// };
-	//
-	// function onBtnOver() {
-	// 	// TweenMax.set(_instance, {x:0, scaleX:1.04});
-	// }
-	//
-	// function onBtnOut() {
-	// 	// TweenMax.to(_instance, 0.5, {x:0, scaleX:1, ease:Expo.easeOut, force3D:false});
-	// }
-
 	function onBtnClick() {
 		if(_path != "") {
 			if(_path.indexOf("http") != -1) {

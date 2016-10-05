@@ -34,24 +34,26 @@ function ResizeManager(settings) {
 
 		var gridRoundTo = _settings.getRoundWidthTo();
 		_windowWidth = Math.ceil(_windowWidth / gridRoundTo) * gridRoundTo;
-
 		_windowHeight = window.innerHeight;
 
-		if(_settings.getMinWidth() !== - 1 && _windowWidth < _settings.getMinWidth()) {
-			_windowWidth = _settings.getMinWidth();
+		if( BrowserDetect.DESKTOP ) {
+			if(_settings.getMinWidth() !== - 1 && _windowWidth < _settings.getMinWidth()) {
+				_windowWidth = _settings.getMinWidth();
+			}
+
+			if(_settings.getMinHeight() !== - 1 && _windowHeight < _settings.getMinHeight()) {
+				_windowHeight = _settings.getMinHeight();
+			}
+
+			if(_settings.getMaxWidth() !== - 1 && _windowWidth > _settings.getMaxWidth()) {
+				_windowWidth = _settings.getMaxWidth();
+			}
+
+			if(_settings.getMaxHeight() !== - 1 && _windowHeight > _settings.getMaxHeight()) {
+				_windowHeight = _settings.getMaxHeight();
+			}
 		}
 
-		if(_settings.getMinHeight() !== - 1 && _windowHeight < _settings.getMinHeight()) {
-			_windowHeight = _settings.getMinHeight();
-		}
-
-		if(_settings.getMaxWidth() !== - 1 && _windowWidth > _settings.getMaxWidth()) {
-			_windowWidth = _settings.getMaxWidth();
-		}
-
-		if(_settings.getMaxHeight() !== - 1 && _windowHeight > _settings.getMaxHeight()) {
-			_windowHeight = _settings.getMaxHeight();
-		}
 
 		// breakpoints
 		var newBreakPoint = getNewBreakPoint();

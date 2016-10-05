@@ -107,9 +107,16 @@
 		<script src="js/src/setsnail/Assets.js"></script>
 		<script src="js/src/setsnail/ui/UIColors.js"></script>
 		<script src="js/src/setsnail/utils/GuideLines.js"></script>
-		<script src="js/src/setsnail/utils/LinedCircle.js"></script>
-		<script src="js/src/setsnail/utils/GroupedCircles.js"></script>
+		<!--<script src="js/src/setsnail/utils/LinedCircle.js"></script>-->
+		<!--<script src="js/src/setsnail/utils/RoundCircleGroup.js"></script>-->
+		<!--<script src="js/src/setsnail/utils/GroupedCircles.js"></script>-->
 		<script src="js/src/setsnail/utils/ScrollController.js"></script>
+		<script src="js/src/setsnail/utils/ImageSlider.js"></script>
+
+		<!--LINES-->
+		<script src="js/src/setsnail/utils/Lines/LineMaskDrawer.js"></script>
+		<script src="js/src/setsnail/utils/Lines/LineMaskShape.js"></script>
+		<script src="js/src/setsnail/utils/Lines/CirclesOnALines.js"></script>
 
 		<script src="js/src/setsnail/ui/buttons/TextButton.js"></script>
 		<script src="js/src/setsnail/ui/text/TextArea.js"></script>
@@ -218,12 +225,14 @@
 	<div data-name="pages">
 
 		<div data-path='home' data-template="home">
+			<!--<div data-name="menu">Home</div>-->
+
 			<div data-name="frontpage">
 				<div data-name="founded">
 					Norgram® Studio is the Design Director duo of internationally recognized and awarded designers Sebastian Gram & Mathias Høst Normark.
 				</div>
 
-				<div data-name="link" data-link="profil">Our Profile +</div>
+				<div data-name="link" data-link="profile">Our Profile +</div>
 
 				<div data-name="body">
 					Forming design<br>
@@ -398,7 +407,7 @@
 		</div>
 
 
-		<div data-path='profil' data-template="profil">
+		<div data-path='profile' data-template="profile">
 			<div data-name="menu">Profile</div>
 
 
@@ -458,7 +467,22 @@
 				<div data-name="headline">Our service</div>
 				<div data-name="body">We help brands create unique design language. Et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commod ocons equat or incididunt ut labore et dolore magna aliqua ut enim ad minim veniam.</div>
 
-				<div data-name="circles">
+				<div data-name="circles" data-type="round">
+					<div data-name="circle">Our service</div>
+					<div data-name="circle">UX & UI</div>
+					<div data-name="circle">Digital Identity</div>
+					<div data-name="circle">Digital Experience</div>
+					<div data-name="circle">Workshops & Lectures</div>
+				</div>
+
+
+			</div>
+
+			<div data-name="process">
+				<div data-name="headline">Process</div>
+				<div data-name="body">We help brands create unique design language. Et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commod ocons equat or incididunt ut labore et dolore magna aliqua ut enim ad minim veniam.</div>
+
+				<div data-name="circles" data-type="straight">
 					<div data-name="circle">Foundation</div>
 					<div data-name="circle">Concept</div>
 					<div data-name="circle">Design</div>
@@ -467,16 +491,10 @@
 
 			</div>
 
-			<div data-name="process">
-				<div data-name="headline">Process</div>
-				<div data-name="body">We help brands create unique design language. Et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commod ocons equat or incididunt ut labore et dolore magna aliqua ut enim ad minim veniam.</div>
-
-			</div>
-
 		</div>
 
 
-		<div data-path='princip' data-template="princip">
+		<div data-path='principles' data-template="principles">
 			<div data-name="menu">Principles</div>
 
 			<div data-name="frontpage">
@@ -484,53 +502,53 @@
 					Norgram® Studio is the Design Director duo of internationally recognized and awarded designers Sebastian Gram & Mathias Høst Normark.
 				</div>
 
-				<div data-name="body">
-					At Norgram® we work with 6 basic principles to help us guide and define the type of work we believe in. Something we believe ideology we work with 6 basic principles we work with 6 basic principles to help us guide and define the type of work we believe in.
-				</div>
+				<div data-name="body">At Norgram® we work with 6 basic principles to help us guide and define the type of work we believe in. Something we believe ideology we work with 6 basic principles we work with 6 basic principles to help us guide and define the type of work we believe in.</div>
 			</div>
 
 			<div data-name="sections">
 				<div data-name="section">
 					<div data-name="headline">Purpose</div>
-					<div data-name="body">Our work come from a clear sense of purpose and authenticity. The foundation of our work comes from working with the questions — Why are you here and why do you exist? Once we’ve established the answer to those questions we look at the reason the target audience should care. </div>
-					<div data-name="image"></div>
+					<div data-name="body">Itation ullamco. laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.</div>
+					<div data-name="image">round</div>
 				</div>
 
 				<div data-name="section">
 					<div data-name="headline">Authenticity</div>
-					<div data-name="body">The exploration into purpose creates the foundation for an authentic end result that encapsulates the brand and what it stands for. This leads us to a design process where we create work with an authentic story that is driven by the value it creates.</div>
-					<div data-name="image"></div>
+					<div data-name="body">Labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerc-itation ullamco. laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excep-teur sint.</div>
+					<div data-name="image">rect</div>
 				</div>
 
 				<div data-name="section">
 					<div data-name="headline">Collaboration</div>
-					<div data-name="body">The output of our work is defined by the explorative nature of collaboration. Independent on skill-set and function we work with our clients to get the to core of the challenge and establish a way forward that keeps our clients highly involved in the process. We believe that by building a tight relationship with our collaborators and clients we create better results. </div>
+					<div data-name="body">Ng elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerc-itation ullamco. laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</div>
 					<div data-name="image"></div>
 				</div>
 
 				<div data-name="section">
-					<div data-name="headline">Exploration</div>
-					<div data-name="body">The nature of our collaborative process opens up the opportunity to explore alternate solutions that surprises the consumer — creating a stronger sense of attachment to the end result. We give ourselves time to explore and identify the path forward that we believe will make consumers look twice.</div>
+					<div data-name="headline">Functional</div>
+					<div data-name="body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in repreh</div>
 					<div data-name="image"></div>
 				</div>
 
 				<div data-name="section">
-					<div data-name="headline">Timeless</div>
-					<div data-name="body">We always strive for our work to be timeless, we reach that by making sure every details exists for a reason through craft and thought. The result of our efforts embodies a level of aesthetic quality that at its foundation feels honest and surprising in the eyes of the beholder.</div>
-					<div data-name="image"></div>
+					<div data-name="headline">Aesthetic</div>
+					<div data-name="body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. laboris nisi ut aliquip.</div>
+					<div data-name="image">triangle</div>
 				</div>
 
-				
+				<div data-name="section">
+					<div data-name="headline">Explorative</div>
+					<div data-name="body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.</div>
+					<div data-name="image"></div>
+				</div>
 			</div>
 
 
 		</div>
 
 
-		<div data-path='cases' data-template="caseoverview-0">
+		<div data-path='projects' data-template="projects-0">
 			<div data-name="menu">Projects</div>
-
-			
 
 			<div data-path='setio' data-template="case-0" >
 				<div data-name="info">
@@ -569,7 +587,7 @@
 
 				<div data-name="modules">
 					<div data-name="moduleImage">assets/images/cases/setio/overview_1.jpg</div>
-                    <div data-name="moduleText">
+					<div data-name="moduleText">
 						<!--<div data-name="top"></div>-->
 						<div data-name="mid">
 							Assignment<br>
@@ -581,13 +599,13 @@
 							Result<br>
 							After 20 years of falling behind the competition, Stadium’s brand identity is fit for purpose. While other sports retailers compete purely on price, Stadium has found another gear. </div>
 					</div>
-                       <div data-name="moduleImage">assets/images/cases/setio/case_2.png</div>
-                    <div data-name="moduleImage">assets/images/cases/setio/case_3.jpg</div>
-                 
+					<div data-name="moduleImage">assets/images/cases/setio/case_2.png</div>
+					<div data-name="moduleImage">assets/images/cases/setio/case_3.jpg</div>
+
 				</div>
 			</div>
-            
-            <div data-path='mitte' data-template="case-0" >
+
+			<div data-path='mitte' data-template="case-0" >
 				<div data-name="info">
 					<div data-name="headline">
 						Mitte®<br>
@@ -644,7 +662,7 @@
 					<div data-name="moduleImage">assets/images/cases/mitte/mitte_02.jpg</div>
 				</div>
 			</div>
-            
+
 			<div data-path='twentythree' data-template="case-0" >
 				<div data-name="info">
 					<div data-name="headline">
@@ -699,6 +717,7 @@
 				</div>
 			</div>
 
+
 			<div data-path='thedots' data-template="case-0" >
 				<div data-name="info">
 					<div data-name="headline">
@@ -739,7 +758,8 @@
 					<div data-name="moduleImage">assets/images/cases/mitte/overview.png</div>
 				</div>
 			</div>
-			
+
+
 		</div>
 	</div>
 </div>

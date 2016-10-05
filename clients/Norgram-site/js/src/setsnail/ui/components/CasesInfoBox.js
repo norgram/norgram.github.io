@@ -5,6 +5,9 @@ function CasesInfoBox( data ) {
 
 	var _cases = [];
 
+	var _width = 0;
+	var _height = 0;
+
 	_instance.init = function() {
 		addCases();
 
@@ -25,6 +28,10 @@ function CasesInfoBox( data ) {
 		}
 
 		TweenMax.set(_instance, {width:_width, height:_height});
+	};
+
+	_instance.getWidth = function() {
+		return _width;
 	};
 
 	function updateRatio() {
@@ -75,7 +82,7 @@ function CaseInfo( data, index ) {
 
 	var _width, _height;
 
-	var _headline, _client, _project, _year;
+	var _headline;
 
 	var _smallContentContainer;
 
@@ -103,9 +110,15 @@ function CaseInfo( data, index ) {
 		var doubleRatio = _ratio * 2;
 		_ratio = doubleRatio;
 
+		var offsetAmount = 10;
+
 		if(doubleRatio > 1) {
 			_ratio = 2 - doubleRatio;
+			offsetAmount = 30;
 		}
+
+		TweenMax.set(_smallContentContainer, {x:10 + offsetAmount * (doubleRatio - 1)} );
+		TweenMax.set( _headline, { x:10 + offsetAmount * (doubleRatio - 1) } );
 
 		_instance.style.opacity = _ratio;
 	};

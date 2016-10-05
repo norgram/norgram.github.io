@@ -19,6 +19,8 @@ function ProfileEmployee( data ) {
 		_width = width;
 		_height = height;
 
+		_text.setSize(_width, _height);
+
 		var textOffset = 11;
 
 		TweenMax.set( _text, { y:SiteGuides.OFFSET_TOP, x:textOffset} );
@@ -80,6 +82,10 @@ function EmployeeInfoText( data ) {
 
 	var _width, _height;
 
+	var _origFontSize = 28;
+
+	var _texts = [];
+
 	_instance.init = function() {
 		addName();
 		addTitle();
@@ -87,7 +93,6 @@ function EmployeeInfoText( data ) {
 		addPhone();
 		addLinkedIn();
 		addTwitter();
-
 
 		updatePos();
 	};
@@ -100,39 +105,63 @@ function EmployeeInfoText( data ) {
 	};
 
 	function updatePos() {
-		var space = _name.offsetHeight;
-		var currSpacing = -Text.getOffsetY(_name);
+		var scale = _width / 500 * 1.5;
+
+		if( scale > 1 || isNaN(scale) ) {
+			scale = 1;
+		} else if( scale < 0.7 ) {
+			scale = 0.7;
+		}
+
+
+		var fontScale = _origFontSize * scale;
+		if( fontScale > _origFontSize ) {
+			fontScale = _origFontSize;
+		}
+
+		// console.log(scale);
+
+		var space = _name.offsetHeight * scale;
+		var currSpacing = -Text.getOffsetY(_name) * scale;
 
 		if(_name != null) {
+			_name.style.fontSize = fontScale + "px";
+			_name.updateLineHeight();
 			TweenMax.set(_name, {y:currSpacing} );
-			currSpacing += _name.offsetHeight;
+			currSpacing += _name.offsetHeight * scale;
 		}
 
 		if(_title != null) {
+			_title.style.fontSize = fontScale + "px";
+			_title.updateLineHeight();
 			TweenMax.set(_title, {y:currSpacing} );
-			currSpacing += _title.offsetHeight;
+			currSpacing += _title.offsetHeight * scale;
 		}
 
-		currSpacing += space;
+		currSpacing += space * scale;
 
 		if(_mail != null) {
+			_mail.style.fontSize = fontScale + "px";
 			TweenMax.set(_mail, {y:currSpacing} );
-			currSpacing += _mail.offsetHeight;
+			currSpacing += _mail.offsetHeight * scale;
 		}
 
 		if( _phone != null ) {
+			_phone.style.fontSize = fontScale + "px";
 			TweenMax.set(_phone, {y:currSpacing});
-			currSpacing += _phone.offsetHeight;
+			currSpacing += _phone.offsetHeight * scale;
 		}
 
-		currSpacing += space;
+		currSpacing += space * scale;
 
 		if(_linkedIn != null) {
+			_linkedIn.style.fontSize = fontScale + "px";
 			TweenMax.set(_linkedIn, {y:currSpacing} );
 			currSpacing += _linkedIn.offsetHeight;
 		}
 
 		if( _twitter != null ) {
+			_twitter.style.fontSize = fontScale + "px";
 			TweenMax.set(_twitter, {y:currSpacing});
 			// currSpacing += _twitter.offsetHeight;
 		}
@@ -208,7 +237,7 @@ function EmployeeInfoText( data ) {
 	}
 
 	function getText( text ) {
-		var textInstance = Text.getNewLight( 28 );
+		var textInstance = Text.getNewLight( _origFontSize );
 		textInstance.innerHTML = text;
 		textInstance.style.whiteSpace = "nowrap";
 		textInstance.style.color = UIColors.FONT_MED_ON_DARK;

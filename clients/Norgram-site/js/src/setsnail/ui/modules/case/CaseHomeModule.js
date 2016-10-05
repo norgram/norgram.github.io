@@ -10,9 +10,11 @@ function CaseHomeModule( data, infoData, onArrowClick ) {
 
 	var _width, _height;
 
+	var _model;
 
 	_instance.init = function() {
 		_instance.super.init();
+		_model = new TextAreaModel();
 
 		setupGuides();
 
@@ -37,7 +39,7 @@ function CaseHomeModule( data, infoData, onArrowClick ) {
 		var textStartX = _width * 0.4;
 		var bodyHeight = _height * 0.4;
 
-		TweenMax.set(_name, {x:_guides.getGuide("start"), y:SiteGuides.getCenterOffset() - Text.getOffsetY(_name)});
+		TweenMax.set(_name, {x:_guides.getGuide("start"), y:SiteGuides.getCenterOffset()});
 
 		TweenMax.set(_headline, {x:textStartX - 85, y:SiteGuides.OFFSET_TOP - Text.getOffsetY(_headline) } );
 
@@ -82,8 +84,11 @@ function CaseHomeModule( data, infoData, onArrowClick ) {
 
 
 	function addName() {
-		_name = Text.getNewLight(50);
-		_name.innerHTML = ContentManager.getChildByAttr(data, "name", "headline" ).innerHTML;
+		var text = ContentManager.getChildByAttr(data, "name", "headline").innerHTML;
+
+		_name = new TextArea(text, Text.getNewLight(50));
+		_name.init(_model, TextAreaModel.MODE_LISTEN);
+		// _name.innerHTML = ContentManager.getChildByAttr(data, "name", "headline" ).innerHTML;
 
 		_instance.appendChild(_name);
 	}
@@ -98,9 +103,9 @@ function CaseHomeModule( data, infoData, onArrowClick ) {
 		_body = new TextArea( text, Text.getNewLight(15) );
 		_instance.appendChild( _body );
 
-		var model = new TextAreaModel();
+		// var model = new TextAreaModel();
 		// model.maxFontSize = 50;
-		_body.init(model);
+		_body.init(_model, TextAreaModel.MODE_CONTROL);
 	}
 
 	function addFooter() {

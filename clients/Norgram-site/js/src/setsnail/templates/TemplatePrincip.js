@@ -6,7 +6,6 @@ function TemplatePrincip( data ) {
 
 	_instance.init = function() {
 		_instance.super.init();
-		// trace("INIT TemplatePrincip");
 		setupAndAddModules();
 		_instance.onResize();
 	};
@@ -24,17 +23,18 @@ function TemplatePrincip( data ) {
 		var frontpageData = ContentManager.getChildByAttr( data.getXML(), "name", "frontpage" );
 		var sectionsData = ContentManager.getChildByAttr( data.getXML(), "name", "sections" );
 
-		// console.log(sectionsData);
-
 		var sections = ContentManager.getChildrenByAttr( sectionsData, "name", "section" );
 
 		_instance.addModule( new BasicHomeModule( frontpageData, onNextClick ) );
 
+		var longestId = getLongestSectionId(sections);
+		var bodyModel = new TextAreaModel();
+
 		var l = sections.length;
 		for( var i = 0; i < l; i++) {
-			_instance.addModule( new PrincipleSectionModule( sections[i] ) );
+			var mode = i == longestId ? TextAreaModel.MODE_CONTROL : TextAreaModel.MODE_LISTEN;
+			_instance.addModule( new PrincipleSectionModule( sections[i], bodyModel, mode ) );
 		}
-
 
 		_instance.addModule( new ReturnModule() );
 	}
@@ -42,6 +42,20 @@ function TemplatePrincip( data ) {
 	function onNextClick() {
 		// console.log("HOME CLICK NEXT");
 		_instance.scrollToNextModule();
+	}
+
+	function getLongestSectionId( section ) {
+		var highestCount = 0;
+		var highsetId = -1;
+		var l = section.length;
+		for(var i = 0; i < l; i++) {
+			var bodyHtml = ContentManager.getChildByAttr(section[i], "name", "body").innerHTML;
+			if(bodyHtml.length > highestCount) {
+				highestCount = bodyHtml.length;
+				highsetId = i;
+			}
+		}
+		return highsetId;
 	}
 
 	return _instance;

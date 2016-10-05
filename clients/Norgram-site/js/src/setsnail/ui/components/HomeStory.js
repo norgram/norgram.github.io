@@ -3,24 +3,30 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 	_instance.style.position = "absolute";
 	_instance.style.backgroundColor = ColorUtils.WHITE;
 
-	_instance.style.cursor = "pointer";
-
 	_instance.onStoryClick;
+	_instance.style.cursor = "pointer";
 
 	Touchable.apply(_instance);
 
-	var _ratio, _oldRatio, _ratioOffset = 0;
+	var _ratio = 1;
+	var _oldRatio = -1;
+	var _ratioOffset = 0;
 
 	var _widthExpanded, _widthCollapsed;
 
+	var _reverseStories = [];
+	var _hasReverseStories = false;
+
+	var _numOfImages = 0;
+
 	var _line, _imageSlider, _body, _bodyTop, _bodyMask, _headline, _tag, _date, _number;
+	var _leftButton, _rightButton;
 
 	var _numberColorActive = ColorUtils.hex2rgb( UIColors.FONT_DARK );
 	var _numberColorDeactive = ColorUtils.hex2rgb( UIColors.LINE_ON_WHITE );
 
 	var _mode = TextAreaModel.MODE_LISTEN;
 
-	var _leftButton, _rightButton;
 	var _buttonContainer = document.createElement("div");
 	_buttonContainer.style.position = "absolute";
 
@@ -29,11 +35,16 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 	};
 
 	_instance.init = function() {
-		// Touchable.apply(_instance);
 		_instance.onClick(onEverywhereClick);
 
+		var slideData = ContentManager.getChildByAttr(data, "name", "images");
+		var slides = ContentManager.getChildrenByAttr(slideData, "name", "image");
+		_numOfImages = slides.length;
+
 		addSiteLine();
-		addSlideButtons();
+		if( !BrowserDetect.MOBILE ) {
+			addSlideButtons();
+		}
 		addImageSlide();
 		addHeadline();
 		addImgTag();
@@ -53,7 +64,7 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 	_instance.setHeight = function(height) {
 		_height = height;
 		_instance.style.height = _height + "px";
-		TweenMax.set( _line, { width:1, height:_height, x:0 });
+		TweenMax.set( _line, { width:1, x:-1, height:_height });
 	};
 
 	_instance.getWidth = function() {
@@ -65,18 +76,58 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 		_ratioOffset = offsetStart;
 	};
 
-	_instance.setRatio = function(ratio, forceUpdate) {
-		_ratio = MathUtils.ratioFromRatio(_ratioOffset, _ratioOffset + 1, ratio);
-		if(_ratio < 0) {
+	_instance.setRatioNoOffset = function(ratio, forceUpdate) {
+		_ratio = ratio;
+
+		if(_ratio <= 0) {
 			_ratio = 0;
-		} else if(_ratio > 1) {
+		} else if(_ratio >= 1) {
 			_ratio = 1;
+			if(_hasReverseStories) {
+				// console.log(_ratio);
+				updateCollapseStories();
+			}
+		} else {
+			if(_hasReverseStories) {
+				// console.log(_ratio);
+				updateCollapseStories();
+			}
 		}
 
 		_instance.style.width = _instance.getWidth() + "px";
-
 		updateToRatio(forceUpdate);
 	};
+
+	_instance.setRatio = function(ratio, forceUpdate) {
+		_instance.setRatioNoOffset(
+			MathUtils.ratioFromRatio(_ratioOffset, _ratioOffset + 1, ratio),
+			forceUpdate
+		);
+	};
+
+
+	_instance.reverseStories = function( reverseStories ) {
+		_reverseStories = reverseStories;
+		_hasReverseStories = _reverseStories.length > 0;
+	};
+
+	function updateCollapseStories() {
+		var l = _reverseStories.length;
+
+		var preStory = _instance;
+		var collapseRatio = 1 - _ratio;
+
+		var partRatio = 1 / l;
+
+		for(var i = 0; i < l; i++ ) {
+			var ratio = MathUtils.ratioFromRatio(1 - partRatio * (i + 1), 1 - partRatio * i, collapseRatio);
+			_reverseStories[i].setRatioNoOffset(ratio, false);
+
+			TweenMax.set(_reverseStories[i], {x:preStory._gsTransform.x - _reverseStories[i].getWidth()});
+			preStory = _reverseStories[i];
+		}
+	}
+
 
 	function onEverywhereClick(){
 		if(_instance.onStoryClick != null) {
@@ -100,7 +151,7 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 		var collapsedImgHeight = (_widthCollapsed - doubleMargin) * 0.51;
 		var expImgHeight = _height - imgYPos;
 
-		var imgHeight = collapsedImgHeight + (expImgHeight - collapsedImgHeight) * _ratio;
+		var imgHeight = Math.ceil(collapsedImgHeight + (expImgHeight - collapsedImgHeight) * _ratio);
 
 
 		//UPDATE NUMBER
@@ -111,11 +162,15 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 		//UPDATE HEADLINE
 		TweenMax.set(_headline, {x:deltaRatio + margin, y:SiteGuides.getCenterOffset() - Text.getOffsetY(_headline),  width:_widthCollapsed - doubleMargin });
 
-		//UPATE BUTTONS
-		var buttonLeftEase = Back.easeOut.getRatio(MathUtils.ratioFromRatio(0.1, 0.8, _ratio));
-		var buttonRightEase = Back.easeOut.getRatio(MathUtils.ratioFromRatio(0.3, 1, _ratio));
-		TweenMax.set(_leftButton, {y:imgYPos + 40 - 72 * buttonLeftEase, x:margin});
-		TweenMax.set(_rightButton, {y:imgYPos + 40 - 72 * buttonRightEase, x:margin + 32});
+		//UPDATE BUTTONS
+		if(_numOfImages > 1 ) {
+			var buttonLeftEase = Back.easeOut.getRatio(MathUtils.ratioFromRatio(0.1, 0.8, _ratio));
+			var buttonRightEase = Back.easeOut.getRatio(MathUtils.ratioFromRatio(0.3, 1, _ratio));
+			if( _leftButton != null && _rightButton != null ) {
+				TweenMax.set(_leftButton, {y:imgYPos + 40 - 72 * buttonLeftEase, x:margin});
+				TweenMax.set(_rightButton, {y:imgYPos + 40 - 72 * buttonRightEase, x:margin + 32});
+			}
+		}
 
 		//UPDATE IMAGE
 		TweenMax.set(_imageSlider, {y:imgYPos , x:margin});
@@ -125,17 +180,32 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 		TweenMax.set(_bodyMask, {x:deltaRatio + margin, y:0,  width:_widthCollapsed - doubleMargin, height:1000 });
 
 		//UPDATE BODY TOP
-		TweenMax.set(_bodyTop, {x:0, y:130 - 30 * Math.cos(-1 + _ratio * 2 * Math.PI), width:_widthCollapsed - doubleMargin, alpha:(-1 + _ratio * 2) });
+		var bodyTopXPos = 0;
+		var bodyTopWidth = _widthCollapsed - doubleMargin - 10;
+		if( BrowserDetect.MOBILE && _widthCollapsed > _height ) {
+			bodyTopXPos = Math.floor(_widthCollapsed * 0.5);
+			bodyTopWidth -= bodyTopXPos;
+		}
+		TweenMax.set(_bodyTop, {x:bodyTopXPos, y:130 - 30 * Math.cos(-1 + _ratio * 2 * Math.PI), width:bodyTopWidth, alpha:(-1 + _ratio * 2) });
 
 		//UPDATE BODY
 		TweenMax.set(_body, {x:deltaRatio + margin, y:imgYPos + imgHeight + margin,  width:_widthCollapsed - doubleMargin, alpha:(1 - _ratio * 2) });
-		_body.setSize( _widthCollapsed - doubleMargin, (_height - imgYPos - collapsedImgHeight - margin) * 0.5 );
+
+		var bodyHeight = (_height - imgYPos - collapsedImgHeight - margin) * 0.5;
+		if( bodyHeight < 100 ) {
+			bodyHeight = 100;
+		}
+		_body.setSize( _widthCollapsed - doubleMargin, bodyHeight );
 
 		//UPDATE IMG TAG
 		TweenMax.set(_tag, {x:deltaRatio + margin, y:imgYPos - Text.getOffsetY(_tag) - doubleMargin,  width:_widthCollapsed - doubleMargin });
 
 		//UPDATE DATE
-		TweenMax.set(_date, {x:deltaRatio + margin, y:SiteGuides.getCenterOffset() - Text.getOffsetY(_date) - 40,  width:_widthCollapsed - doubleMargin });
+		var dateOffsetY = -40;
+		if( BrowserDetect.MOBILE ) {
+			dateOffsetY = -30;
+		}
+		TweenMax.set(_date, {x:deltaRatio + margin, y:SiteGuides.getCenterOffset() - Text.getOffsetY(_date) + dateOffsetY,  width:_widthCollapsed - doubleMargin });
 
 		_oldRatio = _ratio;
 	}
@@ -145,19 +215,33 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 		_line.style.position = "absolute";
 		_line.style.backgroundColor = UIColors.LINE_ON_WHITE;
 
+
 		_instance.appendChild(_line);
 	}
 
 	function addSlideButtons() {
+		if(_numOfImages <= 1 ) {
+			return;
+		}
+
 		_leftButton = new RetinaImage("assets/images/logo/arrow_short.png", Assets.RETINA_HANDLE);
 		_rightButton = new RetinaImage("assets/images/logo/arrow_short.png", Assets.RETINA_HANDLE);
+
+		Touchable.apply( _leftButton );
+		Touchable.apply( _rightButton );
+
+		_leftButton.onClick( function() {
+			_imageSlider.nextImg();
+		} );
+
+		_rightButton.onClick( function() {
+			_imageSlider.prevImg();
+		} );
+
 		_leftButton.init();
 		_rightButton.init();
 
 		_leftButton.getContent().style.transform = "rotatey(" + 180 + "deg)";
-
-		// TweenMax.set( _leftButton, { width:40, height:40 } );
-		// TweenMax.set( _rightButton, { width:40, height:40 } );
 
 		_buttonContainer.appendChild(_leftButton);
 		_buttonContainer.appendChild(_rightButton);
@@ -167,14 +251,15 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 	function addImageSlide() {
 		var slideData = ContentManager.getChildByAttr(data, "name", "images");
 		var slides = ContentManager.getChildrenByAttr(slideData, "name", "image");
-		// console.log(slides[0].innerHTML);
 
-		_imageSlider = new RetinaImage(slides[0].innerHTML);
+		var urls = [];
+		var l = slides.length;
+		for( var i = 0; i < l; i++) {
+			urls.push( slides[i].innerHTML );
+		}
+
+		_imageSlider = new ImageSlider(urls);
 		_imageSlider.init();
-		_imageSlider.setResizeMode("insideBox");
-		_imageSlider.setPosition("center/center");
-
-		// _imageSlider.setSize(_width, _height);
 
 		_instance.appendChild(_imageSlider);
 	}
@@ -190,7 +275,7 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 	function addDate() {
 		var dateData = ContentManager.getChildByAttr(data, "name", "date");
 
-		_date = Text.getNewLight(13);//new TextArea(bodyData.innerHTML, TEXT.getNewReg(13));
+		_date = Text.getNewLight(13);
 		_date.innerHTML = dateData.innerHTML;
 		_date.style.color = UIColors.FONT_DARK;
 
@@ -200,7 +285,7 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 	function addHeadline() {
 		var headlineData = ContentManager.getChildByAttr(data, "name", "headline");
 
-		_headline = Text.getNewReg(23);//new TextArea(bodyData.innerHTML, TEXT.getNewReg(13));
+		_headline = Text.getNewReg(23);
 		_headline.innerHTML = headlineData.innerHTML;
 		_headline.style.color = UIColors.FONT_DARK;
 
@@ -212,12 +297,10 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 
 		_bodyTop = new TextArea(bodyData.innerHTML, Text.getNewReg(13));
 		_bodyTop.init(bodyTextModel, TextAreaModel.MODE_LISTEN );
-		// _bodyTop.innerHTML = bodyData.innerHTML;
 		_bodyTop.style.color = UIColors.FONT_MED_ON_WHITE;
 
 		_bodyMask = document.createElement("div");
 		_bodyMask.style.position = "absolute";
-		// _bodyMask.style.overflow = "hidden";
 
 		_bodyMask.appendChild(_bodyTop);
 		_instance.appendChild(_bodyMask);
@@ -226,12 +309,7 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 	function addBody() {
 		var bodyData = ContentManager.getChildByAttr(data, "name", "body");
 
-		_body = new TextArea( bodyData.innerHTML, Text.getNewReg(13) );//new TextArea(bodyData.innerHTML, TEXT.getNewReg(13));
-		//
-		// var mode = TextAreaModel.MODE_LISTEN;
-		// if(storyNumber == 8) {
-		// 	mode = TextAreaModel.MODE_CONTROL;
-		// }
+		_body = new TextArea( bodyData.innerHTML, Text.getNewReg(13) );
 
 		_body.init(bodyTextModel, _mode );
 		_body.style.color = UIColors.FONT_MED_ON_WHITE;
@@ -242,7 +320,7 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 	function addImgTag() {
 		var tagData = ContentManager.getChildByAttr(data, "name", "image-tag-name");
 
-		_tag = Text.getNewReg(13);//new TextArea(bodyData.innerHTML, TEXT.getNewReg(13));
+		_tag = Text.getNewReg(13);
 		_tag.innerHTML = tagData.innerHTML;
 		_tag.style.color = UIColors.FONT_DARK;
 

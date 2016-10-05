@@ -16,7 +16,6 @@ function CaseTextModule( data ) {
 		var scaleData = data.getAttribute( "data-width-scale");
 		if(scaleData != null) {
 			_widthScale = scaleData;
-			console.log( scaleData );
 		}
 
 		addTop();

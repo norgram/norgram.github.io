@@ -17,6 +17,9 @@ function ScrollController() {
 	var _dragBounds					= null;
 	var _touchDragger				= null;
 
+	var _isScrolling = false;
+
+
 	var _startScroll				= {x: 0, y: 0};
 	var _200PxScrolled				= false;
 
@@ -108,6 +111,7 @@ function ScrollController() {
 	};
 
 	_instance.scrollToTop = function( speed, ease ) {
+
 		if(_touchDragger){
 			_fakeDragItem.aniSetY( 0 );// = "0px";
 			touchMove();
@@ -122,14 +126,24 @@ function ScrollController() {
 	var _scrollToEase = null;
 
 	_instance.scrollTo = function( pos, speed, ease ) {
-		_scrollToSpeed = speed != null ? speed : -1;
-		_scrollToEase = ease;
+		if(_touchDragger){
+			_fakeDragItem.aniSetX( pos );// = "0px";
+			touchMove();
+		} else {
+			_scrollToSpeed = speed != null ? speed : -1;
+			_scrollToEase = ease;
 
-		window.scrollTo(0, pos);
+			window.scrollTo(0, pos);
+		}
+
 	};
 
 	_instance.getScrollRatio = function(){
 		return _instance.currentScroll.y / ( _pageHeight - Assets.RESIZE_MANAGER.getWindowHeight() );
+	};
+
+	_instance.getPageHeight = function() {
+		return _pageHeight;
 	};
 
 	_instance.scrollToBottom = function( onComplete ) {
@@ -144,11 +158,15 @@ function ScrollController() {
 				onComplete:onComplete,
 				ease:Expo.easeIn
 			} );
-	}
+	};
 
 	_instance.isDragging = function(){
 		return _touchDragger ? _touchDragger.isDragging() : false;
-	}
+	};
+
+	_instance.isScrolling = function() {
+		return _isScrolling;
+	};
 
 	function updateBounds(){
 		if( _touchDragger === null ){
@@ -168,8 +186,8 @@ function ScrollController() {
 		if( _dragBounds ){
 			// console.log(Assets.MAIN_MENU.menuOffsetH);
 
-			_dragBounds.bounds.x = -_pageHeight + Assets.RESIZE_MANAGER.getWindowHeight();// - Assets.MAIN_MENU.menuOffsetH;
-			_dragBounds.bounds.width = _pageHeight - Assets.RESIZE_MANAGER.getWindowHeight();// + Assets.MAIN_MENU.menuOffsetH;
+			_dragBounds.bounds.x = -_pageHeight + Assets.RESIZE_MANAGER.getWindowHeight();
+			_dragBounds.bounds.width = _pageHeight - Assets.RESIZE_MANAGER.getWindowHeight();
 		}
 
 
@@ -189,7 +207,6 @@ function ScrollController() {
 	function touchMove( e ){
 		// trace("touchMove");
 		_instance.currentScroll.y = -_fakeDragItem.aniGetX();//-parseInt( _fakeDragItem.style.top );
-
 		// console.log( "CURRENT SCROLL = " + _instance.currentScroll.y);
 
 		// special scroll events :)
@@ -207,8 +224,22 @@ function ScrollController() {
 	}
 
 	function desktopHandle(){
+		// console.log( "HANDLE SCROLL" );
 		var speed = _scrollToSpeed != -1 ? _scrollToSpeed : _instance.scrollSpeed;
 		var ease = _scrollToEase != null ? _scrollToEase : Expo.easeOut;
+
+		_isScrolling = true;
+
+		var delta =  window.pageYOffset - _instance.currentScroll.y;
+
+
+		if(Math.abs(delta) > 1000){
+			_instance.dispatchEvent(ScrollController.ON_200_PX_SCROLLED);
+		}
+
+		// console.log(delta);
+
+		TweenMax.killTweensOf( _instance.currentScroll );
 
 		TweenMax.to( _instance.currentScroll, speed, {
 			y:window.pageYOffset,
@@ -216,9 +247,10 @@ function ScrollController() {
 				_instance.dispatchEvent( ScrollController.ON_SCROLL_MOVE );
 			},
 			onComplete:function() {
-				// console.log("DESKTOP SCROLL COMPLETE");
+				_isScrolling = false;
 				_instance.dispatchEvent( ScrollController.ON_SCROLL_EASE_STOP );
 			},
+			roundProps:["y"],
 			ease:ease });
 
 		_scrollToSpeed = -1;

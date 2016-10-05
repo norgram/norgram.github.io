@@ -6,20 +6,24 @@ function TemplateCasesOverview( data ) {
 
 	var _cases, _infoBox, _return, _whiteSpace;
 
-	var _numOfCases;
+	var _numOfCases = 0;
 
-	var _prcWidth = 0.65;
+	var _prcWidth = 0.75;
+
+	var _infoOffsetRatio = 0;
 
 	_instance.init = function() {
 		_instance.super.init();
 		setupAndAddModules();
 
 		Assets.SCROLL_CONTROLLER.addEventListener( ScrollController.ON_SCROLL_EASE_STOP, snapToStory );
+		Assets.SCROLL_CONTROLLER.addEventListener( ScrollController.ON_SCROLL_MOVE, onScrollMove );
 		_instance.onResize();
 	};
 
 	_instance.kill = function() {
 		Assets.SCROLL_CONTROLLER.removeEventListener( ScrollController.ON_SCROLL_EASE_STOP, snapToStory );
+		Assets.SCROLL_CONTROLLER.removeEventListener( ScrollController.ON_SCROLL_MOVE, onScrollMove );
 		_infoBox.kill();
 		Assets.LAYER_TEMPLATE_OFFSET.removeChild( _infoBox );
 		_instance.super.kill();
@@ -31,16 +35,28 @@ function TemplateCasesOverview( data ) {
 	};
 
 	_instance.onResize = function() {
-		var infoXPos = Math.floor((Assets.RESIZE_MANAGER.getWindowWidth() - SiteGuides.MAIN_MENU_WIDTH) * _prcWidth);
-		var infoWidth = Assets.RESIZE_MANAGER.getWindowWidth() * 0.15;
+		var infoWidth = Math.floor(Assets.RESIZE_MANAGER.getWindowWidth() * 0.15);
+		if( infoWidth < 150 ) {
+			infoWidth = 150;
+		}
+
+		_infoBox.setSize( infoWidth, Assets.RESIZE_MANAGER.getWindowHeight());
+		var infoXPos = getStoryPos();
+
+		// console.log(_infoOffsetRatio);
+		TweenMax.set(_infoBox, {x:infoXPos + _infoOffsetRatio * infoWidth});
 
 		_whiteSpace.setWidth( infoWidth );
+		if(_numOfCases > 0 ) {
+			_cases[_numOfCases - 1].offsetWidth2(infoWidth + 120 - SiteGuides.MAIN_MENU_WIDTH);
+		}
 
-		_return.setWidth(Assets.RESIZE_MANAGER.getWindowWidth() - infoXPos - infoWidth );
+		for( var i = 0; i < _numOfCases; i++ ) {
+			_cases[i].setOffset( -_infoBox.getWidth() - _return.getWidth() + SiteGuides.MAIN_MENU_WIDTH);
+		}
+
 		_instance.super.onResize();
-
-		TweenMax.set(_infoBox, {x:infoXPos});
-		_infoBox.setSize( infoWidth, Assets.RESIZE_MANAGER.getWindowHeight());
+		snapToStory();
 	};
 
 
@@ -50,13 +66,33 @@ function TemplateCasesOverview( data ) {
 		return Math.round(ratio / partRatio);
 	}
 
+	function onScrollMove() {
+		var infoXPos = getStoryPos();
+		var infoOffset = Assets.RESIZE_MANAGER.getWindowWidth() - infoXPos - 120 - _infoBox.getWidth();
+
+		var totalHeight = Assets.SCROLL_CONTROLLER.getPageHeight();
+		var height = totalHeight - Assets.SCROLL_CONTROLLER.getScrollRatio() * totalHeight;
+
+		// if( height < infoOffset ) {
+		// 	_infoOffsetRatio = Power1.easeInOut.getRatio((infoOffset - height) / infoOffset);
+		// } else {
+			_infoOffsetRatio = 0;
+		// }
+
+		TweenMax.set(_infoBox, {x:infoXPos + _infoOffsetRatio * infoOffset});
+	}
+
 	function snapToStory() {
 		easeToStory( getActiveStory() );
 	}
 
 	function easeToStory( storyIndex ) {
-		var storyWidth = Math.floor((Assets.RESIZE_MANAGER.getWindowWidth() - SiteGuides.MAIN_MENU_WIDTH) * _prcWidth);
+		var storyWidth = getStoryPos();
 		Assets.SCROLL_CONTROLLER.scrollTo( storyWidth * storyIndex, 1, Expo.easeInOut );
+	}
+
+	function getStoryPos() {
+		return Math.floor((Assets.RESIZE_MANAGER.getWindowWidth()) - _infoBox.getWidth() - _return.getWidth());
 	}
 
 	function setupAndAddModules() {
@@ -69,7 +105,8 @@ function TemplateCasesOverview( data ) {
 		for( var i = 0; i < _numOfCases; i++ ) {
 			infoData.push(ContentManager.getChildrenByAttr(casesData[i], "name", "info"));
 
-			var project = new OverviewCaseModule(casesData[i], _prcWidth, i);
+			var project = new OverviewCaseModule(casesData[i], 0.75, i);
+
 			project.onModuleClick = onCaseClick;
 			_instance.addModule(project);
 			_cases.push(project);
@@ -77,11 +114,23 @@ function TemplateCasesOverview( data ) {
 
 		_whiteSpace = new WhiteSpaceModule();
 		_return = new ReturnModule();
+		_return.addLine(UIColors.LINE_ON_WHITE);
 
 		_instance.addModule(_whiteSpace);
 		_instance.addModule( _return );
 
 		addInfoBox( infoData );
+
+		// for( var i = 0; i < _numOfCases; i++ ) {
+		// 	infoData.push(ContentManager.getChildrenByAttr(casesData[i], "name", "info"));
+		//
+		// 	var project = new OverviewCaseModule(casesData[i], 0.75, i);
+		//
+		// 	project.onModuleClick = onCaseClick;
+		// 	_instance.addModule(project);
+		// 	_cases.push(project);
+		// }
+
 	}
 
 	function addInfoBox( infoData ) {

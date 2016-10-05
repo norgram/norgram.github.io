@@ -53,7 +53,7 @@ Touchable.listen = function( listener, params, autokill ) {
 
 Touchable.apply = function( target, autokill ) {
 	return new Touchable( target, autokill, true );
-}
+};
 
 
 /**

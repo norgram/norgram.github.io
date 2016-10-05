@@ -69,7 +69,7 @@ SiteGuides.OFFSET_CENTER = 387;
 SiteGuides.MAIN_MENU_WIDTH = 42;
 
 SiteGuides.getCenterOffset = function() {
-	return SiteGuides.OFFSET_CENTER * window.innerHeight / SiteGuides.BASE_DESIGN_HEIGHT
+	return SiteGuides.OFFSET_CENTER * Assets.RESIZE_MANAGER.getWindowHeight() / SiteGuides.BASE_DESIGN_HEIGHT
 };
 
 SiteGuides.drawDebugLines = function() {

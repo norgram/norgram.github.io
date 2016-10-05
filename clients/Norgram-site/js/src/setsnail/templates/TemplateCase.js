@@ -12,32 +12,16 @@ function TemplateCase( data ) {
 		_instance.onResize();
 	};
 
-
 	_instance.templateIn = function() {
 		_instance.init();
 		_instance.super.templateIn();
 	};
 
-	// _instance.onResize = function() {
-	// 	_instance.super.onResize();
-	// 	_guides.set( Assets.RESIZE_MANAGER.getBreakPoint() );
-	// 	if(Assets.RESIZE_MANAGER.getBreakPoint() === "mobile") {
-	// 		var marginX = 20;
-	// 		_guides.setGuide("guide-1", marginX);
-	// 		_guides.setGuide("guide-3", _instance.visibleWidth - marginX);
-	// 	} else {
-	// 		_guides.setWidth(_instance.visibleWidth);
-	// 	}
-	// 	_instance.super.resizeModules();
-	// };
-
 	function setupAndAddModules() {
-
 		var homeData = ContentManager.getChildByAttr(data.getXML(), "name", "home");
 		var infoData = ContentManager.getChildByAttr(data.getXML(), "name", "info");
 
 		_instance.addModule( new CaseHomeModule(homeData, infoData, onArrowClick));
-
 
 		//add Modules
 		var modules = ContentManager.getChildByAttr(data.getXML(), "name", "modules").children;
@@ -47,17 +31,18 @@ function TemplateCase( data ) {
 			_instance.addModule( getModule( modules[i] ) );
 		}
 
-		// console.log(l);
-
-
 		_instance.addModule(new ReturnModule());
 	}
+
+	var _imgId = 0;
 
 	function getModule( moduleData ) {
 		var id = moduleData.getAttribute("data-name");
 
 		switch( id ) {
-			case "moduleImage" : return new CaseImageModule( moduleData );
+			case "moduleImage" :
+				_imgId++;
+				return new CaseImageModule( moduleData, _imgId );
 			case "moduleText" : return new CaseTextModule( moduleData );
 		}
 

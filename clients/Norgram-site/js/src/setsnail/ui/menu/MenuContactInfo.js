@@ -43,6 +43,12 @@ function MenuContactInfo( data, guides ) {
 		var columns = ContentManager.getChildByAttr( data, "name", "columns");
 		var l = columns.children.length;
 
+		if(BrowserDetect.MOBILE) {
+			if( l > 2 ) {
+				l = 2;
+			}
+		}
+
 		for(var i = 0; i < l; i++) {
 			var column = Text.getNewReg(13);
 			column.style.color = UIColors.FONT_MED_ON_WHITE;
@@ -61,6 +67,10 @@ function MenuContactInfo( data, guides ) {
 
 		if(getColumnsTextWidth() > width) {
 			xPos = guides.getGuide("end") - getColumnsTextWidth();
+		}
+
+		if( BrowserDetect.MOBILE ) {
+			xPos = guides.getGuide("start");
 		}
 
 		TweenMax.set( _instance, {x:xPos, y:OFFSET_TOP} );

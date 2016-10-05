@@ -1,11 +1,11 @@
-function PrincipleSectionModule( data ) {
+function PrincipleSectionModule( data, bodyModel, modelMode ) {
 
 	var _instance = Snail.extend(new Module());
 	_instance.style.backgroundColor = UIColors.DARK;
 
 	var _line;
 	var _width, _height;
-	var _body, _headline;
+	var _body, _headline, _image;
 
 	_instance.init = function () {
 		_instance.super.init();
@@ -14,23 +14,43 @@ function PrincipleSectionModule( data ) {
 
 		addHeadline();
 		addBodyText();
+		addImage();
 	};
 
 	_instance.resize_desktop = function (width, height) {
-		_width = width * 0.25;
+		_width = Math.floor(height * 0.25);
+
+		if(_width < 200) {
+			_width = 200;
+		}
+
 		_height = height;
 
 		_instance.style.width = _instance.getWidth() + "px";
 		_instance.style.height = height + "px";
 
-		_body.setSize( _width - 22, _height * 0.3 );
+		var margin = 11;
 
 		var headOffsetY = SiteGuides.OFFSET_TOP - Text.getOffsetY(_headline.getTextInstance());
-		TweenMax.set( _headline, { x:11, y:headOffsetY } );
-		var bodyOffsetY = SiteGuides.getCenterOffset();// - Text.getOffsetY(_body.getTextInstance());
-		TweenMax.set( _body, { x:11, y:bodyOffsetY} );
+		var bodyOffsetY = SiteGuides.getCenterOffset();
+		var bodyHeight = _height - bodyOffsetY - Math.floor(height * 0.25) - margin * 2;
+		// var imgOffset = bodyOffsetY + bodyHeight + margin * 8;
 
-		TweenMax.set( _line, { width:1, height:_height, x:1 });
+		_body.setSize( _width - margin * 2, bodyHeight );
+
+		TweenMax.set( _headline, { x:margin, y:headOffsetY } );
+		TweenMax.set( _body, { x:margin, y:bodyOffsetY} );
+		TweenMax.set( _line, { width:1, height:_height });
+
+		if( _image != null ) {
+			var ratio = (Math.floor(height * 0.25)/268);
+			var imgMargin = Math.floor(margin * 6 * ratio);
+			var imgSize = Math.floor(height * 0.25) - imgMargin;
+
+			_image.setSize(imgSize, imgSize);
+			TweenMax.set( _image, { y:_height - imgSize - margin * 3, x:_width * 0.5 - imgSize * 0.5 } );
+		}
+
 	};
 
 	_instance.getWidth = function() {
@@ -66,9 +86,48 @@ function PrincipleSectionModule( data ) {
 
 		_body = new TextArea( textData.innerHTML, Text.getNewLight(28) );
 		_body.style.color = UIColors.FONT_MED_ON_DARK;
-		_body.init();
+		_body.init( bodyModel, modelMode );
 
 		_instance.appendChild(_body);
+	}
+
+	function addImage() {
+		var urlData = ContentManager.getChildByAttr( data, "name", "image" );
+		if( urlData == null || urlData.innerHTML == "" ) {
+			return;
+		}
+
+		switch(urlData.innerHTML) {
+			case "round" : {
+				_image = new CircleInCircle(200);
+				break;
+			}
+			case "rect" : {
+				_image = new RectInRect(200, 200);
+				break;
+			}
+			case "triangle" : {
+				_image = new TriangleInRect(200, 200);
+				break;
+			}
+
+
+		}
+
+		if(_image == null) {
+			return;
+		}
+
+		_instance.appendChild(_image);
+
+		// console.log( urlData.innerHTML );
+		// _image = new RetinaImage( urlData.innerHTML );
+		// _image.init();
+
+		// _image = new Image();
+		// _image.src = urlData.innerHTML;
+		//
+		// _instance.appendChild(_image);
 	}
 
 	return _instance;
