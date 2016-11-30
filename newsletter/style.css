@@ -1,0 +1,14 @@
+body
+{
+}
+
+form
+{
+	height: 500px;
+}
+
+#conversational-form
+{
+	font-size: 1em;
+	font-family: "FounderGrotesk-Medium", Arial;
+}
