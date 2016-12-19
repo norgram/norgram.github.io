@@ -80,7 +80,8 @@ function CaseInfo( data, index ) {
 
 	var _ratio = 0;
 
-	var _width, _height;
+	var _width = 0;
+	var _height = 0;
 
 	var _headline;
 
@@ -107,6 +108,7 @@ function CaseInfo( data, index ) {
 
 	_instance.setRatio = function(ratio) {
 		_ratio = MathUtils.ratioFromRatio( index - 0.5, index + 0.5, ratio );
+
 		var doubleRatio = _ratio * 2;
 		_ratio = doubleRatio;
 
@@ -115,9 +117,17 @@ function CaseInfo( data, index ) {
 		if(doubleRatio > 1) {
 			_ratio = 2 - doubleRatio;
 			offsetAmount = 30;
+		}else {
+			offsetAmount = -30;
 		}
 
-		TweenMax.set(_smallContentContainer, {x:10 + offsetAmount * (doubleRatio - 1)} );
+		if( _ratio <= 1 ) {
+			_ratio = Quad.easeOut.getRatio(_ratio);
+		} else {
+			_ratio = Quad.easeIn.getRatio(_ratio - 1);
+		}
+
+		TweenMax.set(_smallContentContainer, { x:10, y:_height - SiteGuides.OFFSET_BOTOM - 39 - offsetAmount * 0.5 * (doubleRatio - 1)} );
 		TweenMax.set( _headline, { x:10 + offsetAmount * (doubleRatio - 1) } );
 
 		_instance.style.opacity = _ratio;

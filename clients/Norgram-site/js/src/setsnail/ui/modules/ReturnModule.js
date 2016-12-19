@@ -60,6 +60,10 @@ function ReturnModule( width ) {
 		_arrow.getContent().style.transform = "rotatey(" + 180 + "deg)";
 		positionArrow();
 		_instance.appendChild(_arrow);
+
+		var tl = new TimelineMax({repeat:-1, repeatDelay:0.5});
+		tl.to( _arrow, 1.2, {x: 17+ 10} );
+		tl.to( _arrow, 0.4, {x: 17, ease:Bounce.easeOut} );
 	}
 
 	function positionArrow() {

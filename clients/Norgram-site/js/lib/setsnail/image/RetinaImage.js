@@ -59,6 +59,11 @@ function RetinaImage(src, retinaHandle, callbackLoad, callbackError) {
 
 	var  _preLoader;
 
+	var _hasOrigSize = false;
+
+	var _width = 0;
+	var _height = 0;
+
 	var _originalWidth		= 0;
 	var _originalHeight		= 0;
 
@@ -89,24 +94,42 @@ function RetinaImage(src, retinaHandle, callbackLoad, callbackError) {
 	};
 
 	_instance.getWidth = function() {
-		if(!_isLoaded) {
-			return 0;
-		}
-		return _image.width;
+		return _width;//_image.width;
 	};
 
 	_instance.getHeight = function() {
-		if(!_isLoaded) {
-			return 0;
+		return _height;// _image.height;
+	};
+
+	_instance.setSizeByAttribute = function( dom ) {
+		var width = parseInt(dom.getAttribute( "width" ));
+		var height = parseInt(dom.getAttribute( "height" ));
+
+		if( _instance.getOriginalWidth() <= 0 && _instance.getOriginalHeight() <= 0 ) {
+			setOrigSize( width, height );
 		}
-		return _image.height;
+
+		if(isNumber(width) && isNumber(height)) {
+			_instance.setSize( width, height );
+			return;
+		}
+
+		if(isNumber(width) ) {
+			_instance.setWidth( width );
+		}
+		if(isNumber(height) ) {
+			_instance.setHeight( height );
+		}
+	};
+
+	_instance.hasSize = function() {
+		return _instance.getWidth() > 0 && _instance.getHeight() > 0;
 	};
 
 	_instance.setSize = function( width, height ) {
 		_newW = width;
 		_newH = height;
 
-		// trace( _newW + " : " + _newH);
 		updateSize();
 	};
 
@@ -141,67 +164,98 @@ function RetinaImage(src, retinaHandle, callbackLoad, callbackError) {
 
 		if(_image != null) {
 			_image.removeEventListener("load", onImageLoaded);
+			_image.onProgress = onProgress;
+			if(!_image.load(_src)) {
+				_image.addEventListener("load", onImageLoaded);
+			} else {
+				// console.log("easeComplete");
+				_preLoader.onEaseComplete = onImageLoaded;
+			}
+		}else {
+			_preLoader.onEaseComplete = onImageLoaded;
 		}
-		_preLoader.onEaseComplete = onImageLoaded;
-
 
 		_midContainer.appendChild(_preLoader);
 	};
 
 	function updateSize() {
-
-		var width = _newW;
-		var height = _newH;
-
-		if( _isLoaded ) {
+		
+		if( _hasOrigSize ) {
 			if(_resizeMode === "insideBox") {
 				var ratio = _originalHeight / _originalWidth;
 				var areaRatio = _newH / _newW;
 				if(ratio > areaRatio) {
-					// width = _newW;
-					_image.width = _newW;
-					// height = _newW * ratio
-					_image.height = _newW * ratio;
+					_width = _newW;
+					_height = Math.ceil(_newW * ratio);
 				} else {
 					ratio = _originalWidth / _originalHeight;
-					_image.height = _newH;
-					_image.width = _newH * ratio;
-					// width = _newH * ratio;
+
+					_width = Math.ceil(_newH * ratio);
+					_height = _newH;
 				}
 			} else if(_newW === "auto") {
 				if(_newH !== null) {
 					var ratio = _originalWidth / _originalHeight;
-					_image.height = _newH;
-					_image.width = _newH * ratio;
-					// width = _newH * ratio;
+
+					_width = Math.ceil(_newH * ratio);
+					_height = _newH;
 				}
 			} else if(_newH === "auto") {
 				if(_newW !== null) {
 					var ratio = _originalHeight / _originalWidth;
-					_image.width = _newW;
-					_image.height = _newW * ratio;
-					// height = _newW * ratio;
+
+					_width = _newW;
+					_height = Math.ceil(_newW * ratio);
 				}
 			} else {
 				if(_newW !== null) {
-					_image.width = _newW;
+					_width = _newW;
 				}
 				if(_newH !== null) {
-					_image.heigth = _newH;
+					_height = _newH;
 				}
 			}
+		} else {
 
-			_instance.style.width = _midContainer.style.width = _newW + "px";
-			_instance.style.height = _midContainer.style.height = _newH + "px";
+			if(_newW !== null) {
+				_width = _newW;
+			}
+			if(_newH !== null) {
+				_height = _newH;
+			}
 
-			updatePosition();
 		}
 
+
+		if( isNumber( _width ) ) {
+			if( _width == 0 ) {
+				_width = _originalWidth;
+			}
+
+			if( _isLoaded ) {
+				_image.width = _width;
+			}
+			_instance.style.width = _midContainer.style.width = _width + "px";
+		}
+		if( isNumber(_height) ) {
+			if( _height == 0 ) {
+				_height = _originalHeight;
+			}
+
+			if( _isLoaded ) {
+				_image.height = _height;
+			}
+			_instance.style.height = _midContainer.style.height = _height + "px";
+		}
+
+		updatePosition();
+
 		if( _preLoader != null ) {
-			if(isNumber(width) && isNumber(height)) {
-				_preLoader.setSize( width, height );
-				_midContainer.style.width = _newW + "px";
-				_midContainer.style.height = _newH + "px";
+			if(isNumber(_width) && isNumber(_height)) {
+				// console.log( "SET SIZE" );
+				_preLoader.setSize( _width, _height );
+				_midContainer.style.width = _width + "px";
+				_midContainer.style.height = _height + "px";
 			}
 		}
 	}
@@ -225,16 +279,24 @@ function RetinaImage(src, retinaHandle, callbackLoad, callbackError) {
 				y = 0.5;
 			}
 
-			_image.style.left = _newW * x - _image.width * x + "px";
-			_image.style.top = _newH * y - _image.height * y + "px";
-		}
+			if( _width != null ) {
+				var offW = 0;
+				if(_newW != null) {
+					offW = _newW;
+				}
 
-		// if( _preLoader != null ) {
-		// 	if(isNumber(_newW) && isNumber(_newH)) {
-		// 		TweenMax.set(_preLoader, {x:_newW * 0.5, y:_newH * 0.5});
-				// _preLoader.setSize( width, height );
-		// 	}
-		// }
+				_image.style.left = Math.floor(offW * x - _width * x) + "px";
+			}
+			if( _height != null ) {
+				var offH = 0;
+				if(_newH != null) {
+					offH = _newH;
+				}
+
+				_image.style.top = Math.floor(offH * y - _height * y) + "px";
+			}
+
+		}
 	}
 
 	_instance.getOriginalWidth = function() {
@@ -294,10 +356,6 @@ function RetinaImage(src, retinaHandle, callbackLoad, callbackError) {
 		}
 		_image.addEventListener("error", onImageError);
 
-		// _image.onerror = function( e ){
-		// 	return true;
-		// };
-
 		if(_preLoader != null) {
 			_image.onProgress = onProgress;
 			if(!_image.load(loadPath)) {
@@ -309,11 +367,7 @@ function RetinaImage(src, retinaHandle, callbackLoad, callbackError) {
 	}
 
 	function onImageError( e ) {
-		// e.preventDefault();
-		// e.stopPropagation();
-		// trace("onImageError();");
 		doCallback(_callbackError);
-
 		return true;
 	}
 
@@ -322,30 +376,35 @@ function RetinaImage(src, retinaHandle, callbackLoad, callbackError) {
 		// console.log("ON PROGRESS = " + progress);
 	}
 
+	function setOrigSize( width, height ) {
+		var scalePercent	= _retinaHandle ? _retinaHandle.getAssetScalePercent() : 1;
+
+		if( isNumber(width) ) {
+			_originalWidth 		= width * scalePercent;
+			_image.width 		= _originalWidth;
+		}
+
+		if( isNumber(height) ) {
+			_originalHeight 	= height * scalePercent;
+			_image.height 		= _originalHeight;
+		}
+
+		_hasOrigSize = true;
+	}
+
 	function onImageLoaded() {
 		_image.removeEventListener("load", onImageLoaded);
 		_image.removeEventListener("error", onImageError);
 
-		var scalePercent	= _retinaHandle ? _retinaHandle.getAssetScalePercent() : 1;
-
-		_originalWidth 		= _image.width * scalePercent;
-		_originalHeight 	= _image.height * scalePercent;
-		_image.width 		= _originalWidth;
-		_image.height 		= _originalHeight;
-
+		setOrigSize( _image.width, _image.height );
 
 		if(_preLoader != null) {
-			// var scaleOffset = 0;
-			// if(_position === "center/center") {
-			// 	scaleOffset = 0.5;
-			//
-			// }
 
-			if(isNumber(_newW)){
-				TweenMax.set( _image, {x:_newW} );
+			if(isNumber(_width)){
+				TweenMax.set( _image, {x:_width} );
 			}
 			TweenMax.to(_image, 1, {x:0, ease:Expo.easeInOut});
-			TweenMax.to(_preLoader, 1, {x:-_newW, onComplete:function() {
+			TweenMax.to(_preLoader, 1, {x:-_width, onComplete:function() {
 				_midContainer.removeChild(_preLoader);
 				_preLoader = null;
 			}, ease:Expo.easeInOut});
@@ -376,14 +435,18 @@ function RetinaImage(src, retinaHandle, callbackLoad, callbackError) {
 
 
 function SlidePreloader( bgColor, slideColor ) {
-
 	var _instance = new ImagePreloader();
-	_instance.style.backgroundColor = bgColor;
+	
+	var _background = document.createElement( "div" );
+	_background.style.position = "absolute";
+	_background.style.backgroundColor = bgColor != null ? bgColor : UIColors.PRELOADER_COLOR_ONE;	
 
 	var _slider = document.createElement("div");
 	_slider.style.position = "absolute";
-	_slider.style.backgroundColor = slideColor;
+	_slider.style.backgroundColor = slideColor != null ? slideColor : UIColors.PRELOADER_COLOR_TWO;
 
+
+	_instance.appendChild( _background );
 	_instance.appendChild(_slider);
 
 	var _ratio = 0;
@@ -395,13 +458,12 @@ function SlidePreloader( bgColor, slideColor ) {
 		_width = Math.ceil(width);
 		_height = Math.ceil(height);
 
-		_instance.style.width = _width + "px";
-		_instance.style.height = _height + "px";
+		_background.style.width = _instance.style.width = _width + "px";
+		_background.style.height = _instance.style.height = _height + "px";
 
 		//Update to ratio;
 		if( _ratio >= 0.99 ) {
 			_slider.style.height = _height + "px";
-			// _slider.style.width = _width + "px";
 		} else {
 			TweenMax.set( _slider, {width:_width * _ratio} );
 			_slider.style.height = _height + "px";
@@ -425,6 +487,7 @@ function SlidePreloader( bgColor, slideColor ) {
 
 	function easeComplete() {
 		if(_ratio >= 0.99) {
+			_background.style.display = "none";
 			if(_instance.onEaseComplete != null) {
 				_instance.onEaseComplete();
 			}
@@ -441,4 +504,4 @@ function ImagePreloader() {
 	_instance.setSize = function( width, height ){};
 	_instance.setProgress = function( progress ){};
 	return _instance;
-}
+} 

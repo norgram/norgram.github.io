@@ -6,15 +6,23 @@ function TextButton( text, color, path ) {
 	_instance.style.cursor = "pointer";
 	_instance.style.color = color ? color : "#fff";
 
+	var _effect = "";
+
 	var _path = path ? path : "";
 
 	_instance.init = function() {
 		text.style.top = -Text.getOffsetY(text) + "px";
 		_instance.onClick(onBtnClick);
+		_instance.addClass("animate");
 	};
 
 	_instance.addClass = function( effect ) {
-		text.setAttribute("class", effect);
+		if( _effect.length > 0 ) {
+			_effect += " " + effect;
+		}else {
+			_effect = effect;
+		}
+		text.setAttribute("class", _effect);
 	};
 
 	_instance.setText = function(text) {
@@ -30,7 +38,11 @@ function TextButton( text, color, path ) {
 			if(_path.indexOf("http") != -1) {
 				window.open(_path);
 			} else {
-				window.location.hash = "/" + _path + "/";
+				var linkpath =  "/" + _path + "/";
+				if(window.location.hash == "#" + linkpath) {
+					Assets.MAIN_MENU.collapseMenu();
+				}
+				window.location.hash = linkpath;
 			}
 		}
 	}

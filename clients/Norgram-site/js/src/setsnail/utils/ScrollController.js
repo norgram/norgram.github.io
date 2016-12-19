@@ -29,7 +29,6 @@ function ScrollController() {
 
 	_instance.scrollSpeed = ScrollController.DEFAULT_SCROLL_SPEED;
 
-
 	/**
 		@Params
 		body:Typically use body - Used for the events
@@ -78,7 +77,16 @@ function ScrollController() {
 			// console.log("ScrollController :: TOUCH SCROLL ENABLED");
 		} else {
 			window.addEventListener( "scroll", desktopHandle );
-			// console.log( "ScrollController :: DEFAULT SCROLL ENABLED" );
+
+			//Prevent overscrolling in some Browsers on Desktop;
+			window.addEventListener("mousewheel", function(e) {
+				if(e.wheelDelta > 0 && window.pageYOffset <= 0 ){
+					e.preventDefault();
+				} else if(e.wheelDelta < 0 && window.pageYOffset >= Math.floor(_pageHeight - Assets.RESIZE_MANAGER.getWindowHeight()) ) {
+					e.preventDefault();
+				}
+			}, false);
+
 		}
 
 		Assets.RESIZE_MANAGER.addEventListener( ResizeEvents.RESIZE, updateBounds );
@@ -216,6 +224,7 @@ function ScrollController() {
 		}
 
 		_instance.dispatchEvent( ScrollController.ON_SCROLL_MOVE );
+		// e.preventDefault();
 	}
 
 	function touchEnd( e ){
@@ -223,12 +232,14 @@ function ScrollController() {
 		_instance.dispatchEvent( ScrollController.ON_SCROLL_STOP );
 	}
 
-	function desktopHandle(){
+	function desktopHandle(e){
 		// console.log( "HANDLE SCROLL" );
 		var speed = _scrollToSpeed != -1 ? _scrollToSpeed : _instance.scrollSpeed;
 		var ease = _scrollToEase != null ? _scrollToEase : Expo.easeOut;
 
 		_isScrolling = true;
+
+		// console.log(window.pageYOffset);
 
 		var delta =  window.pageYOffset - _instance.currentScroll.y;
 

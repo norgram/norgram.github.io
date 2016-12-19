@@ -7,13 +7,38 @@ function MenuSocial(data, guides) {
 
 	_instance.init = function () {
 		addMenuPoints();
-
-		guides.addEventListener( GuideLines.ON_UPDATE, updateLayout );
-		updateLayout();
+		Assets.RESIZE_MANAGER.addEventListener( ResizeEvents.RESIZE, onResize );
+		onResize();
 	};
 
-	function updateLayout() {
-		TweenMax.set( _instance, {y:SiteGuides.getCenterOffset() + 220, x:guides.getGuide("start") } );
+
+	function onResize() {
+		var fontSize = 50 * SiteGuides.getDesignHeightRatio();
+		if(fontSize < 26) {
+			fontSize = 26;
+		}
+		var centerOffset = fontSize * 3 + 80 * SiteGuides.getDesignHeightRatio();
+
+		TweenMax.set( _instance, {y:SiteGuides.getCenterOffset() + centerOffset, x:guides.getGuide("start") } );
+
+		var l = _menuBtns.length;
+		var yPos = 0;
+
+		for (var i = 0; i < l; i++) {
+			var btn = _menuBtns[i];
+
+			var fontSize = 16 * SiteGuides.getDesignHeightRatio();
+			if(fontSize < 16) {
+				fontSize = 16;
+			}
+
+			btn.style.fontSize = fontSize + "px";
+			btn.updateLineHeight();
+
+			TweenMax.set(btn, {y:yPos});
+			yPos += fontSize + 2 * SiteGuides.getDesignHeightRatio();
+		}
+
 	}
 
 	function addMenuPoints() {
@@ -21,15 +46,15 @@ function MenuSocial(data, guides) {
 		var yPos = 0;
 
 		for (var i = 0; i < l; i++) {
-			var btn = new TextButton(Text.getNewLight(13), UIColors.FONT_MED_ON_WHITE);
+			var btn = new TextButton(Text.getNewLight(16), UIColors.FONT_MED_ON_WHITE);
 			btn.setText(data.children[i].innerHTML);
 			btn.setPath(data.children[i].getAttribute("data-link"));
-			btn.addClass( "sliding-grey-small" );
+			btn.addClass( "animate" );
 
 			btn.init();
 
 			TweenMax.set(btn, {y:yPos});
-			yPos += 15;
+			yPos += 18;
 
 			_instance.appendChild(btn);
 			_menuBtns.push(btn);

@@ -127,14 +127,14 @@ function EmployeeInfoText( data ) {
 		if(_name != null) {
 			_name.style.fontSize = fontScale + "px";
 			_name.updateLineHeight();
-			TweenMax.set(_name, {y:currSpacing} );
+			TweenMax.set(_name, {y:currSpacing, roundProps:"x,y"} );
 			currSpacing += _name.offsetHeight * scale;
 		}
 
 		if(_title != null) {
 			_title.style.fontSize = fontScale + "px";
 			_title.updateLineHeight();
-			TweenMax.set(_title, {y:currSpacing} );
+			TweenMax.set(_title, {y:currSpacing, roundProps:"x,y"} );
 			currSpacing += _title.offsetHeight * scale;
 		}
 
@@ -142,13 +142,13 @@ function EmployeeInfoText( data ) {
 
 		if(_mail != null) {
 			_mail.style.fontSize = fontScale + "px";
-			TweenMax.set(_mail, {y:currSpacing} );
+			TweenMax.set(_mail, {y:currSpacing, roundProps:"x,y"} );
 			currSpacing += _mail.offsetHeight * scale;
 		}
 
 		if( _phone != null ) {
 			_phone.style.fontSize = fontScale + "px";
-			TweenMax.set(_phone, {y:currSpacing});
+			TweenMax.set(_phone, {y:currSpacing, roundProps:"x,y"});
 			currSpacing += _phone.offsetHeight * scale;
 		}
 
@@ -156,13 +156,13 @@ function EmployeeInfoText( data ) {
 
 		if(_linkedIn != null) {
 			_linkedIn.style.fontSize = fontScale + "px";
-			TweenMax.set(_linkedIn, {y:currSpacing} );
+			TweenMax.set(_linkedIn, {y:currSpacing, roundProps:"x,y"} );
 			currSpacing += _linkedIn.offsetHeight;
 		}
 
 		if( _twitter != null ) {
 			_twitter.style.fontSize = fontScale + "px";
-			TweenMax.set(_twitter, {y:currSpacing});
+			TweenMax.set(_twitter, {y:currSpacing, roundProps:"x,y"});
 			// currSpacing += _twitter.offsetHeight;
 		}
 
@@ -217,7 +217,7 @@ function EmployeeInfoText( data ) {
 		}
 
 		_linkedIn = new TextButton(getText(name.innerHTML), UIColors.FONT_MED_ON_DARK, link.innerHTML );
-		_linkedIn.addClass("sliding-grey");
+		_linkedIn.addClass("sliding-grey-small");
 		_instance.appendChild(_linkedIn);
 		_linkedIn.setText("LinkedIn");
 		_linkedIn.init();
@@ -230,7 +230,7 @@ function EmployeeInfoText( data ) {
 		}
 
 		_twitter = new TextButton(getText(""), UIColors.FONT_MED_ON_DARK, link.innerHTML );
-		_twitter.addClass("sliding-grey");
+		_twitter.addClass("sliding-grey-small");
 		_instance.appendChild(_twitter);
 		_twitter.setText("Twitter");
 		_twitter.init();

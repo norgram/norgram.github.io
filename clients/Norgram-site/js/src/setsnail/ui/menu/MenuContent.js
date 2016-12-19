@@ -68,7 +68,7 @@ function MenuContent() {
 		_guides = new GuideLines();
 		_guides.addGuide( "start", 74 - MainMenu.BORDER_WIDTH );
 		_guides.addGuide( "contact", 758 - MainMenu.BORDER_WIDTH );
-		_guides.addGuide( "end", 1219 - MainMenu.BORDER_WIDTH );
+		_guides.addGuide( "end", 1100 - MainMenu.BORDER_WIDTH );
 	}
 
 	function addPageSelector() {
@@ -99,10 +99,24 @@ function MenuContent() {
 	}
 
 	function updateLayout() {
-		_guides.setWidthTo("contact", Assets.RESIZE_MANAGER.getWindowWidth());
+		_guides.setWidthTo("contact", Assets.RESIZE_MANAGER.getWindowWidth() - 50);
 		_guides.setWidthTo("end", Assets.RESIZE_MANAGER.getWindowWidth());
-
+		
 		_width = _guides.getGuide("end");
+
+
+		if(_width < 400) {
+			_width = Assets.RESIZE_MANAGER.getWindowWidth();
+			_contact.style.display = "none";
+		}else {
+			_contact.style.display = "inline";
+		}
+
+		if( Assets.RESIZE_MANAGER.getWindowHeight() < 350 ) {
+			_social.style.display = "none";
+		}else {
+			_social.style.display = "inline";
+		}
 
 		if(!_isOpen) {
 			TweenMax.set(_instance, {x:-_width});

@@ -77,7 +77,6 @@ function ProfileInfoModule( data, infoShow, slideNumber ) {
 			}
 
 			updateCircleTextPositions();
-
 		}
 
 		TweenMax.set(_slideNumber, {
@@ -88,6 +87,10 @@ function ProfileInfoModule( data, infoShow, slideNumber ) {
 
 	_instance.getWidth = function () {
 		return _width;
+	};
+
+	_instance.kill = function() {
+		_groupedCircle.kill();
 	};
 
 	function addCircles() {
@@ -109,6 +112,9 @@ function ProfileInfoModule( data, infoShow, slideNumber ) {
 			}
 		}
 
+		if(BrowserDetect.DESKTOP) {
+			_groupedCircle.addMouseEffect();
+		}
 		_instance.appendChild( _groupedCircle );
 
 

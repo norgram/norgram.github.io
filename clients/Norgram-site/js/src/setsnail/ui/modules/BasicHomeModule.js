@@ -61,13 +61,13 @@ function BasicHomeModule(data, onArrowClick, scaleWidth ) {
 			// endLine = _width * 0.5 - MainMenu.BORDER_WIDTH;
 			bodyHeight = _height * 0.25;
 
-			TweenMax.set(_link, {x:_guides.getGuide("start"), y:_height * 0.75});
+			TweenMax.set(_link, {x:_guides.getGuide("start"), y:Math.round(_height * 0.75)});
 		}
 
 		_header.setSize( _width * 0.2, 60 );
 		TweenMax.set(_header, {x:_guides.getGuide("start"), y:SiteGuides.OFFSET_TOP});
 
-		var headerEndX =_header.offsetWidth + _guides.getGuide("start");
+		var headerEndX = _header.offsetWidth + _guides.getGuide("start");
 
 		// console.log(width * 0.5);
 		if(_story != null) {
@@ -102,14 +102,13 @@ function BasicHomeModule(data, onArrowClick, scaleWidth ) {
 					storyX = headerEndX + 10;
 				}
 			}
-
-
+			
 			TweenMax.set(_story, {x:storyX, y:storyY});
 		}
 
 		_body.setSize(endLine, bodyHeight);
-		TweenMax.set(_body, {x:_guides.getGuide("start"), y:SiteGuides.getCenterOffset()});
 
+		TweenMax.set(_body, {x:_guides.getGuide("start") - 2 * SiteGuides.getDesignWidthRatio(), y:SiteGuides.getCenterOffset()});
 		if(_arrow.isLoaded()) {
 			TweenMax.set(_arrow, {x:_width - _arrow.getWidth() + ARROW_OFFSET_X, y:SiteGuides.getCenterOffset()});
 		}
@@ -165,7 +164,7 @@ function BasicHomeModule(data, onArrowClick, scaleWidth ) {
 		_link = new TextButton(Text.getNewLight(18), UIColors.FONT_MED_ON_WHITE, text.getAttribute("data-link"));
 		_link.innerHTML = text.innerHTML;
 		_link.init();
-		_link.addClass("sliding-grey-small");
+		
 
 		_instance.appendChild(_link);
 
@@ -208,6 +207,7 @@ function BasicHomeModule(data, onArrowClick, scaleWidth ) {
 		_arrow.init();
 		_arrow.style.cursor = "pointer";
 
+
 		if(onArrowClick != null) {
 			Touchable.apply( _arrow );
 			_arrow.onClick( onArrowClick );
@@ -218,7 +218,13 @@ function BasicHomeModule(data, onArrowClick, scaleWidth ) {
 	function onArrowLoaded() {
 		TweenMax.set(_arrow, {x:_width - _arrow.getWidth() + ARROW_OFFSET_X, y:SiteGuides.getCenterOffset() + 4});
 		_instance.appendChild(_arrow);
+
+		var tl = new TimelineMax({repeat:-1, repeatDelay:0.5});
+		tl.to( _arrow, 1.2, {x: _width - _arrow.getWidth() + ARROW_OFFSET_X - 20} );
+		tl.to( _arrow, 0.4, {x: _width - _arrow.getWidth() + ARROW_OFFSET_X, ease:Bounce.easeOut} );
 	}
+
+	
 
 	return _instance;
 

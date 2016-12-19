@@ -10,10 +10,37 @@ function MenuSelector(data, guides) {
 
 		guides.addEventListener( GuideLines.ON_UPDATE, updateLayout );
 		updateLayout();
+
+		Assets.RESIZE_MANAGER.addEventListener( ResizeEvents.RESIZE, onResize );
+		onResize();
 	};
 
 	function updateLayout() {
 		TweenMax.set( _instance, {y:SiteGuides.getCenterOffset() - 1, x:guides.getGuide("start") } );
+	}
+
+	function onResize() {
+		// console.log("RESIZE");
+
+		var l = _menuBtns.length;
+		var yPos = 0;
+
+		for (var i = 0; i < l; i++) {
+			var btn = _menuBtns[i];
+
+			var fontSize = 50 * SiteGuides.getDesignHeightRatio();
+
+			if(fontSize < 26) {
+				fontSize = 26;
+			}
+
+			btn.style.fontSize = fontSize + "px";
+			btn.updateLineHeight();
+
+			TweenMax.set(btn, {y:yPos});
+			yPos += fontSize;
+		}
+
 	}
 
 	function addMenuPoints() {
@@ -28,7 +55,8 @@ function MenuSelector(data, guides) {
 
 			var btn = new TextButton( Text.getNewLight(50), UIColors.WHITE, data.children[i].getAttribute("data-path") );
 			btn.init();
-			btn.addClass("sliding-white");
+			btn.addClass("animate");
+			btn.addClass("thick-line");
 			btn.setText(name.innerHTML);
 			// btn.enableAnimation();
 

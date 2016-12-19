@@ -6,6 +6,7 @@ Assets.CONTENT_LAYER				= document.createElement("div");
 Assets.SCROLL_LAYER					= document.createElement("div");
 
 Assets.LAYER_BOT					= document.createElement("div");
+Assets.LAYER_MID					= document.createElement("div");
 Assets.LAYER_TOP					= document.createElement("div");
 Assets.LAYER_TEMPLATE				= document.createElement("div");
 Assets.LAYER_TEMPLATE_OFFSET		= document.createElement("div");
@@ -41,11 +42,13 @@ Assets.setupLayers = function() {
 
 	//Layer for PageTemplates;
 	Assets.LAYER_BOT.appendChild( Assets.LAYER_TEMPLATE_OFFSET );
+	Assets.LAYER_MID.id = "LAYER_MID";
 	Assets.LAYER_BOT.id = "LAYER_BOT";
 	Assets.LAYER_TOP.id = "LAYER_TOP";
 
 	//Content layer
 	Assets.CONTENT_LAYER.appendChild( Assets.LAYER_BOT );
+	Assets.CONTENT_LAYER.appendChild( Assets.LAYER_MID );
 	Assets.CONTENT_LAYER.appendChild( Assets.LAYER_TOP );
 
 	//Main layers
@@ -70,6 +73,14 @@ SiteGuides.MAIN_MENU_WIDTH = 42;
 
 SiteGuides.getCenterOffset = function() {
 	return SiteGuides.OFFSET_CENTER * Assets.RESIZE_MANAGER.getWindowHeight() / SiteGuides.BASE_DESIGN_HEIGHT
+};
+
+SiteGuides.getDesignWidthRatio = function() {
+	return Assets.RESIZE_MANAGER.getWindowWidth() / SiteGuides.BASE_DESIGN_WIDTH;
+};
+
+SiteGuides.getDesignHeightRatio = function() {
+	return Assets.RESIZE_MANAGER.getWindowHeight() / SiteGuides.BASE_DESIGN_HEIGHT;
 };
 
 SiteGuides.drawDebugLines = function() {

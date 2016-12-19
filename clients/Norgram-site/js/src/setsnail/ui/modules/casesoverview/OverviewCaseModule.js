@@ -66,10 +66,12 @@ function OverviewCaseModule( data, prcWidth, index ) {
 
 	function addImage() {
 		var url = ContentManager.getChildByAttr(data, "name", "overviewimage").innerHTML;
+		// console.log(ContentManager.getChildByAttr(data, "name", "overviewimage").getAttribute("size"));
 
 		var colorOne = (index % 2) == 0 ? UIColors.PRELOADER_COLOR_ONE : UIColors.PRELOADER_COLOR_TWO;
 		var colorTwo = (index % 2) == 0 ? UIColors.PRELOADER_COLOR_TWO : UIColors.PRELOADER_COLOR_ONE;
 		_image = new RetinaImage( url, null, updateImgSize);
+		// _image.setSizeByAttribute(ContentManager.getChildByAttr(data, "name", "overviewimage")  );
 		_image.setPreloader( new SlidePreloader( colorOne, colorTwo ) );
 		_image.init();
 		_image.setResizeMode("insideBox");

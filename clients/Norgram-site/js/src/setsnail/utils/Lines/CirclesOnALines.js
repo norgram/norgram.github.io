@@ -1,5 +1,5 @@
 var defaultOffset = 10;
-var defaultNextOffset = 6;
+var defaultNextOffset = 5;
 var defaultThickness = 1;
 
 function CirclesOnALine(radius, spacing, numOfCircles) {
@@ -35,16 +35,17 @@ function CirclesInACircle(radius, distance, numOfCircles) {
 	var offsetX = distance;
 	var offsetY = distance;
 
+	var offSize = SiteGuides.getDesignHeightRatio() * 30;
+
 	var lineGroup = new LineMaskGroup( defaultOffset, defaultThickness, defaultNextOffset, UIColors.LINES_DARK_LIGHTER );
 	var line = new LineCircle();
-	line.x = offsetX;
-	line.y = offsetY;
-	line.radius = radius;
+	line.x = offsetX + offSize;
+	line.y = offsetY + offSize;
+	line.radius = radius - offSize;
 	lineGroup.addShape(line);
 
 	var lineGroupTwo = new LineMaskGroup( defaultOffset, defaultThickness, 0, UIColors.LINES_DARK );
-
-	var anglePart = 360 / (numOfCircles) / 180 * Math.PI;
+	var anglePart = 360 / numOfCircles / 180 * Math.PI;
 
 	for( var i = 0; i < numOfCircles; i++ ) {
 		var currAngle = anglePart * i;
@@ -67,6 +68,30 @@ function CirclesInACircle(radius, distance, numOfCircles) {
 	return _groupedCircle;
 }
 
+function CircleInRect( radius ) {
+	var outerGroup = new LineMaskGroup( defaultOffset, defaultThickness, defaultNextOffset, UIColors.LINES_DARK );
+	var innerGroup = new LineMaskGroup( defaultOffset, defaultThickness, 0, UIColors.LINES_DARK_LIGHTER );
+
+	var outerCircle = new LineRect(radius * 2, radius * 2);
+	// outerCircle.x = xPos;
+	// outerCircle.radius = radius;
+	outerGroup.addShape(outerCircle);
+
+	var circSize = 0.7;
+
+	var innerCircle = new LineCircle();
+	innerCircle.x = radius * (1 - circSize);
+	innerCircle.y = radius * (1 - circSize);
+	innerCircle.radius = radius * circSize;
+	innerGroup.addShape(innerCircle);
+
+
+	_groupedCircle = new LineMaskDrawer();
+	_groupedCircle.addGroup( outerGroup );
+	_groupedCircle.addGroup( innerGroup );
+
+	return _groupedCircle;
+}
 
 function CircleInCircle( radius ) {
 	var outerGroup = new LineMaskGroup( defaultOffset, defaultThickness, defaultNextOffset, UIColors.LINES_DARK );
@@ -92,7 +117,29 @@ function CircleInCircle( radius ) {
 }
 
 
-function RectInRect( width, height ) {
+function RectByRect( width, height ) {
+	var outerGroup = new LineMaskGroup( defaultOffset, defaultThickness, defaultNextOffset, UIColors.LINES_DARK );
+	var innerGroup = new LineMaskGroup( defaultOffset, defaultThickness, 0, UIColors.LINES_DARK_LIGHTER );
+
+
+
+	var outerRect = new LineRect( width, height );
+	outerGroup.addShape( outerRect );
+
+	var innerRect = new LineRect( width * 0.5, height);
+	innerRect.x = width * 0.5;
+	innerRect.y = 0;
+	innerGroup.addShape( innerRect );
+
+	_groupedCircle = new LineMaskDrawer();
+	_groupedCircle.addGroup( outerGroup );
+	_groupedCircle.addGroup( innerGroup );
+
+	return _groupedCircle;
+}
+
+
+function RectInRect( width, height  ) {
 	var outerGroup = new LineMaskGroup( defaultOffset, defaultThickness, defaultNextOffset, UIColors.LINES_DARK );
 	var innerGroup = new LineMaskGroup( defaultOffset, defaultThickness, 0, UIColors.LINES_DARK_LIGHTER );
 
@@ -110,6 +157,29 @@ function RectInRect( width, height ) {
 
 	return _groupedCircle;
 }
+
+function DoubleTriangleInRect( width, height ) {
+	var outerGroup = new LineMaskGroup( defaultOffset, defaultThickness, defaultNextOffset, UIColors.LINES_DARK );
+	var innerGroup = new LineMaskGroup( defaultOffset, defaultThickness, 0, UIColors.LINES_DARK_LIGHTER );
+
+	var outerRect = new LineRect( width, height );
+	outerGroup.addShape( outerRect );
+
+	var innerTriangle = new LineTriangleRight( width * 0.5, height );
+	// innerTriangle.x = 100;
+	innerGroup.addShape( innerTriangle );
+
+	var innerTriangle = new LineTriangleRight( width * 0.5, height );
+	innerTriangle.x = width * 0.5;
+	innerGroup.addShape( innerTriangle );
+
+	_groupedCircle = new LineMaskDrawer();
+	_groupedCircle.addGroup( outerGroup );
+	_groupedCircle.addGroup( innerGroup );
+
+	return _groupedCircle;
+}
+
 
 function TriangleInRect( width, height ) {
 	var outerGroup = new LineMaskGroup( defaultOffset, defaultThickness, defaultNextOffset, UIColors.LINES_DARK );

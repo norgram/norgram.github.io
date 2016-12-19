@@ -14,7 +14,7 @@ function CaseImageModule( data, imageIndex ) {
 		_width = width;
 		_height = height;
 
-		if(_image.isLoaded()) {
+		if(_image.hasSize()) {
 			resizeImage();
 		}
 	};
@@ -26,6 +26,11 @@ function CaseImageModule( data, imageIndex ) {
 	function addImage() {
 		_image = new RetinaImage(data.innerHTML, null, onImgLoaded );
 		_image.init();
+		_image.setSizeByAttribute( data );
+		if(_image.hasSize()){
+			_image.setPreloader( new SlidePreloader() );
+		}
+		_image.setResizeMode( "insideBox" );
 		_instance.appendChild(_image);
 	}
 

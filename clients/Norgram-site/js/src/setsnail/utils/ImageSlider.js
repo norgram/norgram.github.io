@@ -95,8 +95,8 @@ function ImageSlider( urls ) {
 
 		for( var i = 0; i < l; i++ ) {
 			var img = new RetinaImage( urls[i] );
-			img.setPreloader(new SlidePreloader( "#f4f4f4", "#e9e9e9"));
 			img.init();
+			img.setPreloader(new SlidePreloader( "#f4f4f4", "#e9e9e9"));
 			img.setResizeMode("insideBox");
 			img.setPosition("center/center");
 			img.setSize(_width, _height);

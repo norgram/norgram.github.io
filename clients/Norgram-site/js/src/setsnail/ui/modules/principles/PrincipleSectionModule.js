@@ -102,22 +102,34 @@ function PrincipleSectionModule( data, bodyModel, modelMode ) {
 				_image = new CircleInCircle(200);
 				break;
 			}
+			case "roundrect" : {
+				_image = new CircleInRect(200);
+				break;
+			}
 			case "rect" : {
 				_image = new RectInRect(200, 200);
+				break;
+			}
+			case "rectbyrect" : {
+				_image = new RectByRect(200, 200);
 				break;
 			}
 			case "triangle" : {
 				_image = new TriangleInRect(200, 200);
 				break;
 			}
-
-
+			case "doubletriangle" : {
+				_image = new DoubleTriangleInRect(200, 200);
+				break;
+			}
+			
 		}
 
 		if(_image == null) {
 			return;
 		}
 
+		_image.addMouseEffect();
 		_instance.appendChild(_image);
 
 		// console.log( urlData.innerHTML );

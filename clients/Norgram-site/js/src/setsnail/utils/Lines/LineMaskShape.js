@@ -6,7 +6,7 @@ function LineMaskShape() {
 
 	_instance.lineScale = 1;
 
-	_instance.getLineLengthAt = function( yPos ) {
+	_instance.getLineAt = function( yPos ) {
 		console.logError( "THIS FUNCTION IS MENT TO BE ABSTRACT" );
 	};
 	_instance.getWidth = function() {
@@ -27,7 +27,7 @@ function LineMaskShape() {
 }
 
 
-
+LineMaskShape.OFFSET_Y = 0;
 
 function LineCircle() {
 
@@ -35,6 +35,7 @@ function LineCircle() {
 	_instance.radius = 50;
 
 	_instance.getLineAt = function( yPos ) {
+		yPos += LineMaskShape.OFFSET_Y;
 		var radius = _instance.radius * _instance.lineScale;
 		var x = _instance.x * _instance.lineScale;
 		var y = _instance.y * _instance.lineScale;
@@ -83,6 +84,7 @@ function LineRect(width, height) {
 
 
 	_instance.getLineAt = function( yPos ) {
+		yPos += LineMaskShape.OFFSET_Y;
 		var x = _instance.x * _instance.lineScale;
 		var y = _instance.y * _instance.lineScale;
 
@@ -109,6 +111,45 @@ function LineRect(width, height) {
 	return _instance;
 }
 
+function LineTriangleRight( width, height ) {
+	var _instance = new LineMaskShape();
+	_instance.width = width;
+	_instance.height = height;
+
+	_instance.getLineAt = function( yPos ) {
+		yPos += LineMaskShape.OFFSET_Y;
+		var x = _instance.x * _instance.lineScale;
+		var y = _instance.y * _instance.lineScale;
+
+		var width = _instance.width * _instance.lineScale;
+		var height = _instance.height * _instance.lineScale;
+
+		if( yPos < y ) {
+			return null;
+		} else if( yPos > height + y ) {
+			return null;
+		}
+
+		var ratio = yPos / height * 2;
+		var xLength = width * ratio;
+
+		if( xLength > width ) {
+			xLength = width - xLength % width;
+		}
+
+		return {x:x, y:yPos, length:xLength};
+	};
+
+	_instance.getWidth = function() {
+		return _instance.width;
+	};
+	_instance.getHeight = function() {
+		return _instance.height;
+	};
+
+	return _instance;
+}
+
 function LineTriangle(width, height) {
 	var _instance = new LineMaskShape();
 	_instance.width = width;
@@ -116,6 +157,7 @@ function LineTriangle(width, height) {
 
 
 	_instance.getLineAt = function( yPos ) {
+		yPos += LineMaskShape.OFFSET_Y;
 		var x = _instance.x * _instance.lineScale;
 		var y = _instance.y * _instance.lineScale;
 
@@ -130,8 +172,6 @@ function LineTriangle(width, height) {
 
 		var ratio = yPos / height;
 		var xLength = width * ratio;
-
-		// var xPos =
 
 		return {x:(width - xLength) * 0.5, y:yPos, length:xLength};
 	};
