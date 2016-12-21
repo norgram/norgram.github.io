@@ -24,7 +24,17 @@ function CaseImageModule( data, imageIndex ) {
 	};
 
 	function addImage() {
-		_image = new RetinaImage(data.innerHTML, null, onImgLoaded );
+		var imgurl = data.innerHTML;
+
+		if( BrowserDetect.MOBILE ) {
+			var mobileurl = data.getAttribute("use-on-mobile");
+			if(mobileurl != null) {
+				imgurl = mobileurl;
+			}
+		}
+
+
+		_image = new RetinaImage(imgurl, null, onImgLoaded );
 		_image.init();
 		_image.setSizeByAttribute( data );
 		if(_image.hasSize()){

@@ -17,13 +17,13 @@ function TemplateCasesOverview( data ) {
 		setupAndAddModules();
 
 		Assets.SCROLL_CONTROLLER.addEventListener( ScrollController.ON_SCROLL_EASE_STOP, snapToStory );
-		Assets.SCROLL_CONTROLLER.addEventListener( ScrollController.ON_SCROLL_MOVE, onScrollMove );
+		// Assets.SCROLL_CONTROLLER.addEventListener( ScrollController.ON_SCROLL_MOVE, onScrollMove );
 		_instance.onResize();
 	};
 
 	_instance.kill = function() {
 		Assets.SCROLL_CONTROLLER.removeEventListener( ScrollController.ON_SCROLL_EASE_STOP, snapToStory );
-		Assets.SCROLL_CONTROLLER.removeEventListener( ScrollController.ON_SCROLL_MOVE, onScrollMove );
+		// Assets.SCROLL_CONTROLLER.removeEventListener( ScrollController.ON_SCROLL_MOVE, onScrollMove );
 		_infoBox.kill();
 		Assets.LAYER_TEMPLATE_OFFSET.removeChild( _infoBox );
 		_instance.super.kill();
@@ -37,11 +37,23 @@ function TemplateCasesOverview( data ) {
 	_instance.onResize = function() {
 		var infoWidth = Math.floor(Assets.RESIZE_MANAGER.getWindowWidth() * 0.15);
 		if( infoWidth < 150 ) {
-			infoWidth = 150;
+			_return.scaleWidth = 0.5;
+			_return.setArrowVisability("none");
+			// infoWidth = 150;
+			_infoBox.setMode( CasesInfoBox.MODE_VERTICAL );
+			infoWidth = _infoBox.getCurrentModeWidth();
+			// console.log( "infowidth is less the 150" );
+		} else {
+			_return.scaleWidth = 1;
+			_return.setArrowVisability("inline");
+
+			_infoBox.setMode( CasesInfoBox.MODE_HORRIZONTAL );
 		}
+
 
 		_infoBox.setSize( infoWidth, Assets.RESIZE_MANAGER.getWindowHeight());
 		var infoXPos = getStoryPos();
+		// infoXPos = Assets.RESIZE_MANAGER.getWindowWidth() - infoWidth;
 
 		// console.log(_infoOffsetRatio);
 		TweenMax.set(_infoBox, {x:infoXPos + _infoOffsetRatio * infoWidth});
@@ -113,6 +125,7 @@ function TemplateCasesOverview( data ) {
 		}
 
 		_whiteSpace = new WhiteSpaceModule();
+
 		_return = new ReturnModule();
 		_return.addLine(UIColors.LINE_ON_WHITE);
 

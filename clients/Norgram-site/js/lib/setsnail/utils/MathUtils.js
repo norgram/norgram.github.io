@@ -15,14 +15,16 @@ MathUtils.getPointBetween = function(valueA, valueB, ratio) {
 };
 
 
-MathUtils.ratioFromRatio = function( start, end, ratio ) {
+MathUtils.ratioFromRatio = function( start, end, ratio, ignoreOverflow = true ) {
 	var diff = 1 / ( end - start );
 	var newRatio = diff * ratio;
 	newRatio -= start * diff;
-	if(newRatio > 1) {
-		newRatio = 1;
-	} else if( newRatio < 0 ) {
-		newRatio = 0;
+	if(ignoreOverflow) {
+		if(newRatio > 1) {
+			newRatio = 1;
+		} else if( newRatio < 0 ) {
+			newRatio = 0;
+		}
 	}
 	return newRatio;
 };

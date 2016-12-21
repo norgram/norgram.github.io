@@ -77,6 +77,11 @@ function HomeStoryModule( data, startRatio, useCollapse ) {
 			story.setCollapsedWidth( _storyCollapsedW );
 			story.setHeight( _height );
 			story.setRatioOffset(i);
+
+			// if(i == _numOfStories - 1) {
+			// 	story.setLastStory();
+			// }
+
 			if(useCollapse) {
 				story.setRatio(_ratio, true);
 			} else {
@@ -129,16 +134,19 @@ function HomeStoryModule( data, startRatio, useCollapse ) {
 			atIndex = 0;
 		}
 
+		var scrollingToLast = false;
+
 		var length = atIndex + 7;
 		if( length > _numOfStories) {
 			length = _numOfStories;
+			scrollingToLast = true;
 		}
 
 		var xPos = _storyExpandedW * atIndex;
 		for(var i = atIndex; i < length; i++) {
 			var story = _stories[i];
 			story.setRatio( ratio * _numOfStories);
-
+			
 			TweenMax.set(story, {x:xPos});
 
 			xPos += story.getWidth();

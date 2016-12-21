@@ -2,6 +2,9 @@ function Footer( guides ) {
 	var _instance = document.createElement("div");
 
 	var OFFSET_PHONE = 160;
+	if( BrowserDetect.MOBILE ) {
+		OFFSET_PHONE = 160 * 0.7;
+	}
 
 	var _mail;
 	var _phone;
@@ -22,12 +25,13 @@ function Footer( guides ) {
 
 		_phone.style.color = _mail.style.color = UIColors.FONT_DARK;
 
-		Assets.RESIZE_MANAGER.addEventListener(ResizeEvents.RESIZE, updateLayout);
-		updateLayout();
+		Assets.RESIZE_MANAGER.addEventListener(ResizeEvents.RESIZE, _instance.updateLayout);
+		_instance.updateLayout();
 	};
 
-	function updateLayout() {
+	_instance.updateLayout = function() {
 		var textOffset = -11;
+
 
 		TweenMax.set( _mail, { y:Assets.RESIZE_MANAGER.getScreenHeight() - SiteGuides.OFFSET_BOTOM + textOffset, x:guides.getGuide("start")} );
 		TweenMax.set( _phone, { y:Assets.RESIZE_MANAGER.getScreenHeight() - SiteGuides.OFFSET_BOTOM + textOffset, x:guides.getGuide("start") + OFFSET_PHONE} );

@@ -28,6 +28,13 @@ function MenuFooter( data, guides ) {
 
 	function updateLayout() {
 		var textOffset = 14;
+
+		if(guides.getGuide("contact") < 180) {
+			_phone.style.display = "none";
+		}else {
+			_phone.style.display = "inline";
+		}
+
 		TweenMax.set( _mail, { y:Assets.RESIZE_MANAGER.getScreenHeight() - GuideLines.OFFSET_BOTTOM + textOffset, x:guides.getGuide("start")} );
 		TweenMax.set( _phone, { y:Assets.RESIZE_MANAGER.getScreenHeight() - GuideLines.OFFSET_BOTTOM + textOffset, x:guides.getGuide("contact")} );
 	}

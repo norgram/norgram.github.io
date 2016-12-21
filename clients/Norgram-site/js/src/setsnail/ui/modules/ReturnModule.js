@@ -4,6 +4,8 @@ function ReturnModule( width ) {
 	_instance.style.backgroundColor = UIColors.WHITE;
 	_instance.style.cursor = "pointer";
 
+	_instance.scaleWidth = 1;
+
 	var _height;
 	var _width = width != null ? width : 120;
 
@@ -44,11 +46,14 @@ function ReturnModule( width ) {
 		if(_arrow.isLoaded()) {
 			positionArrow();
 		}
+	};
 
+	_instance.setArrowVisability = function( display ) {
+		_arrow.style.display = display;
 	};
 
 	_instance.getWidth = function() {
-		return _width;
+		return _width * _instance.scaleWidth;
 	};
 
 	function addArrow() {
@@ -60,14 +65,23 @@ function ReturnModule( width ) {
 		_arrow.getContent().style.transform = "rotatey(" + 180 + "deg)";
 		positionArrow();
 		_instance.appendChild(_arrow);
+	}
 
-		var tl = new TimelineMax({repeat:-1, repeatDelay:0.5});
-		tl.to( _arrow, 1.2, {x: 17+ 10} );
-		tl.to( _arrow, 0.4, {x: 17, ease:Bounce.easeOut} );
+	var _timelineAnimation = null;
+	function updateArrowAnimation() {
+		if( !BrowserDetect.MOBILE ) {
+			if(_timelineAnimation != null) {
+				_timelineAnimation.kill();
+			}
+			_timelineAnimation = new TimelineMax({repeat:-1, repeatDelay:0.5});
+			_timelineAnimation.to( _arrow, 2.2, {x: 17+ 10, ease:Quad.easeInOut} );
+			_timelineAnimation.to( _arrow, 2, {x: 17, ease:Elastic.easeOut} );
+		}
 	}
 
 	function positionArrow() {
 		TweenMax.set(_arrow, {x:17, y:52});
+		updateArrowAnimation();
 	}
 
 	function onClick() {

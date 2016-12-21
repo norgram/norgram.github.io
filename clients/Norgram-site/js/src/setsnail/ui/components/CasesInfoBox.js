@@ -3,6 +3,11 @@ function CasesInfoBox( data ) {
 	_instance.style.position = "absolute";
 	_instance.style.backgroundColor = UIColors.WHITE;
 
+
+	CasesInfoBox.MODE_HORRIZONTAL = "horrizontal";
+	CasesInfoBox.MODE_VERTICAL = "vertical";
+	var _mode = CasesInfoBox.MODE_HORRIZONTAL;
+
 	var _cases = [];
 
 	var _width = 0;
@@ -13,6 +18,17 @@ function CasesInfoBox( data ) {
 
 		Assets.SCROLL_CONTROLLER.addEventListener( ScrollController.ON_SCROLL_MOVE, updateRatio );
 		updateRatio();
+	};
+
+	_instance.setMode = function( mode ) {
+		_mode = mode;
+		for( var i = 0; i < _numOfCases; i++) {
+			_cases[i].setMode(_mode);
+		}
+	};
+
+	_instance.getCurrentModeWidth = function() {
+		return 60;
 	};
 
 	_instance.kill = function() {
@@ -79,6 +95,7 @@ function CaseInfo( data, index ) {
 	_instance.style.backgroundColor = UIColors.WHITE;
 
 	var _ratio = 0;
+	var _mode = CasesInfoBox.MODE_HORRIZONTAL;
 
 	var _width = 0;
 	var _height = 0;
@@ -92,6 +109,31 @@ function CaseInfo( data, index ) {
 		addBottomInfo();
 	};
 
+	function updateSize() {
+		console.log("READY");
+		_instance.setSize(_width, _height);
+	}
+
+	_instance.setMode = function( mode ) {
+		_mode = mode;
+
+		switch(_mode) {
+			case CasesInfoBox.MODE_HORRIZONTAL : {
+				TweenMax.set(_headline, {rotation:0});
+				TweenMax.set(_smallContentContainer, {rotation:0});
+				break;
+			}
+			case CasesInfoBox.MODE_VERTICAL : {
+				TweenMax.set(_headline, {rotation:-90});
+				TweenMax.set(_smallContentContainer, {rotation:-90});
+				break;
+			}
+		}
+
+		_instance.setSize(_width, _height);
+
+	};
+
 	_instance.setSize = function( width, height ) {
 		_width = width;
 		_height = height;
@@ -99,11 +141,26 @@ function CaseInfo( data, index ) {
 		TweenMax.set( _instance, { width:_width, height:_height } );
 
 		if( _headline != null ) {
-			TweenMax.set( _headline, { x:10, y:SiteGuides.getCenterOffset() - Text.getOffsetY(_headline)} );
-			_headline.updateLineHeight();
+			switch(_mode) {
+				case CasesInfoBox.MODE_HORRIZONTAL : {
+					TweenMax.set( _headline, { rotation:0, x:10, y:SiteGuides.getCenterOffset() - Text.getOffsetY(_headline.text)} );
+					TweenMax.set(_smallContentContainer, {x:10, y:_height - SiteGuides.OFFSET_BOTOM - 39} );
+					break;
+				}
+				case CasesInfoBox.MODE_VERTICAL : {
+					TweenMax.set(_headline, {rotation:-90, x:10 - Text.getOffsetY(_headline.text), y:_height - SiteGuides.OFFSET_BOTOM });
+					TweenMax.set(_smallContentContainer, {x:10, y:SiteGuides.OFFSET_BOTOM + 39 + _smallContentContainer.getWidth() + 10 } );
+					break;
+				}
+			}
 		}
 
-		TweenMax.set(_smallContentContainer, {x:10, y:_height - SiteGuides.OFFSET_BOTOM - 39} );
+		if(_height < 380) {
+			_smallContentContainer.style.display = "none";
+		}else {
+			_smallContentContainer.style.display = "inline";
+		}
+		
 	};
 
 	_instance.setRatio = function(ratio) {
@@ -127,8 +184,18 @@ function CaseInfo( data, index ) {
 			_ratio = Quad.easeIn.getRatio(_ratio - 1);
 		}
 
-		TweenMax.set(_smallContentContainer, { x:10, y:_height - SiteGuides.OFFSET_BOTOM - 39 - offsetAmount * 0.5 * (doubleRatio - 1)} );
-		TweenMax.set( _headline, { x:10 + offsetAmount * (doubleRatio - 1) } );
+		switch(_mode) {
+			case CasesInfoBox.MODE_HORRIZONTAL : {
+				TweenMax.set(_smallContentContainer, { x:10, y:_height - SiteGuides.OFFSET_BOTOM - 39 - offsetAmount * 0.5 * (doubleRatio - 1)} );
+				TweenMax.set( _headline, { x:10 + offsetAmount * (doubleRatio - 1) } );
+				break;
+			}
+			case CasesInfoBox.MODE_VERTICAL : {
+				TweenMax.set( _headline, { x:10 - Text.getOffsetY(_headline.text), y:_height - SiteGuides.OFFSET_BOTOM - offsetAmount * 0.5 * (doubleRatio - 1) } );
+				TweenMax.set(_smallContentContainer, { x:10, y:SiteGuides.OFFSET_BOTOM + 39 + _smallContentContainer.getWidth() +10+ offsetAmount * 0.5 * (doubleRatio - 1)} );
+				break;
+			}
+		}
 
 		_instance.style.opacity = _ratio;
 	};
@@ -139,16 +206,25 @@ function CaseInfo( data, index ) {
 		if(textData == null ) {
 			return;
 		}
-		_headline = Text.getNewLight(23);
-		_headline.innerHTML = textData.innerHTML;
-		_headline.style.color = UIColors.DARK;
 
+		_headline = document.createElement("div");
+		_headline.style.position = "absolute";
+
+		var text = Text.getNewLight(23);
+		text.innerHTML = textData.innerHTML;
+		text.style.color = UIColors.DARK;
+		text.style.whiteSpace = "nowrap";
+
+		_headline.text = text;
+
+		_headline.appendChild(text);
 		_instance.appendChild(_headline);
 	}
 
 	function addBottomInfo() {
 		_smallContentContainer = new CaseSmallInfo(data);
 		_instance.appendChild( _smallContentContainer );
+		_smallContentContainer.onAllTextReady( updateSize );
 	}
 
 	return _instance;
@@ -159,6 +235,8 @@ function CaseSmallInfo(data) {
 
 	var _instance = document.createElement("div");
 	_instance.style.position = "absolute";
+
+	var _textArr = [];
 
 	function addBottomInfo() {
 		var yPos = 0;
@@ -189,9 +267,29 @@ function CaseSmallInfo(data) {
 		text.style.color = UIColors.FONT_MED_ON_WHITE;
 		text.style.whiteSpace = "nowrap";
 		text.innerHTML = content;
-		return text;
 
+		_textArr.push( text );
+
+		return text;
 	}
+
+	_instance.onAllTextReady = function( callback ) {
+		Text.listenForSize(_textArr, callback);
+	};
+
+	_instance.getWidth = function() {
+		var l = _textArr.length;
+		var maxSize = 0;
+
+		for( var i = 0; i < l; i++) {
+			var w = _textArr[i].offsetWidth;
+			if( w > maxSize ){
+				maxSize = w;
+			}
+		}
+
+		return maxSize;
+	};
 
 	addBottomInfo();
 

@@ -66,6 +66,12 @@ function OverviewCaseModule( data, prcWidth, index ) {
 
 	function addImage() {
 		var url = ContentManager.getChildByAttr(data, "name", "overviewimage").innerHTML;
+
+		if( BrowserDetect.MOBILE ) {
+			if(ContentManager.getChildByAttr(data, "name", "overviewimagemobile") != null) {
+				url = ContentManager.getChildByAttr(data, "name", "overviewimagemobile").innerHTML;
+			}
+		}
 		// console.log(ContentManager.getChildByAttr(data, "name", "overviewimage").getAttribute("size"));
 
 		var colorOne = (index % 2) == 0 ? UIColors.PRELOADER_COLOR_ONE : UIColors.PRELOADER_COLOR_TWO;

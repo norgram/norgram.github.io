@@ -39,7 +39,8 @@ function BasicHomeModule(data, onArrowClick, scaleWidth ) {
 		addArrow();
 	};
 
-	_instance.resize_desktop = function(width, height) {
+	_instance.resize_mobile = function(width, height) {
+		_guides.setGuide( "start", 54 - MainMenu.BORDER_WIDTH );
 		_width = width * _widthScale;
 		_height = height;
 
@@ -109,9 +110,95 @@ function BasicHomeModule(data, onArrowClick, scaleWidth ) {
 		_body.setSize(endLine, bodyHeight);
 
 		TweenMax.set(_body, {x:_guides.getGuide("start") - 2 * SiteGuides.getDesignWidthRatio(), y:SiteGuides.getCenterOffset()});
+
+		_footer.updateLayout();
+
+		var arrowOffset = -10;
+
+		if(_arrow.isLoaded()) {
+			TweenMax.set(_arrow, {x:_width - _arrow.getWidth() + arrowOffset, y:SiteGuides.getCenterOffset()});
+		}
+	};
+
+	_instance.resize_desktop = function(width, height) {
+		_guides.setGuide( "start", 74 - MainMenu.BORDER_WIDTH );
+		_width = width * _widthScale;
+		_height = height;
+
+		if(_story != null && _width < 700) {
+			_width = width;
+			_extendedWidth = Math.floor(_width * 0.7);
+		} else {
+			_extendedWidth = 0;
+		}
+
+
+		_instance.style.width = _width + _extendedWidth + "px";
+		_instance.style.height = _height + "px";
+
+		var endLine = _width * 0.8 - MainMenu.BORDER_WIDTH;
+		var bodyHeight = _height * 0.4;
+
+		if( _link != null) {
+			// endLine = _width * 0.5 - MainMenu.BORDER_WIDTH;
+			bodyHeight = _height * 0.25;
+
+			TweenMax.set(_link, {x:_guides.getGuide("start"), y:Math.round(_height * 0.75)});
+		}
+
+		_header.setSize( _width * 0.2, 60 );
+		TweenMax.set(_header, {x:_guides.getGuide("start"), y:SiteGuides.OFFSET_TOP});
+
+		var headerEndX = _header.offsetWidth + _guides.getGuide("start");
+
+		// console.log(width * 0.5);
+		if(_story != null) {
+			var storyX = 0;
+			var storyY = SiteGuides.OFFSET_TOP;
+			if( _extendedWidth > 0 ) {
+				storyX = _width + _guides.getGuide("start");
+				storyY = SiteGuides.getCenterOffset();
+				// console.log(_extendedWidth);
+
+				_story.getModel().maxWidth = 999999;
+				_story.getModel().minWidth = 0;
+
+				_story.getModel().minFontSize = 8;
+				_story.getModel().maxFontSize = 30;
+
+
+				_story.setSize(_extendedWidth - _guides.getGuide("start") * 2, _height - storyY );
+				_story.setColumns(1, 0);
+
+			} else {
+
+				_story.getModel().minWidth = 468;
+				_story.getModel().maxWidth = 468;
+				_story.getModel().minFontSize = 13;
+				_story.getModel().maxFontSize = 13;
+
+				_story.setSize(_width * 0.3, _height * 0.15 );
+				_story.setColumns(2, 20);
+				storyX = endLine - _story.getModel().maxWidth;
+				if(storyX < headerEndX) {
+					storyX = headerEndX + 10;
+				}
+			}
+			
+			TweenMax.set(_story, {x:storyX, y:storyY});
+		}
+
+		_body.setSize(endLine, bodyHeight);
+
+		_footer.updateLayout();
+
+		TweenMax.set(_body, {x:_guides.getGuide("start") - 2 * SiteGuides.getDesignWidthRatio(), y:SiteGuides.getCenterOffset()});
 		if(_arrow.isLoaded()) {
 			TweenMax.set(_arrow, {x:_width - _arrow.getWidth() + ARROW_OFFSET_X, y:SiteGuides.getCenterOffset()});
 		}
+
+		updateArrowAnimation();
+
 	};
 
 	_instance.kill = function() {
@@ -219,12 +306,21 @@ function BasicHomeModule(data, onArrowClick, scaleWidth ) {
 		TweenMax.set(_arrow, {x:_width - _arrow.getWidth() + ARROW_OFFSET_X, y:SiteGuides.getCenterOffset() + 4});
 		_instance.appendChild(_arrow);
 
-		var tl = new TimelineMax({repeat:-1, repeatDelay:0.5});
-		tl.to( _arrow, 1.2, {x: _width - _arrow.getWidth() + ARROW_OFFSET_X - 20} );
-		tl.to( _arrow, 0.4, {x: _width - _arrow.getWidth() + ARROW_OFFSET_X, ease:Bounce.easeOut} );
+		updateArrowAnimation();
 	}
 
-	
+	var _timelineAnimation = null;
+	function updateArrowAnimation() {
+		if( !BrowserDetect.MOBILE ) {
+			if(_timelineAnimation != null) {
+				_timelineAnimation.kill();
+			}
+
+			_timelineAnimation = new TimelineMax({repeat:-1, repeatDelay:0.5});
+			_timelineAnimation.to( _arrow, 2.2, {x: _width - _arrow.getWidth() + ARROW_OFFSET_X - 12, ease:Quad.easeInOut} );
+			_timelineAnimation.to( _arrow, 2, {x: _width - _arrow.getWidth() + ARROW_OFFSET_X, ease:Elastic.easeOut} );
+		}
+	}
 
 	return _instance;
 

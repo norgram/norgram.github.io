@@ -6,6 +6,8 @@ function MenuContactInfo( data, guides ) {
 	var OFFSET_TOP = 19;
 	var COLUMN_SPACING = 20;
 
+	var _isMobileMode = false;
+
 	var _headline;
 
 	var _columns = [];
@@ -16,6 +18,17 @@ function MenuContactInfo( data, guides ) {
 
 		Text.listenForSize(_columns, startLayoutListen);
 	};
+
+	_instance.setMobileMode = function() {
+		_isMobileMode = true;
+		Text.listenForSize(_columns, updateLayout);
+	};
+
+	_instance.setDesktopMode = function() {
+		_isMobileMode = false;
+		Text.listenForSize(_columns, updateLayout);
+	};
+	
 
 	function startLayoutListen() {
 		getColumnsTextWidth();
@@ -43,12 +56,6 @@ function MenuContactInfo( data, guides ) {
 		var columns = ContentManager.getChildByAttr( data, "name", "columns");
 		var l = columns.children.length;
 
-		if(BrowserDetect.MOBILE) {
-			if( l > 2 ) {
-				l = 2;
-			}
-		}
-
 		for(var i = 0; i < l; i++) {
 			var column = Text.getNewReg(13);
 			column.style.color = UIColors.FONT_MED_ON_WHITE;
@@ -64,22 +71,35 @@ function MenuContactInfo( data, guides ) {
 	function updateLayout() {
 		var width = guides.getGuide("end") - guides.getGuide("contact");
 		var xPos = guides.getGuide("contact");
-
 		if(getColumnsTextWidth() > width) {
 			xPos = guides.getGuide("end") - getColumnsTextWidth();
 		}
 
-		if( BrowserDetect.MOBILE ) {
+		if( BrowserDetect.MOBILE || _isMobileMode) {
 			xPos = guides.getGuide("start");
 		}
 
 		TweenMax.set( _instance, {x:xPos, y:OFFSET_TOP} );
-		layoutColumns();
+		Text.listenForSize(_columns, layoutColumns);
+
+		if( _isMobileMode && _columns.length > 2 ) {
+			if(_columns.length > 2) {
+				_columns[2].style.display = "none";
+			}
+		} else {
+			if(_columns.length > 2){
+				_columns[2].style.display = "inline";
+			}
+		}
 	}
 
 	function layoutColumns() {
 		var l = _columns.length;
 
+		if( BrowserDetect.MOBILE || _isMobileMode && l > 2) {
+			l = 2;
+		}
+ 
 		var xPos = 0;
 		for( var i = 0; i < l; i++) {
 			TweenMax.set( _columns[i], {x:xPos});
@@ -89,9 +109,9 @@ function MenuContactInfo( data, guides ) {
 
 	var _columnWidth = 0;
 	function getColumnsTextWidth(){
-		if(_columnWidth != 0) {
-			return _columnWidth;
-		}
+		// if(_columnWidth != 0) {
+		// 	return _columnWidth;
+		// }
 
 		var l = _columns.length;
 		_columnWidth = 0;

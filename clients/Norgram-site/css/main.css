@@ -23,9 +23,9 @@
 }
 
 
-body {
+/*body {
     font-feature-settings: "liga" 0;
-}
+}*/
 
 .animate, a, a:link, a:hover, a:visited, a:active{
     text-decoration: none;

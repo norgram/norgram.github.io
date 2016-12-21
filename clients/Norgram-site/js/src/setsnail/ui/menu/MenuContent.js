@@ -107,15 +107,22 @@ function MenuContent() {
 
 		if(_width < 400) {
 			_width = Assets.RESIZE_MANAGER.getWindowWidth();
-			_contact.style.display = "none";
+			_contact.setMobileMode();
 		}else {
-			_contact.style.display = "inline";
+			_contact.setDesktopMode();
 		}
 
 		if( Assets.RESIZE_MANAGER.getWindowHeight() < 350 ) {
 			_social.style.display = "none";
 		}else {
 			_social.style.display = "inline";
+		}
+
+		if(Assets.RESIZE_MANAGER.getWindowHeight() > 300 ){
+			_contact.style.display = "inline";
+		}
+		else if(Assets.RESIZE_MANAGER.getWindowHeight() < 300 ){
+			_contact.style.display = "none";
 		}
 
 		if(!_isOpen) {

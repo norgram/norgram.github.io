@@ -105,12 +105,12 @@ function EmployeeInfoText( data ) {
 	};
 
 	function updatePos() {
-		var scale = _width / 500 * 1.5;
+		var scale = _width / 700;
 
 		if( scale > 1 || isNaN(scale) ) {
 			scale = 1;
-		} else if( scale < 0.7 ) {
-			scale = 0.7;
+		} else if( scale < 0.3 ) {
+			scale = 0.3;
 		}
 
 
@@ -121,47 +121,52 @@ function EmployeeInfoText( data ) {
 
 		// console.log(scale);
 
-		var space = _name.offsetHeight * scale;
+		var space = _name.offsetHeight;// * scale;
 		var currSpacing = -Text.getOffsetY(_name) * scale;
 
 		if(_name != null) {
 			_name.style.fontSize = fontScale + "px";
 			_name.updateLineHeight();
+			
 			TweenMax.set(_name, {y:currSpacing, roundProps:"x,y"} );
-			currSpacing += _name.offsetHeight * scale;
+			currSpacing += _name.offsetHeight;
 		}
 
 		if(_title != null) {
 			_title.style.fontSize = fontScale + "px";
 			_title.updateLineHeight();
 			TweenMax.set(_title, {y:currSpacing, roundProps:"x,y"} );
-			currSpacing += _title.offsetHeight * scale;
+			currSpacing += _title.offsetHeight;
 		}
 
-		currSpacing += space * scale;
+		currSpacing += space;
 
 		if(_mail != null) {
 			_mail.style.fontSize = fontScale + "px";
+			_mail.updateLineHeight();
 			TweenMax.set(_mail, {y:currSpacing, roundProps:"x,y"} );
-			currSpacing += _mail.offsetHeight * scale;
+			currSpacing += _mail.offsetHeight;
 		}
 
 		if( _phone != null ) {
 			_phone.style.fontSize = fontScale + "px";
+			_phone.updateLineHeight();
 			TweenMax.set(_phone, {y:currSpacing, roundProps:"x,y"});
-			currSpacing += _phone.offsetHeight * scale;
+			currSpacing += _phone.offsetHeight;
 		}
 
-		currSpacing += space * scale;
+		currSpacing += space;
 
 		if(_linkedIn != null) {
 			_linkedIn.style.fontSize = fontScale + "px";
+			_linkedIn.updateLineHeight();
 			TweenMax.set(_linkedIn, {y:currSpacing, roundProps:"x,y"} );
 			currSpacing += _linkedIn.offsetHeight;
 		}
 
 		if( _twitter != null ) {
 			_twitter.style.fontSize = fontScale + "px";
+			_twitter.updateLineHeight();
 			TweenMax.set(_twitter, {y:currSpacing, roundProps:"x,y"});
 			// currSpacing += _twitter.offsetHeight;
 		}
@@ -174,10 +179,13 @@ function EmployeeInfoText( data ) {
 			return;
 		}
 
+
 		_name = getText(name.innerHTML);
 		_name.style.color = UIColors.WHITE;
 
 		_instance.appendChild(_name);
+
+		Text.listenForSize( [_name], updatePos );
 	}
 
 	function addTitle() {

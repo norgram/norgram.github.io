@@ -27,6 +27,10 @@ function CaseTextModule( data ) {
 
 	_instance.resize_desktop = function (width, height) {
 		_width = width * 0.2;
+		if(_width < 200){
+			_width = 200;
+		}
+
 		_height = height;
 
 		_textHeightScale = 0.3;

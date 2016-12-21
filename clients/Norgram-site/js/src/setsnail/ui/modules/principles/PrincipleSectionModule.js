@@ -129,7 +129,7 @@ function PrincipleSectionModule( data, bodyModel, modelMode ) {
 			return;
 		}
 
-		_image.addMouseEffect();
+		// _image.addMouseEffect();
 		_instance.appendChild(_image);
 
 		// console.log( urlData.innerHTML );

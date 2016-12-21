@@ -12,6 +12,8 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 	var _oldRatio = -1;
 	var _ratioOffset = 0;
 
+	var _isLastStory = false;
+
 	var _widthExpanded, _widthCollapsed;
 
 	var _reverseStories = [];
@@ -26,6 +28,8 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 	var _numberColorDeactive = ColorUtils.hex2rgb( UIColors.LINE_ON_WHITE );
 
 	var _mode = TextAreaModel.MODE_LISTEN;
+
+	var _overrideRatioToOne = false;
 
 	var _buttonContainer = document.createElement("div");
 	_buttonContainer.style.position = "absolute";
@@ -79,18 +83,36 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 	_instance.setRatioNoOffset = function(ratio, forceUpdate) {
 		_ratio = ratio;
 
+		if( _isLastStory ) {
+			if(ratio < 0) {
+				_ratio += 1;
+				_overrideRatioToOne = false;
+			}else {
+				_overrideRatioToOne = true;
+			}
+
+			// console.log(_ratio);
+		} else {
+			_overrideRatioToOne = false;
+		}
+
 		if(_ratio <= 0) {
 			_ratio = 0;
 		} else if(_ratio >= 1) {
 			_ratio = 1;
 			if(_hasReverseStories) {
 				// console.log(_ratio);
-				updateCollapseStories();
+				if(ratio > 0) {
+					
+					updateCollapseStories();
+				}
 			}
 		} else {
 			if(_hasReverseStories) {
 				// console.log(_ratio);
-				updateCollapseStories();
+				if(ratio > 0) {
+					updateCollapseStories();
+				}
 			}
 		}
 
@@ -99,12 +121,17 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 	};
 
 	_instance.setRatio = function(ratio, forceUpdate) {
+		// if(_isLastStory) {
+		// }
 		_instance.setRatioNoOffset(
-			MathUtils.ratioFromRatio(_ratioOffset, _ratioOffset + 1, ratio),
+			MathUtils.ratioFromRatio(_ratioOffset, _ratioOffset + 1, ratio, !_isLastStory),
 			forceUpdate
 		);
 	};
 
+	_instance.setLastStory = function() {
+		_isLastStory = true;
+	};
 
 	_instance.reverseStories = function( reverseStories ) {
 		_reverseStories = reverseStories;
@@ -138,6 +165,10 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 	function updateToRatio( force ) {
 		if(!force && _ratio == _oldRatio ) {
 			return;
+		}
+
+		if( _isLastStory && _overrideRatioToOne ) {
+			_ratio = 1;
 		}
 
 		var delta = _widthExpanded - _widthCollapsed;
@@ -182,11 +213,16 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 		//UPDATE BODY TOP
 		var bodyTopXPos = 0;
 		var bodyTopWidth = _widthCollapsed - doubleMargin - 10;
+		var bodyTopYOffset = 0;
 		if( BrowserDetect.MOBILE && _widthCollapsed > _height ) {
 			bodyTopXPos = Math.floor(_widthCollapsed * 0.5);
 			bodyTopWidth -= bodyTopXPos;
+			
 		}
-		TweenMax.set(_bodyTop, {x:bodyTopXPos, y:130 - 30 * Math.cos(-1 + _ratio * 2 * Math.PI), width:bodyTopWidth, alpha:(-1 + _ratio * 2) });
+		if( BrowserDetect.MOBILE ) {
+			bodyTopYOffset = -20;
+		}
+		TweenMax.set(_bodyTop, {x:bodyTopXPos, y:130 - 30 * Math.cos(-1 + _ratio * 2 * Math.PI) + bodyTopYOffset, width:bodyTopWidth, alpha:(-1 + _ratio * 2) });
 
 		//UPDATE BODY
 		TweenMax.set(_body, {x:deltaRatio + margin, y:imgYPos + imgHeight + margin,  width:_widthCollapsed - doubleMargin, alpha:(1 - _ratio * 2) });
