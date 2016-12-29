@@ -1,0 +1,1 @@
+URLEncode={},URLEncode.decode=function(data){trace(data);var i,values,object={},array=data.split("&"),l=array.length;for(i=0;l>i;i+=1)values=array[i].split("="),object[values[0]]=values[1];return object},URLEncode.encode=function(data){var value,key,array=[];for(key in data)value=data[key],array.push(key+"="+value);return array.join("&")};
