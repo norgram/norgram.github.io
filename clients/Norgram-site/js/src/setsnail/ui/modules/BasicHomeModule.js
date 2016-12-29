@@ -224,7 +224,9 @@ function BasicHomeModule(data, onArrowClick, scaleWidth ) {
 			return;
 		}
 
-		_story = new TextArea(text.innerHTML, Text.getNewReg(13));
+		var txtInstance = Text.getNewReg(13);
+		txtInstance.lineHeightOffset = 1;
+		_story = new TextArea(text.innerHTML, txtInstance );
 		_story.setColor(UIColors.FONT_MED_ON_WHITE);
 
 		var model = new TextAreaModel();
@@ -259,7 +261,10 @@ function BasicHomeModule(data, onArrowClick, scaleWidth ) {
 
 	function addHeaderInfo() {
 		var text = ContentManager.getChildByAttr(data, "name", "founded").innerHTML;
-		_header = new TextArea( text, Text.getNewReg(13) );
+
+		var textInstance = Text.getNewReg(13);
+		textInstance.lineHeightOffset = 1;
+		_header = new TextArea( text, textInstance );
 
 		var model = new TextAreaModel();
 

@@ -19,6 +19,12 @@ function ProfileEmployeeModule( data ) {
 		addSlideNumber();
 	};
 
+	_instance.setTextModel = function( model ) {
+		var l = _employees.length;
+		for( var i = 0; i < l; i++ ) {
+			_employees[i].setTextModel(model);
+		}
+	};
 
 	_instance.resize_desktop = function(width, height) {
 		_width = width;

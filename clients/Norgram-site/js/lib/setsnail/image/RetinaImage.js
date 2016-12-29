@@ -235,7 +235,7 @@ function RetinaImage(src, retinaHandle, callbackLoad, callbackError) {
 			if( _isLoaded ) {
 				_image.width = _width;
 			}
-			_instance.style.width = _midContainer.style.width = _width + "px";
+			_instance.style.width = _width + "px";
 		}
 		if( isNumber(_height) ) {
 			if( _height == 0 ) {
@@ -245,19 +245,18 @@ function RetinaImage(src, retinaHandle, callbackLoad, callbackError) {
 			if( _isLoaded ) {
 				_image.height = _height;
 			}
-			_instance.style.height = _midContainer.style.height = _height + "px";
+			_instance.style.height = _height + "px";
 		}
 
 		updatePosition();
 
 		if( _preLoader != null ) {
 			if(isNumber(_width) && isNumber(_height)) {
-				// console.log( "SET SIZE" );
 				_preLoader.setSize( _width, _height );
-				_midContainer.style.width = _width + "px";
-				_midContainer.style.height = _height + "px";
 			}
 		}
+		_midContainer.style.width = _newW + "px";
+		_midContainer.style.height = _newH + "px";
 	}
 
 	_instance.setPosition = function(value) {

@@ -13,7 +13,7 @@ function ImageSlider( urls ) {
 	_mask.appendChild(_imageContainer);
 	_instance.appendChild(_mask);
 
-	var _spacing = 18;
+	var _spacing = 0;//18;
 
 	var _width = 0;
 	var _height = 0;

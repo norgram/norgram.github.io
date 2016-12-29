@@ -15,6 +15,10 @@ function ProfileEmployee( data ) {
 		addText();
 	};
 
+	_instance.setTextModel = function( model ) {
+		_text.setTextModel(model);
+	};
+
 	_instance.setSize = function( width, height ) {
 		_width = width;
 		_height = height;
@@ -86,6 +90,8 @@ function EmployeeInfoText( data ) {
 
 	var _texts = [];
 
+	var _model;
+
 	_instance.init = function() {
 		addName();
 		addTitle();
@@ -97,11 +103,16 @@ function EmployeeInfoText( data ) {
 		updatePos();
 	};
 
+	_instance.setTextModel = function( model ) {
+		_model = model;
+		_model.addEventListener( TextAreaModel.EVENT_UPDATE, updatePos );
+	};
+
 	_instance.setSize = function(width, height) {
 		_width = width;
 		_height = height;
 
-		updatePos();
+		// updatePos();
 	};
 
 	function updatePos() {
@@ -117,6 +128,10 @@ function EmployeeInfoText( data ) {
 		var fontScale = _origFontSize * scale;
 		if( fontScale > _origFontSize ) {
 			fontScale = _origFontSize;
+		}
+
+		if( _model != null ) {
+			fontScale = _model.fontSize;
 		}
 
 		// console.log(scale);

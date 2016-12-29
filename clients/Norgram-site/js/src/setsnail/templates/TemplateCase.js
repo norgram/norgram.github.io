@@ -27,9 +27,38 @@ function TemplateCase( data ) {
 		var modules = ContentManager.getChildByAttr(data.getXML(), "name", "modules").children;
 		var l = modules.length;
 
+		var moduleTextArr = [];
 		for( var i = 0; i < l; i++) {
-			_instance.addModule( getModule( modules[i] ) );
+			var id = modules[i].getAttribute("data-name");
+			var modul = getModule( modules[i] );
+			_instance.addModule( modul );
+
+			if(id == "moduleText") {
+				moduleTextArr.push(modul);
+			}
 		}
+
+		var maxLength = 0;
+		var maxId = 0;
+		var l = moduleTextArr.length;
+		for( var i = 0; i < l; i++ ) {
+			var numOfChars = moduleTextArr[i].getNumOfChars();
+			if( numOfChars > maxLength ) {
+				maxId = i;
+				maxLength = numOfChars;
+			}
+		}
+
+		var model = new TextAreaModel();
+		model.maxFontSize = 23;
+		for( var i = 0; i < l; i++ ) {
+			var mode = TextAreaModel.MODE_LISTEN;
+			if( i == maxId ) {
+				mode = TextAreaModel.MODE_CONTROL;
+			}
+			moduleTextArr[i].setModel( model, mode );
+		}
+
 
 		_instance.addModule(new ReturnModule());
 	}

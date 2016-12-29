@@ -29,7 +29,9 @@ Text.getNewMed = function( fontSize ) {
 	var div	= document.createElement("div");
 	div.style.position = "absolute";
 	div.style.fontFamily			= Text.FontFamilyMedium;
-
+	
+	div.lineHeightOffset = 0;
+	div.lineHeightScale = 1;
 	div.updateLineHeight = function() {
 		Text.baseLineheightOnFontSizeLight( div );
 	};
@@ -49,6 +51,8 @@ Text.getNewReg = function( fontSize ) {
 	div.style.position = "absolute";
 	div.style.fontFamily			= Text.FontFamilyRegular;
 
+	div.lineHeightOffset = 0;
+	div.lineHeightScale = 1;
 	div.updateLineHeight = function() {
 		Text.baseLineheightOnFontSizeLight( div );
 	};
@@ -67,6 +71,8 @@ Text.getNewLight = function( fontSize ) {
 	div.style.position = "absolute";
 	div.style.fontFamily			= Text.FontFamilyLight;
 
+	div.lineHeightOffset = 0;
+	div.lineHeightScale = 1;
 	div.updateLineHeight = function() {
 		Text.baseLineheightOnFontSizeLight( div );
 	};
@@ -94,5 +100,14 @@ Text.getFontSizeBasedOnWidth = function(width, min) {
 };
 
 Text.baseLineheightOnFontSizeLight = function(div) {
-	div.style.lineHeight = parseInt(div.style.fontSize) * 1 + "px";
+	var offset = 0;
+	if(div.lineHeightOffset) {
+		offset = div.lineHeightOffset;
+	}
+	var lineScale = 1;
+	if(div.lineHeightScale){
+		lineScale = div.lineHeightScale;
+	}
+	
+	div.style.lineHeight = offset + Math.round(parseInt(div.style.fontSize) * lineScale) + "px";
 };

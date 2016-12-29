@@ -7,8 +7,10 @@ function CaseTextModule( data ) {
 
 	var _width, _height;
 
-	var _model;
+	var _model, _modelMode;
 	var _top, _bot, _mid;
+
+	var _textHeightScale
 
 	var _textAreas = [];
 
@@ -21,8 +23,6 @@ function CaseTextModule( data ) {
 		addTop();
 		addMid();
 		addBot();
-
-		setModel();
 	};
 
 	_instance.resize_desktop = function (width, height) {
@@ -48,10 +48,7 @@ function CaseTextModule( data ) {
 			TweenMax.set( _mid, { x:margin, y:SiteGuides.getCenterOffset()} );
 		}
 
-		if( _bot != null ) {
-			_bot.setSize( textWidth, _height * _textHeightScale );
-			TweenMax.set( _bot, { x:margin, y: _height - SiteGuides.OFFSET_BOTOM - _bot.getTextInstance().offsetHeight + Text.getOffsetY(_bot.getTextInstance()) * 2} );
-		}
+		updateBot();
 
 	};
 
@@ -59,6 +56,18 @@ function CaseTextModule( data ) {
 		return _width;
 	};
 
+	function updateBot() {
+		if( _height == null || _height == undefined ) {
+			return;
+		}
+
+		var margin = 9;
+		var textWidth = (_width - margin * 2) * _widthScale;
+		if( _bot != null ) {
+			_bot.setSize( textWidth, _height * _textHeightScale );
+			TweenMax.set( _bot, { x:margin, y: _height - SiteGuides.OFFSET_BOTOM - _bot.getTextInstance().offsetHeight + Text.getOffsetY(_bot.getTextInstance()) * 2} );
+		}
+	}
 
 	function addTop(){
 		var topData = ContentManager.getChildByAttr( data, "name", "top");
@@ -103,23 +112,50 @@ function CaseTextModule( data ) {
 	}
 
 	function setModel() {
-		_model = new TextAreaModel();
-
+		if( _model == null ) {
+			_model = new TextAreaModel();
+		}
 
 		var l = _textAreas.length;
 		var controlId = getLongestTextId( _textAreas );
 
 		for( var i = 0; i < l; i++) {
-			var mode;
-			if(i ==controlId) {
-				mode = TextAreaModel.MODE_CONTROL;
-			}else {
-				mode = TextAreaModel.MODE_LISTEN;
+			var mode = TextAreaModel.MODE_LISTEN;
+
+			if(_modelMode == TextAreaModel.MODE_CONTROL ) {
+				if(i ==controlId) {
+					mode = TextAreaModel.MODE_CONTROL;
+				}
 			}
 			_textAreas[i].addModel( _model, mode );
 		}
 
+		if(_bot != null) {
+			_model.addEventListener( TextAreaModel.EVENT_UPDATE, updateBot );
+		}
 	}
+
+	_instance.kill = function() {
+		if( _model != null || _bot != null ) { 
+			_model.removeEventListener( TextAreaModel.EVENT_UPDATE, updateBot );
+		}
+	};
+
+	_instance.getNumOfChars = function() {
+		var l = _textAreas.length;
+		var totalLength = 0;
+		for( var i = 0; i < l; i++ ) {
+			totalLength += _textAreas[i].getTextInstance().innerHTML.length;
+		}
+		return totalLength;
+	};
+
+	_instance.setModel = function( model, mode ) {
+		_model = model;
+		_modelMode = mode;
+
+		setModel();
+	};
 
 	function getLongestTextId( textAreas ) {
 		var highestCount = 0;

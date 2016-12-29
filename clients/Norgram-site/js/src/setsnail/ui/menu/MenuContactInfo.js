@@ -57,11 +57,14 @@ function MenuContactInfo( data, guides ) {
 		var l = columns.children.length;
 
 		for(var i = 0; i < l; i++) {
+			// console.log( columns.children[i].innerHTML );
 			var column = Text.getNewReg(13);
+			column.lineHeightOffset = 1;
 			column.style.color = UIColors.FONT_MED_ON_WHITE;
 			column.style.whiteSpace = "nowrap";
 			column.innerHTML = columns.children[i].innerHTML;
-
+			column.updateLineHeight();
+			TweenMax.set( column, {y:-Text.getOffsetY(column)} );
 			_instance.appendChild(column);
 
 			_columns.push(column);

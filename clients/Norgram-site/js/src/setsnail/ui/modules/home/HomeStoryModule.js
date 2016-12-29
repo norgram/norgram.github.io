@@ -158,7 +158,7 @@ function HomeStoryModule( data, startRatio, useCollapse ) {
 		var modelId = getLongestStoryId(stories);
 
 		var model = new TextAreaModel();
-		model.maxFontSize = 20;
+		model.maxFontSize = 18;
 		if( BrowserDetect.MOBILE) {
 			model.maxFontSize = model.minFontSize = 13;
 

@@ -35,6 +35,13 @@ function ProfileInfoModule( data, infoShow, slideNumber ) {
 		addBodyText();
 	};
 
+	_instance.setBodyTextModel = function( model, mode ) {
+		if( mode == null ) {
+			mode = TextAreaModel.MODE_CONTROL;
+		}
+		_body.addModel( model, mode );
+	}
+
 	_instance.resize_desktop = function (width, height) {
 		_width = Math.floor(height * 1.3);
 		_height = height;
@@ -85,12 +92,18 @@ function ProfileInfoModule( data, infoShow, slideNumber ) {
 		});
 	};
 
+	
+
 	_instance.getWidth = function () {
 		return _width;
 	};
 
 	_instance.kill = function() {
 		_groupedCircle.kill();
+	};
+
+	_instance.getBodyCharCount = function() {
+		return ContentManager.getChildByAttr( data, "name", "body" ).innerHTML.length;
 	};
 
 	function addCircles() {

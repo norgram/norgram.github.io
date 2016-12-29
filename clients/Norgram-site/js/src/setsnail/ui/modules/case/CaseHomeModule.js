@@ -42,19 +42,37 @@ function CaseHomeModule( data, infoData, onArrowClick ) {
 		var textStartX = _width * 0.25;
 		var bodyHeight = _height * 0.4;
 
-		TweenMax.set(_name, {x:_guides.getGuide("start"), y:SiteGuides.getCenterOffset()});
+		_body.setSize(_width - textStartX - 100, bodyHeight);
+
+		var bodyX = _guides.getGuide("start") + _name.getTextInstance().offsetWidth;
+
+		if(bodyX > textStartX) {
+			TweenMax.set(_name, {x:_guides.getGuide("start"), y:SiteGuides.getCenterOffset() -  _name.getTextInstance().offsetHeight - 20});
+			textStartX = _guides.getGuide("start");
+		} else {
+			TweenMax.set(_name, {x:_guides.getGuide("start"), y:SiteGuides.getCenterOffset()});
+		}
+
+
+
 
 		_headline.style.display = "none";
 		// TweenMax.set(_headline, {x:textStartX - 85, y:SiteGuides.OFFSET_TOP - Text.getOffsetY(_headline) } );
 
 		TweenMax.set(_case, {x:textStartX, y:SiteGuides.OFFSET_TOP});
 
-		_details.style.fontSize = "9px";
-		_details.updateLineHeight();
+		_details.style.display = "none";
+		// _details.style.fontSize = "9px";
+		// _details.updateLineHeight();
 		TweenMax.set(_details, {x:textStartX, y:SiteGuides.OFFSET_TOP + 50});
 
 		_body.setSize(_width - textStartX - 100, bodyHeight);
 		TweenMax.set(_body, {x:textStartX, y:SiteGuides.getCenterOffset()});
+		// console.log(_name.getTextInstance().offsetWidth);
+
+		// if(bodyX > textStartX) {
+		// 	TweenMax.set(_name, {});
+		// }
 
 		_footer.updateLayout();
 
@@ -79,13 +97,16 @@ function CaseHomeModule( data, infoData, onArrowClick ) {
 		TweenMax.set(_name, {x:_guides.getGuide("start"), y:SiteGuides.getCenterOffset()});
 		_name.setSize( textStartX - _guides.getGuide("start") - 20);
 
+
+
 		_headline.style.display = "inline";
 		TweenMax.set(_headline, {x:textStartX - 85, y:SiteGuides.OFFSET_TOP - Text.getOffsetY(_headline) } );
 
 		TweenMax.set(_case, {x:textStartX, y:SiteGuides.OFFSET_TOP});
 
-		_details.style.fontSize = "13px";
-		_details.updateLineHeight();
+		_details.style.display = "inline";
+		// _details.style.fontSize = "13px";
+		// _details.updateLineHeight();
 		TweenMax.set(_details, {x:textStartX, y:SiteGuides.OFFSET_TOP + 50});
 
 		_body.setSize(_width - textStartX - 100, bodyHeight);
@@ -119,9 +140,11 @@ function CaseHomeModule( data, infoData, onArrowClick ) {
 
 	function addDetails() {
 		_details = Text.getNewReg(13);
+		_details.lineHeightOffset = 1;
 		_details.style.color = UIColors.FONT_MED_ON_WHITE;
 		_details.style.whiteSpace = "nowrap";
 		_details.innerHTML = ContentManager.getChildByAttr(data, "name", "details" ).innerHTML;
+		_details.updateLineHeight();
 
 		_instance.appendChild(_details);
 	}

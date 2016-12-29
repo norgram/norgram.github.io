@@ -330,8 +330,10 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 
 	function addTopBody() {
 		var bodyData = ContentManager.getChildByAttr(data, "name", "body");
+		var txtBase = Text.getNewReg(13);
+		txtBase.lineHeightScale = 14/13;
 
-		_bodyTop = new TextArea(bodyData.innerHTML, Text.getNewReg(13));
+		_bodyTop = new TextArea(bodyData.innerHTML, txtBase);
 		_bodyTop.init(bodyTextModel, TextAreaModel.MODE_LISTEN );
 		_bodyTop.style.color = UIColors.FONT_MED_ON_WHITE;
 
@@ -344,8 +346,10 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 
 	function addBody() {
 		var bodyData = ContentManager.getChildByAttr(data, "name", "body");
+		var txtBase = Text.getNewReg(13);
+		txtBase.lineHeightScale = 14/13;
 
-		_body = new TextArea( bodyData.innerHTML, Text.getNewReg(13) );
+		_body = new TextArea( bodyData.innerHTML, txtBase );
 
 		_body.init(bodyTextModel, _mode );
 		_body.style.color = UIColors.FONT_MED_ON_WHITE;

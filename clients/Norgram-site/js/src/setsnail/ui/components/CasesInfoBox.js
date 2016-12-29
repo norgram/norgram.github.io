@@ -110,7 +110,6 @@ function CaseInfo( data, index ) {
 	};
 
 	function updateSize() {
-		console.log("READY");
 		_instance.setSize(_width, _height);
 	}
 

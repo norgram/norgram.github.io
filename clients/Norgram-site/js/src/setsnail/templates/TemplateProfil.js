@@ -27,11 +27,20 @@ function TemplateProfil( data ) {
 		var serviceData = ContentManager.getChildByAttr( data.getXML(), "name", "service" );
 		var processData = ContentManager.getChildByAttr( data.getXML(), "name", "process" );
 
+		var profilInfoOne = new ProfileInfoModule(serviceData, null, 2);
+		var profilInfoTwo = new ProfileInfoModule(processData, null, 3);
+		var employeeModule = new ProfileEmployeeModule( employeeData );
+
 		_instance.addModule( new BasicHomeModule( frontpageData, onNextClick ) );
-		_instance.addModule( new ProfileEmployeeModule( employeeData ) );
-		_instance.addModule( new ProfileInfoModule(serviceData, null, 2) );
-		_instance.addModule( new ProfileInfoModule(processData, null, 3) );
+		_instance.addModule( employeeModule );
+		_instance.addModule( profilInfoOne );
+		_instance.addModule( profilInfoTwo );
 		_instance.addModule( new ReturnModule() );
+
+		var model = new TextAreaModel();
+		profilInfoOne.setBodyTextModel( model );
+		profilInfoTwo.setBodyTextModel( model, TextAreaModel.MODE_LISTEN );
+		employeeModule.setTextModel( model );
 	}
 
 	function onNextClick() {
