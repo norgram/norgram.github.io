@@ -195,8 +195,8 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 
 		//UPDATE BUTTONS
 		if(_numOfImages > 1 ) {
-			var buttonLeftEase = Back.easeOut.getRatio(MathUtils.ratioFromRatio(0.1, 0.8, _ratio));
-			var buttonRightEase = Back.easeOut.getRatio(MathUtils.ratioFromRatio(0.3, 1, _ratio));
+			var buttonLeftEase = Back.easeOut.getRatio(MathUtils.ratioFromRatio(0.1, 0.8, _ratio, true));
+			var buttonRightEase = Back.easeOut.getRatio(MathUtils.ratioFromRatio(0.3, 1, _ratio, true));
 			if( _leftButton != null && _rightButton != null ) {
 				TweenMax.set(_leftButton, {y:imgYPos + 40 - 72 * buttonLeftEase, x:margin});
 				TweenMax.set(_rightButton, {y:imgYPos + 40 - 72 * buttonRightEase, x:margin + 32});
