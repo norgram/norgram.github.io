@@ -1,83 +1,977 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>Norgram — Digital Design Studio</title>
+<html lang='da'>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<!-- IE: Force to always use the latest version - if chrome frame is installed use this instead -->
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="viewport" content="initial-scale=.8">
+		<meta http-equiv="cache-control" content="no-cache" />
+		<meta http-equiv="pragma" content="no-cache" />
 
-    <meta name="description" content="We are the Design Director duo of internationally recognized and awarded designers Sebastian Gram &amp; Mathias Høst Normark." />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-    <link rel="shortcut icon" href="images/favicon.ico">
+		<title>Norgram — Digital Design Studio</title>
 
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Norgram — Digital Design Studio">
-    <meta property="og:site_name" content="Norgram">
-    <meta property="og:url" content="http://www.norgram.co">
-    <meta property="og:image" content="http://www.norgram.co/images/social.png">
-    <meta property="og:description" content="We are the Design Director duo of internationally recognized and awarded designers Sebastian Gram &amp; Mathias Høst Normark.">
+		<link rel="stylesheet" type="text/css" href="assets/images/icons/favicon.ico">
 
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="@norgramstudio">
-    <meta name="twitter:creator" content="@norgramstudio" >
-    <meta name="twitter:title" content="norgram — Digital Design Studio">
-    <meta name="twitter:url" content="http://www.norgram.co">
-    <meta name="twitter:image" content="http://www.norgram.co/images/social.png">
-    <meta name="twitter:domain" content="http://www.norgram.co">
-    <meta name="twitter:description" content="We are the Design Director duo of internationally recognized and awarded designers Sebastian Gram &amp; Mathias Høst Normark.">
+		<!-- Meta description and keywords -->
+		<meta name="description" content="We are the Design Director duo of internationally recognized and awarded designers Sebastian Gram &amp; Mathias Høst Normark.">
+		<meta name="keywords" content="grafisk designer, art director, webdesigner, magasinlayouter, TVgrafiker" />
 
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, width=device-width" />
+		<!-- FB icons -->
+		<meta property="og:title" content="Norgram — Digital Design Studio">
+		<meta property="og:site_name" content="Norgram">
+		<meta property="og:url" content="http://www.norgram.co/" />
+		<meta property="og:type" content="website" />
+		<meta property="og:image" content="http://www.norgram.co/images/social.png">
+		<meta property="og:description" content="We are the Design Director duo of internationally recognized and awarded designers Sebastian Gram &amp; Mathias Høst Normark.">
 
-    <link rel="stylesheet" type="text/css" href="css/normalize.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="css/main.css" media="screen">
+		<!-- for Twitter -->
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:site" content="@norgramstudio">
 
-    <script>
-		  !function(g,s,q,r,d){r=g[r]=g[r]||function(){(r.q=r.q||[]).push(
-		  arguments)};d=s.createElement(q);q=s.getElementsByTagName(q)[0];
-		  d.src='//d1l6p2sc9645hc.cloudfront.net/tracker.js';q.parentNode.
-		  insertBefore(d,q)}(window,document,'script','_gs');
+		<meta name="twitter:title" content="Norgram — Digital Design Studio" />
+		<meta name="twitter:description" content="We are the Design Director duo of internationally recognized and awarded designers Sebastian Gram &amp; Mathias Høst Normark." />
+		<meta name="twitter:image" content="http://www.norgram.co/images/social.png" />
 
-		  _gs('GSN-324564-T');
-	</script>
-  </head>
-  <body>
-    <header class="header">
-      <span class="header__headline">Digital Design Studio &mdash;</span>
-    </header>
+		<!-- CSS -->
+ 		<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--		<link rel="stylesheet" type="text/css" href="assets/css/lists.css">
+ -->
 
-    <main>
-      <div class="col-container clearfix">
-        <div class="col-1">
-          <img class="logo--black--desktop" src="images/01_norgram_logo-black@2x.png" alt="norgram" width="115" height="61" />
-          <img class="logo--white--desktop" src="images/01_norgram_logo-white@2x.png" alt="norgram white" width="115" height="61" />
-          <img class="logo--black--mobile logo--mobile" src="images/mobile-norgram_logo-black@2x.png" alt="norgram" width="91" height="19" />
-          <img class="logo--white--mobile logo--mobile" src="images/mobile-norgram_logo-white@2x.png" alt="norgram white" width="91" height="19" />
-        </div>
-        <div class="col-2 info">
-          <p class="info__description">We are the Design Director duo of internationally recognized and awarded designers <a href="https://www.linkedin.com/in/sebastiangram" target="blank">Sebastian Gram</a> &amp; <a href="https://dk.linkedin.com/in/mathiashnormark" target="blank">Mathias Høst Normark</a>. Our vision is to collaborate with brands in building the next generation of digital brands through digital identities, experiences & platforms.</p>
-          <a class="info__email" href="mailto:hi@norgram.co">hi@norgram.co</a>
-          <span class="info__phone">0045 5337 7537</span>
-          <span class="info__social">Follow us &mdash; <a href="https://twitter.com/norgramstudio" target="_blank">Twitter</a>, <a href="https://www.instagram.com/norgramstudio/" target="_blank">Instagram</a>, <a href="https://www.facebook.com/norgramstudio/" target="_blank">Facebook</a></span>
-        </div>
-      </div>
+	</head>
 
-      <canvas id="pattern" width="300" height="300"></canvas>
+	<body>
+		<!-- Outsider Lib -->
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
 
-      <footer class="footer">
-        <span class="footer__location">Copenhagen &amp; Aarhus, Denmark</span>
-        <span class="footer__legal">&copy; Copyright 2016 Norgram</span>
-      </footer>
-    </main>
+		<!-- Tools n Utils -->
+		<script src="js/lib/setsnail/system/BrowserDetect.js"></script>
+		<script src="js/lib/setsnail/debug/Debug.js"></script>
+		<script src="js/lib/setsnail/animation/AnimationUtils.js"></script>
+		<script src="js/lib/setsnail/utils/Trace.js"></script>
+		<script src="js/lib/setsnail/utils/EventDispatcher.js"></script>
+		<script src="js/lib/setsnail/utils/ColorUtils.js"></script>
+		<script src="js/lib/setsnail/utils/CSS.js"></script>
+		<script src="js/lib/setsnail/utils/Snail.js"></script>
+		<script src="js/lib/setsnail/utils/ArrayUtils.js"></script>
+		<script src="js/lib/setsnail/utils/RenderEngine.js"></script>
+		<script src="js/lib/setsnail/utils/StringUtils.js"></script>
+		<script src="js/lib/setsnail/utils/instafeed.min.js"></script>
+		<script src="js/lib/setsnail/utils/MapUtils.js"></script>
+		<script src="js/lib/setsnail/share/ShareUtils.js"></script>
+		<script src="js/lib/setsnail/search/SearchManager.js"></script>
+		<script src="js/lib/setsnail/text/Text.js"></script>
+		<script src="js/lib/setsnail/prototype/array/sortOn.js"></script>
 
-    <script>
-      var currentHour = new Date().getHours();
-      if (currentHour > 12 && currentHour < 18) {
-        document.body.className = 'midday';
-      } else if (currentHour >= 18 || currentHour < 5) {
-        document.body.className = 'night';
-      }
-    </script>
+		<!-- TouchLib -->
+		<script src="js/lib/setsnail/touch/Touchable.js"></script>
+		<script src="js/lib/setsnail/touch/TouchDragger.js"></script>
 
-    <script src="js/lib/greensock/TweenLite.min.js"></script>
-    <script src="js/lib/greensock/easing/EasePack.min.js"></script>
-    <script src="js/Main.js"></script>
-  </body>
+		<script src="js/lib/setsnail/touch/utils/DragGroup.js"></script>
+		<script src="js/lib/setsnail/touch/utils/DragInfo.js"></script>
+		<script src="js/lib/setsnail/touch/utils/GroupDragger.js"></script>
+		<script src="js/lib/setsnail/touch/utils/TouchInfo.js"></script>
+		<script src="js/lib/setsnail/touch/utils/EaseInfo.js"></script>
+
+		<script src="js/lib/setsnail/touch/plugins/DraggerPlugin.js"></script>
+		<script src="js/lib/setsnail/touch/plugins/DraggerEasePlugin.js"></script>
+		<script src="js/lib/setsnail/touch/plugins/DragBasic.js"></script>
+		<script src="js/lib/setsnail/touch/plugins/DragBounds.js"></script>
+		<script src="js/lib/setsnail/touch/plugins/DragEase.js"></script>
+
+		<script src="js/lib/setsnail/utils/Rectangle.js"></script>
+		<script src="js/lib/setsnail/utils/MathUtils.js"></script>
+
+		<!-- ResizeManager -->
+		<script src="js/lib/setsnail/resize/ResizeManager.js"></script>
+		<script src="js/lib/setsnail/resize/ResizeManagerSettings.js"></script>
+		<script src="js/lib/setsnail/resize/ResizeEvents.js"></script>
+
+		<!-- RetinaHandler -->
+		<script src="js/lib/setsnail/image/RetinaImage.js"></script>
+		<script src="js/lib/setsnail/retina/RetinaHandle.js"></script>
+		<script src="js/lib/setsnail/retina/RetinaHandleEvents.js"></script>
+
+		<!-- ContentManager -->
+		<script src="js/lib/setsnail/contentManager/ContentManager.js"></script>
+		<script src="js/lib/setsnail/contentManager/TemplateData.js"></script>
+
+		<!--
+		END SnailLib
+		-->
+
+		<!-- Src -->
+		<script src="js/src/Main.js"></script>
+		<script src="js/src/setsnail/Config.js"></script>
+		<script src="js/src/setsnail/Assets.js"></script>
+		<script src="js/src/setsnail/ui/UIColors.js"></script>
+		<script src="js/src/setsnail/utils/GuideLines.js"></script>
+		<!--<script src="js/src/setsnail/utils/LinedCircle.js"></script>-->
+		<!--<script src="js/src/setsnail/utils/RoundCircleGroup.js"></script>-->
+		<!--<script src="js/src/setsnail/utils/GroupedCircles.js"></script>-->
+		<script src="js/src/setsnail/utils/ScrollController.js"></script>
+		<script src="js/src/setsnail/utils/ImageSlider.js"></script>
+
+		<!--LINES-->
+		<script src="js/src/setsnail/utils/Lines/LineMaskDrawer.js"></script>
+		<script src="js/src/setsnail/utils/Lines/LineMaskShape.js"></script>
+		<script src="js/src/setsnail/utils/Lines/CirclesOnALines.js"></script>
+
+		<script src="js/src/setsnail/ui/buttons/TextButton.js"></script>
+		<script src="js/src/setsnail/ui/text/TextArea.js"></script>
+
+		<!-- Templates -->
+		<script src="js/src/setsnail/templates/PageTemplate.js"></script>
+		<script src="js/src/setsnail/templates/TemplateHome.js"></script>
+		<script src="js/src/setsnail/templates/TemplateCase.js"></script>
+		<script src="js/src/setsnail/templates/TemplateCasesOverview.js"></script>
+		<script src="js/src/setsnail/templates/TemplatePrincip.js"></script>
+		<script src="js/src/setsnail/templates/TemplateProfil.js"></script>
+
+
+		<!-- Modules -->
+		<script src="js/src/setsnail/ui/modules/Module.js"></script>
+		<script src="js/src/setsnail/ui/modules/WhiteSpaceModule.js"></script>
+		<script src="js/src/setsnail/ui/modules/ReturnModule.js"></script>
+		<script src="js/src/setsnail/ui/modules/BasicHomeModule.js"></script>
+
+        <script src="js/src/setsnail/ui/modules/home/HomeStoryModule.js"></script>
+
+		<script src="js/src/setsnail/ui/modules/case/CaseHomeModule.js"></script>
+		<script src="js/src/setsnail/ui/modules/case/CaseImageModule.js"></script>
+		<script src="js/src/setsnail/ui/modules/case/CaseTextModule.js"></script>
+
+        <script src="js/src/setsnail/ui/modules/casesoverview/OverviewCaseModule.js"></script>
+
+        <script src="js/src/setsnail/ui/modules/principles/PrincipleSectionModule.js"></script>
+
+		<script src="js/src/setsnail/ui/modules/profile/ProfileEmployeeModule.js"></script>
+		<script src="js/src/setsnail/ui/modules/profile/ProfileInfoModule.js"></script>
+		<script src="js/src/setsnail/ui/modules/profile/ProfileEmployee.js"></script>
+
+        <!-- Components -->
+        <script src="js/src/setsnail/ui/components/Footer.js"></script>
+        <script src="js/src/setsnail/ui/components/HomeStory.js"></script>
+		<script src="js/src/setsnail/ui/components/CasesInfoBox.js"></script>
+
+
+		<!-- Menu -->
+		<script src="js/src/setsnail/ui/menu/MainMenu.js"></script>
+		<script src="js/src/setsnail/ui/menu/MenuBorder.js"></script>
+		<script src="js/src/setsnail/ui/menu/MenuBorderLines.js"></script>
+		<script src="js/src/setsnail/ui/menu/MenuLogo.js"></script>
+
+		<script src="js/src/setsnail/ui/menu/MenuContent.js"></script>
+		<script src="js/src/setsnail/ui/menu/MenuContactInfo.js"></script>
+		<script src="js/src/setsnail/ui/menu/MenuFooter.js"></script>
+		<script src="js/src/setsnail/ui/menu/MenuSelector.js"></script>
+		<script src="js/src/setsnail/ui/menu/MenuSocial.js"></script>
+
+<div style='display: none;' id='content'>
+
+	<div data-name="general-data">
+
+		<div data-name="menu">
+
+			<div data-name="contact">
+
+				<div data-name="headline">Contact</div>
+
+				<div data-name="columns">
+					<div data-name="column">
+						Norgram ApS<br>
+						Skt. Jørgens Allé 5 D<br>
+						DK-1615<br>
+						Copenhagen<br>
+						<br>
+						Vestergade 58T<br>
+						DK-8000<br>
+						Aarhus C<br>
+					</div>
+					<div data-name="column">
+						+0045 5337 7537<br>
+						<a href="mailto:hi@norgram.co?Subject=Hi%20Norgram" target="_top">hi@norgram.co</a>
+						
+					</div>
+					<div data-name="column">
+						For job and Intern<br>
+						inquiries please write<br>
+						<a href="mailto:application@norgram.co?Subject=Hi%20Norgram" target="_top">application@norgram.co</a><br><br>
+						Newsletter<br>
+						<a href="http://norgram.co/newsletter" target="_blank">norgram.co/newsletter</a>
+					</div>
+				</div>
+			</div>
+
+			<div data-name="footer">
+				<div data-name="copyright" >Copyright 2016 © Norgram</div>
+				<div data-name="cvr" >CVR—37503878</div>
+			</div>
+
+			<div data-name="social">
+				<div data-name="facebook" data-link="https://www.facebook.com/norgramstudio/">Facebook</div>
+				<div data-name="linkedin" data-link="https://www.facebook.com/norgramstudio/">LinkedIn</div>
+				<div data-name="instagram" data-link="https://www.facebook.com/norgramstudio/">Instagram</div>
+				<div data-name="twitter" data-link="https://twitter.com/norgramstudio/">Twitter</div>
+			</div>
+		</div>
+
+		<div data-name="pagefooter">
+			<div data-name="email"><a href="mailto:hi@norgram.co?Subject=Hi%20Norgram" target="_top">hi@norgram.co</a></div>
+			<div data-name="phone">+0045 5337 7537</div>
+		</div>
+
+	</div>
+
+	<div data-name="pages">
+
+		<div data-path='home' data-template="home">
+			<!--<div data-name="menu">Home</div>-->
+
+			<div data-name="frontpage">
+				<div data-name="founded">
+					Norgram® Studio is the Design Director duo of internationally recognized and awarded designers Sebastian Gram & Mathias Høst Normark.
+				</div>
+
+				<div data-name="link" data-link="projects">Selected Projects</div>
+
+				<div data-name="body">
+					Forming design<br>
+					languages<br>
+					for the<br>
+					digital era.
+				</div>
+			</div>
+
+
+			<div data-name="stories">
+		<!--	<div data-name="story">
+					<div data-name="date">December 22 — 2016</div>
+
+					<div data-name="headline">
+						#buildwithspaces—<br>
+						a digital framework for SPACE10
+					</div>
+
+				<div data-name="body">We're currently working on defining a new digital framework for IKEA's innovation lab SPACE10 in collaboration with RWATGG.</div>
+
+					<div data-name="image-tag-name">Studio news</div>
+
+					<div data-name="images">	
+						<div data-name="image">assets/images/journal/buildwithspaces_journal_01.gif</div>
+						
+					</div>
+				</div>-->
+						<div data-name="story">
+					<div data-name="date">December 22 — 2016</div>
+
+					<div data-name="headline">
+						The Pop Up <br>Agency
+					</div>
+
+				<div data-name="body">We've defined a new design direction for our London friends "Pop Up" who's on a mssion to democratize creativity.</div>
+
+					<div data-name="image-tag-name">Studio news</div>
+
+					<div data-name="images">	
+						<div data-name="image">assets/images/journal/popup_journal_01.gif</div>		
+					</div>
+				</div>
+				<div data-name="story">
+					<div data-name="date">December 22 — 2016</div>
+
+					<div data-name="headline">
+						On Air<br>
+						Radio24Syv
+					</div>
+
+				<div data-name="body">Yesterday evening we were live on <a href="http://bit.ly/2hIfmcS" target="blank">Radio24Syv</a> talking about the J.Views 401 Days album design that has been nominated for the 59TH Annual Grammy® Awards which takes place the 12th February 2016 in LA. <a href="http://bit.ly/2hIfmcS" target="blank">Have a listen</a>, in danish only.</div>
+
+					<div data-name="image-tag-name">Studio news</div>
+
+					<div data-name="images">
+						<div data-name="image">assets/images/journal/DNA_Album_24_7_journal_01.jpg</div>
+					</div>
+				</div>
+				<div data-name="story">
+					<div data-name="date">September 15 — 2016</div>
+
+					<div data-name="headline">
+						Setio®<br>
+						Digital Identity
+					</div>
+
+					<div data-name="body">We've helped the danish startup Setio® explore and define a new brand platform and design direction. Setio® is launching in 2017.</div>
+
+					<div data-name="image-tag-name">Project</div>
+
+					<div data-name="images">
+						<div data-name="image">assets/images/journal/setio_journal_01.jpg</div>
+					</div>
+				</div>
+
+				<div data-name="story">
+					<div data-name="date">August 22 — 2016</div>
+
+					<div data-name="headline">
+						Mitte®<br>
+						Digital Identity
+					</div>
+
+					<div data-name="body">Since our trip to Berlin in March we’ve formed a close collaboration with the team in Berlin on defining the brand of Mitte® — who is on a mission to improve life through better water.</div>
+
+					<div data-name="image-tag-name">Project</div>
+
+					<div data-name="images">
+						
+						<div data-name="image">assets/images/journal/mitte_journal_00.jpg</div>
+						<div data-name="image">assets/images/journal/mitte_journal_04.png</div>
+						<div data-name="image">assets/images/journal/mitte_journal_03.gif</div>
+						<div data-name="image">assets/images/journal/mitte_journal_01.jpg</div>
+						
+						
+					</div>
+				</div>
+
+				<div data-name="story">
+					<div data-name="date">August 30 — 2016 </div>
+
+					<div data-name="headline">
+						SPACE10 x Norgram<br>
+					</div>
+
+					<div data-name="body">We're partnering with IKEA's innovation lab SPACE10 to explore and define their future digital platform.</div>
+
+					<div data-name="image-tag-name">Studio news</div>
+
+					<div data-name="images">
+						<div data-name="image">assets/images/journal/space10_journal_01.jpg</div>
+					</div>
+				</div>
+
+				<div data-name="story">
+					<div data-name="date">August 15 — 2016</div>
+
+					<div data-name="headline">
+						Adobe<br>
+						Interview
+					</div>
+
+					<div data-name="body">Mathias was awarded the Nordic Creative Talent Award in November 2015 by Adobe. Adobe did sat down with Mathias for an interview. <a href="http://blogs.adobe.com/creative/nordic-creative-talent-award-winners-mathias-hoest-normark-is-combining-creativity-with-technology/" target="blank">Watch on Adobe.com</a></div>
+
+					<div data-name="image-tag-name">Studio news</div>
+
+					<div data-name="images">
+						<div data-name="image">assets/images/journal/adobe_journal_01.gif</div>
+					</div>
+
+				</div>
+
+				<div data-name="story">
+					<div data-name="date">June 01 — 2016</div>
+
+					<div data-name="headline">
+						TwentyThree™<br>
+						Digital Identity
+					</div>
+
+					<div data-name="body">Digital Identiy for Copenhagen based tech-company TwentyThree. TwentyThree is on a mission reinvent the way brands use video. TwentyThree recently launched their product gloablly by opening an office in San Francisco.</div>
+
+					<div data-name="image-tag-name">Project</div>
+
+					<div data-name="images">
+						<div data-name="image">assets/images/journal/twentythree_journal_01.gif</div>
+					</div>
+				</div>
+				<div data-name="story">
+					<div data-name="date">March 28 — 2016</div>
+
+					<div data-name="headline">
+						j.views<br>
+						401 Days album 
+					</div>
+
+					<div data-name="body">We've had the pleasure of working closely together with Jonathan since December on ideating, designing and producing the new album cover as a book format documenting the life that happened throughout 401 Days.</div>
+
+					<div data-name="image-tag-name">Project</div>
+
+					<div data-name="images">
+						<div data-name="image">assets/images/journal/jviews_journal_05.jpg</div>
+						<div data-name="image">assets/images/journal/jviews_journal_02.jpg</div>
+						<div data-name="image">assets/images/journal/jviews_journal_03.jpg</div>
+						<div data-name="image">assets/images/journal/jviews_journal_04.jpg</div>
+					</div>
+
+				</div>
+			
+			
+				<div data-name="story">
+					<div data-name="date">April 22 — 2016</div>
+
+					<div data-name="headline">
+						The—Dots<br>
+						Digital Platform
+					</div>
+
+					<div data-name="body">We've been working together with the Founder & CEO of The—Dots, Pip Jamieson and her team on defining a new foundation and design direction for The—Dots' digital platform and brand.</div>
+
+					<div data-name="image-tag-name">Project</div>
+
+					<div data-name="images">
+						<div data-name="image">assets/images/journal/the_dots_00.jpg</div>
+						<div data-name="image">assets/images/journal/the_dots_01.jpg</div>
+						<div data-name="image">assets/images/journal/the_dots_02.jpg</div>
+						<div data-name="image">assets/images/journal/the_dots_03.jpg</div>		
+					</div>
+
+				</div>
+
+				<div data-name="story">
+					<div data-name="date">March 28 — 2016</div>
+
+					<div data-name="headline">
+						Phosphene™<br>
+						New digital precence
+					</div>
+
+					<div data-name="body">Together with our friends at Koalition we've designed and build a new digital presence for award-winning New York based VFX Studio Phosphene. <a href="http://www.phosphenefx.com/" target="blank">phosphenefx.com</a></div>
+
+					<div data-name="image-tag-name">Project</div>
+
+					<div data-name="images">
+						<div data-name="image">assets/images/journal/phosphene_journal.gif</div>
+					</div>
+
+				</div>
+
+
+				<div data-name="story">
+					<div data-name="date">March 28 — 2016</div>
+
+					<div data-name="headline">
+						Foundation Workshop<br>
+						in Berlin
+					</div>
+
+					<div data-name="body">We're off to Berlin for the next 3 days to facilitate our foundation workshop as the kick-off on a new exciting brand identity project for an upcoming IOT product.</div>
+
+					<div data-name="image-tag-name">Studio news</div>
+
+					<div data-name="images">
+						<div data-name="image">assets/images/journal/off_to_berlin_journal_01.jpg</div>
+					</div>
+
+				</div>
+
+				<div data-name="story">
+					<div data-name="date">March 01 — 2016</div>
+
+					<div data-name="headline">
+						We're Norgram®<br>Studio
+					</div>
+
+					<div data-name="body">We're Norgram — we're forming design languages for the digital era. Norgram is the fusion of Design Director duo — Mathias Høst Normark and Sebastian Gram.</div>
+
+					<div data-name="image-tag-name">Studio news</div>
+
+					<div data-name="images">
+						<div data-name="image">assets/images/journal/we_are_norgram.jpg</div>
+					</div>
+
+				</div>
+
+
+			</div>
+
+
+		</div>
+
+
+		<div data-path='studio' data-template="profile">
+			<div data-name="menu">Studio</div>
+
+
+
+			<div data-name="frontpage">
+				<div data-name="founded">
+					Norgram® is founded in 2016 by Sebastian Gram & Mathias Høst Normark. Located in Aarhus & Copenhagen, Denmark.
+				</div>
+
+				<div data-name="story">
+					Norgram is the fusion of Design Director duo — Mathias Høst Normark and Sebastian Gram. We exist to build the next generation of digital brands and experiences.
+
+Our process is defined by collaboration. We work with brands, start-ups, and people to create meaningful work with a strong sense of purpose. Our work is defined by the value we create rather than output we make.
+<br>
+					Together we have have over 20 years of experience working with global brands. During that time we’ve collaborated with brands such as Google, Nasa and the Guggenheim to deliver unique work that have been celebrated and rewarded globally.
+					<br><br>
+					We are a Design Studio for the Digital Era.
+				</div>
+
+				<div data-name="body">
+					Norgram® is a design studio that creates the next generation of digital brands and experiences. Exploration through collaboration sits at the heart of our design process and we strive to create timeless work that surprises.
+				</div>
+			</div>
+
+			<div data-name="employees">
+
+				<div data-name="employee">
+					<div data-name="info">
+						<div data-name="name">Sebastian Gram</div>
+						<div data-name="title">Co—founder &<br>Design Director</div>
+						<div data-name="mail"><a href="mailto:sg@norgram.co?Subject=Hi%20Sebastian" target="_top">sg@norgram.co</a></div>
+						<div data-name="phone">+45 60228703</div>
+
+						<div data-name="linkedin">https://www.linkedin.com/in/sebastiangram</div>
+						<div data-name="twitter">https://twitter.com/sebastiangram</div>
+					</div>
+
+					<div data-name="image">assets/images/profile/profile_seb.png</div>
+				</div>
+
+				<div data-name="employee">
+					<div data-name="info">
+						<div data-name="name">Mathias Høst Normrak</div>
+						<div data-name="title">Co—founder &<br>Design Director</div>
+						<div data-name="mail"><a href="mailto:mhn@norgram.co?Subject=Hi%20Mathias" target="_top">mhn@norgram.co</a></div>
+						<div data-name="phone">+45 53377537</div>
+
+						<div data-name="linkedin">https://www.linkedin.com/in/mathiashnormark</div>
+						<div data-name="twitter">https://twitter.com/MathiasHN</div>
+					</div>
+
+					<div data-name="image">assets/images/profile/profile_mat.png</div>
+				</div>
+
+			</div>
+
+			<div data-name="service">
+				<div data-name="headline">Our services</div>
+				<div data-name="body">We help brands shape their businesses and create unique design languages. We use a combination of our offerings to craft an approach that works best for each project. Independent of the output, we strive to offer new perspectives on established methods and solutions.</div>
+
+				<div data-name="circles" data-type="round">
+					<div data-name="circle">Our services</div>
+					<div data-name="circle">Digital Products</div>
+					<div data-name="circle">Workshops & Lectures</div>
+					<div data-name="circle">Digital Identity</div>
+					<div data-name="circle">Digital Experiences</div>
+				</div>
+
+
+			</div>
+
+			<div data-name="process">
+				<div data-name="headline">Process</div>
+				<div data-name="body">Our approach to projects follow these 4 basic phases, each phase is carefully tailored to match the given project. At the heart of each phase lies a transparent, iterative and collaborative approach that sets the stage for a successful final output.</div>
+
+				<div data-name="circles" data-type="straight">
+					<div data-name="circle">Concept</div>
+					<div data-name="circle">Implementation</div>
+					<div data-name="circle">Foundation</div>
+					<div data-name="circle">Design</div>		
+				</div>
+
+			</div>
+
+		</div>
+
+
+		<div data-path='ethos' data-template="principles">
+			<div data-name="menu">Ethos</div>
+
+			<div data-name="frontpage">
+				<div data-name="founded">
+					Norgram® Studio is the Design Director duo of internationally recognized and awarded designers Sebastian Gram & Mathias Høst Normark.
+				</div>
+
+				<div data-name="body">At Norgram® we use 5 principles that guides and defines the type of work we believe in. The principles functions as our northern star and informs the choices we make throughout our creative process.</div>
+			</div>
+
+			<div data-name="sections">
+				<div data-name="section">
+					<div data-name="headline">Purpose</div>
+					<div data-name="body">Our work come from a clear sense of purpose and authenticity. The foundation of our work comes from working with the questions — Why are you here and why do you exist? Once we’ve established the answer to those questions we look at the reason the target audience should care.</div>
+					<div data-name="image">roundrect</div>
+				</div>
+
+				<div data-name="section">
+					<div data-name="headline">Innovation</div>
+					<div data-name="body">The exploration into purpose creates the foundation for an authentic end result that encapsulates the brand and what it stands for. This leads us to a design process where we create work with an authentic story that is driven by the value it creates. </div>
+					<div data-name="image">doubletriangle</div>
+				</div>
+
+				<div data-name="section">
+					<div data-name="headline">Collaboration</div>
+					<div data-name="body">The output of our work is defined by the explorative nature of collaboration. Independent on skill-set and function we work with our clients to get the to core of the challenge and establish a way forward that keeps our clients highly involved in the process. We believe that by building a tight relationship with our collaborators and clients we create better results. </div>
+					<div data-name="image">rectbyrect</div>
+				</div>
+
+				<div data-name="section">
+					<div data-name="headline">Exploration</div>
+					<div data-name="body">The nature of our collaborative process opens up the opportunity to explore alternate solutions that surprises the consumer — creating a stronger sense of attachment to the end result. We give ourselves time to explore and identify the path forward that we believe will make consumers look twice.</div>
+					<div data-name="image">triangle</div>
+				</div>
+
+				<div data-name="section">
+					<div data-name="headline">Timeless</div>
+					<div data-name="body">We always strive for our work to be timeless, we reach that by making sure every details exists for a reason through craft and thought. The result of our efforts embodies a level of aesthetic quality that at its foundation feels honest and surprising in the eyes of the beholder.</div>
+					<div data-name="image">rect</div>
+				</div>
+
+			</div>
+
+
+		</div>
+
+
+		<div data-path='projects' data-template="projects-0">
+			<div data-name="menu">Projects</div>
+
+			<div data-path='setio' data-template="case-0" >
+				<div data-name="info">
+					<div data-name="headline">
+						Setio®<br>
+						Digital Identity
+					</div>
+					<div data-name="client">Setio®</div>
+					<div data-name="project">Digital Identity</div>
+					<div data-name="year">2016</div>
+				</div>
+
+				<div data-name="overviewimage">assets/images/cases/setio/setio_00_overview.jpg</div>
+
+				<div data-name="home">
+					<div data-name="headline">Setio®</div>
+
+					<div data-name="details">
+						Brand Strategy & Platform<br>
+						Brand Naming<br>
+						Brand Signature<br>
+						Typographic System<br>
+						Colorpalette<br>
+						iOS App Design<br>
+						Photography<br>
+						Iconography<br>
+						Illustration<br>
+						Packaging<br>
+						Digital Identity Guidelines<br>
+					</div>
+
+					<div data-name="body">
+						Empowering runners with tailor made advices and precision metrics is at the heart of what Setio® does. Bridging data, expert knowledge, technology and connecting runners to a global network of dedicated professionals will make runners become runners in control.
+					</div>
+				</div>
+
+				<div data-name="modules">
+					<div data-name="moduleImage" width="2511" height="1620">assets/images/cases/setio/setio_01.jpg</div>
+					<div data-name="moduleText">
+						<!--<div data-name="top"></div>-->
+						<div data-name="mid">
+							Objective<br>
+							Explore, develop and define a brand vision for a new running brand providing a learning experience for runners to gain control and obtain a new and better running behaviour.
+							<br><br>
+							Concept<br>
+							The Setio® identity is build from the concept of "Control". Becoming a runner in control of mind and feet is a process of progress. The first step to becoming a runner in control is to acknowledge that you can become better and enter a zone of progress. Once you start to progress you get closer and closer to control.</div>
+						<div data-name="bot">
+							Design<br>
+							The design direction seeks to clarify the complexitity of the product by keeping a simple design language but at the same time blend into a runners lifestyle and involve progressive elements such as raw nature and techical data.</div>
+					</div>
+					<div data-name="moduleImage" width="3298" height="1800">assets/images/cases/setio/setio_02.png</div>
+                    <div data-name="moduleText" data-width-scale="0.6" >
+						<div data-name="top">The brand signature is constructed from a monospace typography that forms an invisible rectangle. This rectangle is used to form a super graphic of multiples steps. These are the steps towards control.</div>
+					</div>
+                    <div data-name="moduleImage" width="3512" height="1800">assets/images/cases/setio/setio_03.png</div>
+                   
+					<div data-name="moduleImage" width="3688" height="1800">assets/images/cases/setio/setio_03.gif</div>
+                    <div data-name="moduleText" data-width-scale="0.6" >
+						<div data-name="top">The Setio® supergraphic interprets the invisible frame of the logotype. This frame is visualized and dublicated into multiples steps forming a supergrahic that visualizes the steps towards control. The shape of the frames adapts to the invivleble frame of the dynamic logotypes.</div>
+					</div>
+                    <div data-name="moduleImage" width="3662" height="1800">assets/images/cases/setio/setio_04_01.gif</div>
+                    <div data-name="moduleImage" width="2613" height="1620">assets/images/cases/setio/setio_04.jpg</div>
+                    <div data-name="moduleText" data-width-scale="0.6" >
+						<div data-name="top">The Setio® photography direction explores the progressive and uncontrollable environments of nature and urban environments in which it welcomes a runner in control.</div>
+						<div data-name="bot"><a href="http://www.andreashoumann.com/" target="blank">Photographer, Andreas Houmann.</a></div>
+					</div>
+                    <div data-name="moduleImage" width="2939" height="1620">assets/images/cases/setio/setio_08.jpg</div>
+                      <div data-name="moduleImage" width="2201" height="1620">assets/images/cases/setio/setio_06.jpg</div>
+					<div data-name="moduleImage" width="2749" height="1620">assets/images/cases/setio/setio_07.jpg</div>
+                    <div data-name="moduleText" data-width-scale="0.6" >
+						<div data-name="top">Bridging data, expert knowledge, technology and connecting runners to a global network of dedicated professionals all happens trough the Setio® App. Exploring and defining the design direction of the app was a crusial part of helping Setio® unlock the potential both from a design and business perspective.</div>
+					</div>
+                    <div data-name="moduleImage" width="4326" height="1710">assets/images/cases/setio/setio_05.jpg</div>
+                  
+					<!-- </div> -->
+
+				</div>
+			</div>
+
+			<div data-path='mitte' data-template="case-0" >
+				<div data-name="info">
+					<div data-name="headline">
+						Mitte®<br>
+						Digital Identity
+					</div>
+					<div data-name="client">Mitte®</div>
+					<div data-name="project">Digital Identity</div>
+					<div data-name="year">2016</div>
+				</div>
+
+				<div data-name="overviewimage">assets/images/cases/mitte/mitte_00_overview.jpg</div>
+
+				<div data-name="home">
+					<div data-name="headline">Mitte®</div>
+
+					<div data-name="details">
+						Brand Strategy & Platform<br>
+						Brand Naming<br>
+						Brand Signature & Brandmark<br>
+						Typographic System<br>
+						Colorpalette<br>
+						Photography Style<br>
+						Iconography<br>
+						Illustration<br>
+						iOS App Design<br>
+						Website<br>
+					</div>
+
+					<div data-name="body">
+						Improving life with better water. The quality of water is vital for human well-being. Mitte® introduces a ground-breaking, smart, and sustainable water appliance for your home.
+					</div>
+				</div>
+
+				<div data-name="modules">
+					<div data-name="moduleImage" width="2090" height="1620">assets/images/cases/mitte/mitte_01.png</div>
+					<div data-name="moduleText">
+						<!--<div data-name="top"></div>-->
+						<div data-name="mid">
+							Objective<br>
+							Explore, develop and define a brandname, vision and design direction for a new Berlin based IOT startup on a journey to build the world’s first home water system to purify and vitalize your daily drinking water.
+							<br><br>
+							Concept<br>
+							The brandname mitte® means "middle" in german. It's a reflection of finding balance. It's also the name of the area where the brand resides.</div>
+						<div data-name="bot">
+							Design<br>
+							The design direction is defined as an approachable, natural and new classic brand tapping into a simple and functional aesthetic that caters to the lifestyle of young global citizens.</div>
+					</div>
+					<div data-name="moduleImage" width="2380" height="1620">assets/images/cases/mitte/mitte_02.png</div>
+					 <div data-name="moduleText" data-width-scale="0.8" >
+						<div data-name="top">Brandmark & signature<br>
+							The brandmark serves as the icnoic element of the mitte® identity. It's a simple graphic translation of the brandname which is created by placing a solid circle in the middle of a rounded sqaure. The idea of the mark is adopted from the negative space that appers between the "i" and the "t" of the brandsiganature.
+							</div>
+							
+					</div>
+                    <div data-name="moduleImage" width="2062" height="1620">assets/images/cases/mitte/mitte_02_01.png</div>
+                 
+                   
+                    <div data-name="moduleImage" width="4774" height="1800">assets/images/cases/mitte/mitte_04.png</div>
+                       
+                    <div data-name="moduleText">
+						<!--<div data-name="top"></div>-->
+						<div data-name="top" data-width-scale="0.6">
+							Mitte® use a simple, modern and functional typeface making an approaclble expression across platforms, communication and products.
+							<br>
+							<br>
+					The primary colors is based on a set of monochromatic tones with a secondary set of functional colors to enhance UI elements.  The palette enables a strong basic brand and functional focus.	
+							</div>
+							
+					</div>
+                    
+                    <div data-name="moduleImage" width="2934" height="1620">assets/images/cases/mitte/mitte_05.jpg</div>
+                    <div data-name="moduleText" data-width-scale="0.6" >
+						<div data-name="top">As a part of the brand vision we explored the potential for an interface enabling users to gain self awareness, knowledge and hydration insights about their water consumption.</div>
+					</div>
+                    <div data-name="moduleImage" width="3055" height="1620">assets/images/cases/mitte/mitte_06.jpg</div>
+                      <div data-name="moduleText">
+						<!--<div data-name="top"></div>-->
+						<div data-name="top" data-width-scale="0.6">
+							The brand vision involved a phase of exploring materials and potential ways of applicating the design direction across different touchpoints such as stationery, print, hardware and packaging. 
+							<br>
+							
+							</div>
+							
+					</div>
+                    <div data-name="moduleImage" width="4784" height="1620">assets/images/cases/mitte/mitte_07.jpg</div>
+                  	<div data-name="moduleText" data-width-scale="0.6" >
+						<div data-name="top">To gain awareness before launching the product in 2017 we designed and developed a simple responsive platform enabling mitte® to tease the brand and product while at the same time being able to provide updates trough a simple journal and newsletter.</div>
+						<div data-name="bot"><a href="http://www.mitte.co" target="_blank">Visit mitte.co</a></div>
+					</div>
+                    <div data-name="moduleImage" width="2466" height="1620">assets/images/cases/mitte/mitte_08.jpg</div>
+                    
+                    <div data-name="moduleImage" width="3825" height="1620">assets/images/cases/mitte/mitte_09.jpg</div>
+                    <div data-name="moduleImage" width="4198" height="1620">assets/images/cases/mitte/mitte_10.jpg</div>
+				</div>
+			</div>
+
+			<div data-path='twentythree' data-template="case-0" >
+				<div data-name="info">
+					<div data-name="headline">
+						Twentythree™<br>
+						Digital Identity
+					</div>
+					<div data-name="client">Twentythree™</div>
+					<div data-name="project">Digital Identity</div>
+					<div data-name="year">2016</div>
+				</div>
+
+				<div data-name="overviewimage">assets/images/cases/twentythree/twentythree_01.gif</div>
+
+				<div data-name="home">
+					<div data-name="headline">TwentyThree™</div>
+
+					<div data-name="details">
+						Brand Signature & Brandmark<br>
+						Creative & Art Direction<br>
+						Typographic System<br>
+						Colorpalette<br>
+						Photography Style<br>
+						Iconography<br>
+						Illustration<br>
+						Data Visualization<br>
+						Brandmark animation<br>
+						Keynote<br>
+					</div>
+
+					<div data-name="body">
+						TwentyThree™ is a tech company focused on making great tools for visual sharing on the web. Founded by Thomas Madsen-Mygdal and Steffen Christensen, TwentyThree has offices in San Francisco and Copenhagen.
+					</div>
+				</div>
+
+				<div data-name="modules">
+					<div data-name="moduleImage" width="2232" height="1440">assets/images/cases/twentythree/twentythree_01.gif</div>
+					<div data-name="moduleText">
+						<!--<div data-name="top"></div>-->
+						<div data-name="mid">
+							Objective<br>
+							Analyze, reflect and explore the oppertunities of redesigning the TwentyThree™ brand architecture and visual design. The key objetive is to simplify and tighten the brand across all touch points before launching TwentyThree™ globally.
+							<br><br>
+							Concept<br>
+							The concept of the visual identity is build around the idea of a canvas. A canvas being a frame to facilitate content. The canvas resembles the purpose of the company which is to facilitate visual sharing.
+							</div>
+						<div data-name="bot">
+							Design<br>
+							Focusing on the concept of the canvas we wanted to create a design system that provided TwentyThree™ with simple tools. We developed a design system inspired by common wayfinding principles. These principles acts as guideance troughout the visual language of typography, colors, iconograpy and grid systems.</div>
+					</div>
+					<div data-name="moduleImage" width="1389" height="1440">assets/images/cases/twentythree/twentythree_02.png</div>
+					<div data-name="moduleText" data-width-scale="0.6">
+						<div data-name="top">
+						The brandmark is created based on the idea of a canvas. A canvas being a frame to facilitate content. The canvas resembles the purpose of the company which is to facilitate visual sharing.
+Technically the TwentyThree™ brandmark using is build using the 16:9 ratio.
+					
+						</div>
+					</div>
+					<div data-name="moduleImage" width="2714" height="1440">assets/images/cases/twentythree/twentythree_03.png</div>
+					
+					
+					<div data-name="moduleImage" width="1741" height="1440">assets/images/cases/twentythree/twentythree_03_01.png</div>
+					<div data-name="moduleText" data-width-scale="0.7">
+						<div data-name="top">
+							The primary colors consists of a "Spring" and "Racing" green. These two colors symbolize the balance between innovation and stability.<br><br>
+							
+TwentyThree™ uses the typeface—NB Inter-national™. Designed by Stefan Gandl. Published by Neubau in 2008. NB International™ pays tribute to popular Grotesk typefaces of the ‘international style’ era. 
+						</div>
+					</div>
+					<div data-name="moduleImage" width="3348" height="1440">assets/images/cases/twentythree/twentythree_04.png</div>
+					
+					<div data-name="moduleImage" width="3786" height="1440">assets/images/cases/twentythree/twentythree_05.png</div>
+					<div data-name="moduleImage" width="1205" height="1440">assets/images/cases/twentythree/twentythree_06.jpg</div>
+					<div data-name="moduleText" data-width-scale="0.6" >
+						<div data-name="top">The brand vision involved a phase of exploring materials and potential ways of applicating the design direction across different touchpoints such as stationery, print, hardware and digital.
+						</div>
+					</div>
+					<div data-name="moduleImage" width="1350" height="1440">assets/images/cases/twentythree/twentythree_07.jpg</div>
+					<div data-name="moduleImage" width="4192" height="1440">assets/images/cases/twentythree/twentythree_08.jpg</div>
+					<div data-name="moduleImage" width="864" height="1080">assets/images/cases/twentythree/twentythree_09.jpg</div>
+					<div data-name="moduleText" data-width-scale="0.6" >
+						<div data-name="top">
+						Defining and designing a core set of rules and modules for TwentyThree™ to start building their new digital presence.  
+						</div>
+					</div>
+					<div data-name="moduleImage" width="2629" height="1440">assets/images/cases/twentythree/twentythree_10.jpg</div>
+					<div data-name="moduleImage" width="2202" height="1440">assets/images/cases/twentythree/twentythree_11.jpg</div>
+				</div>
+			</div>
+<!--
+
+			<div data-path='popup' data-template="case-0" >
+				<div data-name="info">
+					<div data-name="headline">
+						The Pop Up Agency<br>
+						Brand Identity
+					</div>
+					<div data-name="client">The Pop Up Agency</div>
+					<div data-name="project">Brand Identity</div>
+					<div data-name="year">2016</div>
+				</div>
+
+				<div data-name="overviewimage">assets/images/cases/popup/popup_00_overview.gif</div>
+				<div data-name="overviewimagemobile">assets/images/cases/popup/popup_01.png</div>
+
+				<div data-name="home">
+					<div data-name="headline">The Pop Up Agency</div>
+
+					<div data-name="details">
+						Brand Signature<br>
+						Creative & Art Direction<br>
+						Typographic System<br>
+						Colorpalette<br>
+					</div>
+
+					<div data-name="body">
+						Founded in 2012, The Pop Up Agency exists to challenge creative norms and help businesses, institutions, and governments reach a higher potential.
+					</div>
+				</div>
+
+				<div data-name="modules">
+					<div data-name="moduleImage" use-on-mobile="assets/images/cases/popup/popup_01.png" width="3200", height="1800">assets/images/cases/popup/popup_00_overview.gif</div>
+					<div data-name="moduleText">
+						<!--<div data-name="top"></div>-->
+						<!--<div data-name="mid">
+							Objective<br>
+							Explore and define a new design direction for The—Dots® with a digital first approach.
+							<br><br>
+							Concept<br>
+							The design direction is seeking to do less in order for people to do more. It’s all about creating a clear and timeless system that enables the creative community to build and tell attrative stories about their creative works.
+							</div>
+						<div data-name="bot">
+							Design<br>
+							With an approach of doing less in order for people to do more we've defined a classic design direction that celebrates simplicity and structure by sticking to a core set of elemetns.</div>
+					</div>
+
+					<div data-name="moduleImage" width="3400", height="1800">assets/images/cases/popup/popup_01.png</div>
+					<div data-name="moduleImage" width="1800", height="1800">assets/images/cases/popup/popup_02.jpg</div>
+					<div data-name="moduleText" data-width-scale="0.6" >
+						<div data-name="top">Theinhardt is a classic Grotesque typeface developed by François Rappo. A contemporary font family organized in a wide range of weights providing The—Dots® with great felxibility.</div>
+					</div>
+					<div data-name="moduleImage" width="1579" height="900">assets/images/cases/thedots/the_dots_001.jpg</div>
+					<div data-name="moduleText" data-width-scale="0.6" >
+						<div data-name="top">Designing a system consisting of clear typography, simple colors and horizontal lines. The idea of the lines is to act as seperators between content elements making it easy to differentiate elements. The colorpalette is primarily monochromatic with a few tints of golden and red to highlight key elements.</div>
+					</div>
+					<div data-name="moduleImage" width="1579" height="900">assets/images/cases/thedots/the_dots_001.jpg</div>
+				</div>
+			</div>-->
+
+
+		</div>
+	</div>
+</div>
+
+
+		<!-- Initialize site -->
+		<script>
+			window.onload = function() {
+				document.body.style.margin = 0;
+				document.body.style.padding = 0;
+				document.body.style.color = "#1c1c1c";
+				document.body.style.fontSize = "17px";
+				document.body.style.fontStyle = "normal";
+				document.body.style.overflowX = "hidden";
+				document.body.style.width = "100%";
+				document.body.style.height = "100%";
+
+				var main = new Main();
+				document.body.appendChild(main);
+				main.init();
+			};
+		</script>
+	</body>
 </html>
