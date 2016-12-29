@@ -33,9 +33,6 @@
     color:inherit;
 }
 
-.normlink:after {
-    width: 100%;
-}
 
 /*a:hover {
     text-decoration: none;
@@ -71,6 +68,13 @@ a:active {
 }
 .animate:hover:after, a:hover:after{
     width: 100%;
+}
+
+
+.normlink, .normlink:after {
+    text-decoration:underline !important;
+    border-bottom-width: 0px;
+    /*width: 100%;*/
 }
 
 /*.sliding-white .sliding-grey-small .sliding-grey{
