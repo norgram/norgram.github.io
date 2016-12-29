@@ -1,0 +1,133 @@
+@font-face {
+    font-family: 'FoundersGroteskRegular';
+    src: url('../assets/fonts/FoundersGroteskWeb-Regular.eot');
+    src: url('../assets/fonts/FoundersGroteskWeb-Regular.eot?#iefix') format('embedded-opentype'),
+    url('../assets/fonts/FoundersGroteskWeb-Regular.woff2') format('woff2'),
+    url('../assets/fonts/FoundersGroteskWeb-Regular.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'FoundersGroteskMedium';
+    src: url('../assets/fonts/FoundersGroteskWeb-Medium.eot');
+    src: url('../assets/fonts/FoundersGroteskWeb-Medium.eot?#iefix') format('embedded-opentype'),
+    url('../assets/fonts/FoundersGroteskWeb-Medium.woff2') format('woff2'),
+    url('../assets/fonts/FoundersGroteskWeb-Medium.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'FoundersGroteskLight';
+    src: url('../assets/fonts/FoundersGroteskWeb-Light.eot');
+    src: url('../assets/fonts/FoundersGroteskWeb-Light.eot?#iefix') format('embedded-opentype'),
+    url('../assets/fonts/FoundersGroteskWeb-Light.woff2') format('woff2'),
+    url('../assets/fonts/FoundersGroteskWeb-Light.woff') format('woff');
+}
+
+
+/*body {
+    font-feature-settings: "liga" 0;
+}*/
+
+.animate, a, a:link, a:hover, a:visited, a:active{
+    text-decoration: none;
+    position: relative;
+    color:inherit;
+}
+
+
+/*a:hover {
+    text-decoration: none;
+    position: relative;
+    color: #1e1f24;
+}
+a:link{
+    text-decoration: none;
+    position: relative;
+    color: #1e1f24;
+}
+a:visited {
+    text-decoration: none;
+    position: relative;
+    color: #1e1f24;
+}
+a:active {
+    text-decoration: none;
+    position: relative;
+    color: #1e1f24;
+}*/
+
+.animate:after, a:after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    border-bottom-color: inherit;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    transition: 0.2s;
+}
+.animate:hover:after, a:hover:after{
+    width: 100%;
+}
+
+
+.normlink, .normlink:after {
+    text-decoration:underline !important;
+    border-bottom-width: 0px;
+    /*width: 100%;*/
+}
+
+/*.sliding-white .sliding-grey-small .sliding-grey{
+    text-decoration: none;
+    position: relative;
+}
+
+.sliding-white:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    border-bottom: 2px solid #ffffff;
+    transition: 0.2s;
+}
+
+.sliding-white:hover:after {
+    width: 100%;
+}*/
+
+/*.sliding-grey-small:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    border-bottom: 1px solid #919191;
+    transition: 0.2s;
+}*/
+
+
+/*.sliding-grey-small:hover:after {
+    width: 100%;
+}*/
+
+/*.thick-line:hover:after {
+    width: 100%;
+}*/
+
+.thick-line:after {
+    border-bottom-width: 2px;
+}
+
+/*.sliding-grey:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    transition: 0.2s;
+}
+
+.sliding-grey:hover:after {
+    width: 100%;
+}*/
