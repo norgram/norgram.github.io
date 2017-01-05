@@ -4,7 +4,7 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 	_instance.style.backgroundColor = ColorUtils.WHITE;
 
 	_instance.onStoryClick;
-	_instance.style.cursor = "pointer";
+	// _instance.style.cursor = "pointer";
 
 	Touchable.apply(_instance);
 
@@ -103,7 +103,7 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 			if(_hasReverseStories) {
 				// console.log(_ratio);
 				if(ratio > 0) {
-					
+
 					updateCollapseStories();
 				}
 			}
@@ -217,7 +217,7 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 		if( BrowserDetect.MOBILE && _widthCollapsed > _height ) {
 			bodyTopXPos = Math.floor(_widthCollapsed * 0.5);
 			bodyTopWidth -= bodyTopXPos;
-			
+
 		}
 		if( BrowserDetect.MOBILE ) {
 			bodyTopYOffset = -20;
@@ -262,6 +262,9 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 
 		_leftButton = new RetinaImage("assets/images/logo/arrow_short.png", Assets.RETINA_HANDLE);
 		_rightButton = new RetinaImage("assets/images/logo/arrow_short.png", Assets.RETINA_HANDLE);
+
+		_leftButton.style.cursor = "pointer";
+		_rightButton.style.cursor = "pointer";
 
 		Touchable.apply( _leftButton );
 		Touchable.apply( _rightButton );

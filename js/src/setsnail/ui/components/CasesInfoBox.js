@@ -1,11 +1,12 @@
+CasesInfoBox.MODE_HORRIZONTAL = "horrizontal";
+CasesInfoBox.MODE_VERTICAL = "vertical";
+
 function CasesInfoBox( data ) {
 	var _instance = document.createElement("div");
 	_instance.style.position = "absolute";
 	_instance.style.backgroundColor = UIColors.WHITE;
 
 
-	CasesInfoBox.MODE_HORRIZONTAL = "horrizontal";
-	CasesInfoBox.MODE_VERTICAL = "vertical";
 	var _mode = CasesInfoBox.MODE_HORRIZONTAL;
 
 	var _cases = [];
@@ -94,6 +95,8 @@ function CaseInfo( data, index ) {
 	_instance.style.position = "absolute";
 	_instance.style.backgroundColor = UIColors.WHITE;
 
+	_instance.y;
+
 	var _ratio = 0;
 	var _mode = CasesInfoBox.MODE_HORRIZONTAL;
 
@@ -115,6 +118,7 @@ function CaseInfo( data, index ) {
 
 	_instance.setMode = function( mode ) {
 		_mode = mode;
+		console.log( _mode );
 
 		switch(_mode) {
 			case CasesInfoBox.MODE_HORRIZONTAL : {
@@ -142,7 +146,8 @@ function CaseInfo( data, index ) {
 		if( _headline != null ) {
 			switch(_mode) {
 				case CasesInfoBox.MODE_HORRIZONTAL : {
-					TweenMax.set( _headline, { rotation:0, x:10, y:SiteGuides.getCenterOffset() - Text.getOffsetY(_headline.text)} );
+					var yPos = _instance.y == null ? SiteGuides.getCenterOffset() : _instance.y;
+					TweenMax.set( _headline, { rotation:0, x:10, y:yPos - Text.getOffsetY(_headline.text)} );
 					TweenMax.set(_smallContentContainer, {x:10, y:_height - SiteGuides.OFFSET_BOTOM - 39} );
 					break;
 				}

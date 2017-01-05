@@ -2,6 +2,7 @@ function CaseTextModule( data ) {
 
 	var _instance = Snail.extend(new Module());
 	_instance.style.position = "absolute";
+	_instance.style.backgroundColor = UIColors.WHITE;
 
 	var _widthScale = 1;
 
@@ -32,6 +33,8 @@ function CaseTextModule( data ) {
 		}
 
 		_height = height;
+
+		TweenMax.set( _instance, {width:_width, height:_height} );
 
 		_textHeightScale = 0.3;
 

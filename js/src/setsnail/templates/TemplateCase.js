@@ -60,7 +60,11 @@ function TemplateCase( data ) {
 		}
 
 
-		_instance.addModule(new ReturnModule());
+		_instance.addModule(new ReturnModule(90));
+
+		if( BrowserDetect.DESKTOP ) {
+			_instance.addModule(new CaseOverviewModule());
+		}
 	}
 
 	var _imgId = 0;

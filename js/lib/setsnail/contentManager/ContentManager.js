@@ -3,7 +3,7 @@ var ContentManager = {};
 
 // public static vars
 // should it automatically track the pages through Google Analytics?
-ContentManager.AUTOMATICALLY_TRACK_GOOGLE_ANALYTICS 		= false;//THIS IS OUTCOMMENTED
+ContentManager.AUTOMATICALLY_TRACK_GOOGLE_ANALYTICS 		= true;//THIS IS HARDCODED TRUE IN CODE BELOW
 ContentManager.SHOW_TRACES 									= false;
 
 // private static vars
@@ -437,15 +437,15 @@ ContentManager.onHashChange = function() {
 					var newTemplate = new JSClass(templateData);
 
 					templateData.setTemplate(newTemplate);
-
+					// console.log("getLocation " + ContentManager.AUTOMATICALLY_TRACK_GOOGLE_ANALYTICS);
 					// GOOGLE ANALYTICS --- TRACKING CODE START
-					if( typeof ga !== null && ContentManager.AUTOMATICALLY_TRACK_GOOGLE_ANALYTICS === true) {
+					if( typeof ga !== null && true || ContentManager.AUTOMATICALLY_TRACK_GOOGLE_ANALYTICS === true) {
 						// Google Analytics tracking
-						// var getLocation = "#/" + ContentManager.composeFullPathFromXML(candidate.xml);
-						// ga('send', {
-						//   'page': getLocation,
-						//   'title': getLocation
-						// });
+						var getLocation = "#/" + ContentManager.composeFullPathFromXML(candidate.xml);
+						ga('send', {
+						  'page': getLocation,
+						  'title': getLocation
+						});
 					}
 					// GOOGLE ANALYTICS --- TRACKING CODE END
 

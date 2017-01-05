@@ -27,7 +27,6 @@ function ReturnModule( width ) {
 	};
 
 	_instance.resize_desktop = function( width, height ) {
-		// _width = width;
 		_height = height;
 
 		TweenMax.set(_instance, {width:_instance.getWidth(), height:_height});
@@ -80,7 +79,7 @@ function ReturnModule( width ) {
 	}
 
 	function positionArrow() {
-		TweenMax.set(_arrow, {x:17, y:52});
+		TweenMax.set(_arrow, {x:17, y:27});
 		updateArrowAnimation();
 	}
 
