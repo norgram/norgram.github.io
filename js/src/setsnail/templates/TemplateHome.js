@@ -7,9 +7,13 @@ function TemplateHome( data ) {
 
 	var _useCollapse = BrowserDetect.DESKTOP;
 
+	var _psycho;
+
 	_instance.init = function() {
 		_instance.super.init();
 		setupAndAddModules();
+
+		addPsycho();
 
 		Assets.SCROLL_CONTROLLER.addEventListener( ScrollController.ON_SCROLL_EASE_STOP, snapToStory );
 		_instance.onResize();
@@ -23,13 +27,36 @@ function TemplateHome( data ) {
 		easeToStory( getCurrentIndex() - 1, 1);
 	};
 
+
 	_instance.templateIn = function() {
 		_instance.init();
+		_psycho.style.display = "none";
+		setTimeout( function() {
+				_psycho.style.display = "inline";
+				Assets.SCROLL_CONTROLLER.addEventListener( ScrollController.ON_OVERSCROLLING_TOP, onOverScrollingTop );
+				Assets.SCROLL_CONTROLLER.addEventListener( ScrollController.ON_SCROLL_MOVE, onScrollMove );
+			}, 1000 );
+
 		_instance.super.templateIn();
 	};
 
 	_instance.templateOut = function() {
-		_instance.super.templateOut();
+		if(_isPhychoOpen){
+			Assets.SCROLL_CONTROLLER.removeEventListener( ScrollController.ON_OVERSCROLLING_TOP, onOverScrollingTop );
+			Assets.SCROLL_CONTROLLER.removeEventListener( ScrollController.ON_SCROLL_MOVE, onScrollMove );
+
+			TweenMax.killTweensOf(_offsetEase);
+			_isPhychoOpen = false;
+			TweenMax.to( _offsetEase, 0.8, { x:0, delay:0.1, onUpdate:updateOffsetToEase, onComplete:function() {
+				_psycho.style.display = "none";
+				_instance.super.templateOut();
+			}, ease:Expo.easeOut });
+		} else {
+			_psycho.style.display = "none";
+			_instance.super.templateOut();
+		}
+		_psycho.kill();
+
 	};
 
 	_instance.onResize = function() {
@@ -40,11 +67,18 @@ function TemplateHome( data ) {
 			_returnModule.setWidth(_instance.visibleWidth * 0.5 + SiteGuides.MAIN_MENU_WIDTH);
 		}
 
+		if(_isPhychoOpen) {
+			_offsetEase.x = Assets.RESIZE_MANAGER.getWindowWidth();
+			updateOffsetToEase();
+		}
+
 		_instance.repositionModules(_returnModule);
 		snapToStory();
 	};
 
 	_instance.kill = function() {
+		Assets.SCROLL_CONTROLLER.removeEventListener( ScrollController.ON_OVERSCROLLING_TOP, onOverScrollingTop );
+		Assets.SCROLL_CONTROLLER.removeEventListener( ScrollController.ON_SCROLL_MOVE, onScrollMove );
 		Assets.SCROLL_CONTROLLER.removeEventListener( ScrollController.ON_SCROLL_EASE_STOP, snapToStory );
 		_instance.super.kill();
 	};
@@ -97,6 +131,58 @@ function TemplateHome( data ) {
 		_instance.addModule( _basicModule );
 		_instance.addModule( _storyModule );
 		_instance.addModule( _returnModule );
+	}
+
+	function addPsycho() { 
+		_psycho = new PsychodelicLines();
+		_instance.appendChild( _psycho );
+		_psycho.init();
+
+		
+	}
+
+	var _offscrollTicks = 0;
+	var _isPhychoOpen = false;
+
+	var _offsetEase = { x:0 };
+	function onOverScrollingTop() {
+		_offscrollTicks++;
+
+		if(!_isPhychoOpen && _offscrollTicks > 30) {
+			TweenMax.killTweensOf(_offsetEase);
+			TweenMax.to( _offsetEase, 0.6, { x:Assets.RESIZE_MANAGER.getWindowWidth(), delay:0.1, onUpdate:updateOffsetToEase, ease:Expo.easeOut });
+			_isPhychoOpen = true;
+			_psycho.startRender();
+		} else {
+			if(_isPhychoOpen) {
+				return;
+			}
+			// _psycho.resetLinePositions();
+			TweenMax.killTweensOf(_offsetEase);
+			TweenMax.set(_offsetEase, { x: _offsetEase.x + 5 });
+			updateOffsetToEase();
+			TweenMax.to( _offsetEase, 0.6, { x:0, delay:0.1, onUpdate:updateOffsetToEase, onComplete:onOffsetEaseComplete, ease:Expo.easeOut });
+		}
+	}
+
+	function onScrollMove() {
+		if( _isPhychoOpen && Assets.SCROLL_CONTROLLER.currentScroll.y > 0 ) {
+			TweenMax.killTweensOf(_offsetEase);
+			_isPhychoOpen = false;
+			TweenMax.to( _offsetEase, 0.8, { x:0, delay:0.1, onUpdate:updateOffsetToEase, onComplete:function() {
+				_psycho.resetLinePositions();
+			}, ease:Expo.easeOut });
+			_offscrollTicks = 0;
+			_psycho.stopRender();
+		}
+	}
+
+	function updateOffsetToEase() {
+		TweenMax.set( Assets.LAYER_TEMPLATE_PHYCHO_OFFSET, { x:_offsetEase.x } )
+	}
+
+	function onOffsetEaseComplete(){
+		_offscrollTicks = 0;
 	}
 
 	function onNextClick() {

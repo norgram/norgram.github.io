@@ -118,7 +118,6 @@ function CaseInfo( data, index ) {
 
 	_instance.setMode = function( mode ) {
 		_mode = mode;
-		console.log( _mode );
 
 		switch(_mode) {
 			case CasesInfoBox.MODE_HORRIZONTAL : {

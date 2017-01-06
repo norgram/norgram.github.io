@@ -10,6 +10,8 @@ function CaseOverviewModule() {
     var _casesData = [];
     var _cases = [];
 
+    var _line;
+
 	_instance.init = function() {
         var projects = ContentManager.getChildByAttr(Assets.CONTENT_PAGES, "path", "projects");
         var l = projects.children.length;
@@ -24,6 +26,15 @@ function CaseOverviewModule() {
         }
         
         addCases();
+        addLine();
+	};
+
+    function addLine() {
+		_line = document.createElement("div");
+		_line.style.position = "absolute";
+		_line.style.backgroundColor = UIColors.LINE_ON_WHITE;//UIColors.LINE_ON_WHITE;
+
+		_instance.appendChild(_line);
 	};
 
 	_instance.resize_desktop = function( width, height ) {
@@ -37,6 +48,8 @@ function CaseOverviewModule() {
             // console.log(caseHeight * i);
             TweenMax.set(_cases[i], {y:Math.floor(caseHeight * i)} );
         }
+
+		TweenMax.set( _line, { width:1, height:height, x:0 });
 	};
 
     _instance.getWidth = function() {

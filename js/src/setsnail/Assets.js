@@ -10,6 +10,7 @@ Assets.LAYER_MID					= document.createElement("div");
 Assets.LAYER_TOP					= document.createElement("div");
 Assets.LAYER_TEMPLATE				= document.createElement("div");
 Assets.LAYER_TEMPLATE_OFFSET		= document.createElement("div");
+Assets.LAYER_TEMPLATE_PHYCHO_OFFSET	= document.createElement("div");
 
 Assets.SCROLL_CONTROLLER			= null;
 Assets.RESIZE_MANAGER				= null;
@@ -38,7 +39,10 @@ Assets.setupLayers = function() {
 	Assets.LAYER_TEMPLATE.id = "LAYER_TEMPLATE";
 
 	Assets.LAYER_TEMPLATE_OFFSET.style.position = "absolute";
-	Assets.LAYER_TEMPLATE_OFFSET.appendChild(Assets.LAYER_TEMPLATE);
+	Assets.LAYER_TEMPLATE_OFFSET.appendChild(Assets.LAYER_TEMPLATE_PHYCHO_OFFSET);
+
+	Assets.LAYER_TEMPLATE_PHYCHO_OFFSET.style.position = "absolute";
+	Assets.LAYER_TEMPLATE_PHYCHO_OFFSET.appendChild(Assets.LAYER_TEMPLATE);
 
 	//Layer for PageTemplates;
 	Assets.LAYER_BOT.appendChild( Assets.LAYER_TEMPLATE_OFFSET );

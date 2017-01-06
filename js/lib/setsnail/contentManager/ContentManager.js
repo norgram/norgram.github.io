@@ -442,10 +442,11 @@ ContentManager.onHashChange = function() {
 					if( typeof ga !== null && true || ContentManager.AUTOMATICALLY_TRACK_GOOGLE_ANALYTICS === true) {
 						// Google Analytics tracking
 						var getLocation = "#/" + ContentManager.composeFullPathFromXML(candidate.xml);
-						ga('send', {
-						  'page': getLocation,
-						  'title': getLocation
-						});
+						// ga('send', {
+						//   'page': getLocation,
+						//   'title': getLocation
+						// });
+						ga('send', "pageview", getLocation);
 					}
 					// GOOGLE ANALYTICS --- TRACKING CODE END
 

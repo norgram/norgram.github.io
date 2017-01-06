@@ -4,7 +4,10 @@ function ScrollController() {
 	ScrollController.ON_SCROLL_MOVE 				= "ON_SCROLL_MOVE";
 	ScrollController.ON_SCROLL_STOP 				= "ON_SCROLL_STOP";
 	ScrollController.ON_SCROLL_EASE_STOP 			= "ON_SCROLL_EASE_STOP";
+
 	ScrollController.ON_200_PX_SCROLLED		 		= "ON_200_PX_SCROLLED";
+	ScrollController.ON_OVERSCROLLING_TOP 			= "ON_OVERSCROLLING_TOP";
+	ScrollController.ON_OVERSCROLLING_BOT 			= "ON_OVERSCROLLING_BOT";
 
 	var _instance					= new EventDispatcher();
 	var _target						= null;
@@ -81,8 +84,10 @@ function ScrollController() {
 			//Prevent overscrolling in some Browsers on Desktop;
 			window.addEventListener("mousewheel", function(e) {
 				if(e.wheelDelta > 0 && window.pageYOffset <= 0 ){
+					overscrollingTop(e.wheelDelta);
 					e.preventDefault();
 				} else if(e.wheelDelta < 0 && window.pageYOffset >= Math.floor(_pageHeight - Assets.RESIZE_MANAGER.getWindowHeight()) ) {
+					overscrollingBot(e.wheelDelta);
 					e.preventDefault();
 				}
 			}, false);
@@ -91,6 +96,15 @@ function ScrollController() {
 
 		Assets.RESIZE_MANAGER.addEventListener( ResizeEvents.RESIZE, updateBounds );
 	};
+
+
+	function overscrollingTop( amount ) {
+		_instance.dispatchEvent(ScrollController.ON_OVERSCROLLING_TOP);
+	}
+
+	function overscrollingBot( amount ) {
+		_instance.dispatchEvent(ScrollController.ON_OVERSCROLLING_BOT);
+	}
 
 	_instance.disableScroll = function() {
 		if( BrowserDetect.TABLET || ScrollController.DEBUG_TOUCH_ON_DESKTOP ) {
