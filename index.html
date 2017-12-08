@@ -90,6 +90,8 @@
 		<script src="js/lib/setsnail/resize/ResizeManagerSettings_min.js"></script>
 		<script src="js/lib/setsnail/resize/ResizeEvents_min.js"></script>
 
+		<script src="js/lib/setsnail/video/VideoPlayer_min.js"></script>
+
 		<!-- RetinaHandler -->
 		<script src="js/lib/setsnail/image/RetinaImage_min.js"></script>
 		<script src="js/lib/setsnail/retina/RetinaHandle_min.js"></script>
@@ -144,6 +146,7 @@
 		<script src="js/src/setsnail/ui/modules/case/CaseOverviewModule_min.js"></script>
 		<script src="js/src/setsnail/ui/modules/case/CaseHomeModule_min.js"></script>
 		<script src="js/src/setsnail/ui/modules/case/CaseImageModule_min.js"></script>
+		<script src="js/src/setsnail/ui/modules/case/CaseVideoModule_min.js"></script>
 		<script src="js/src/setsnail/ui/modules/case/CaseTextModule_min.js"></script>
 
         <script src="js/src/setsnail/ui/modules/casesoverview/OverviewCaseModule_min.js"></script>
@@ -172,1144 +175,1151 @@
 		<script src="js/src/setsnail/ui/menu/MenuSelector_min.js"></script>
 		<script src="js/src/setsnail/ui/menu/MenuSocial_min.js"></script>
 
-<div style='display: none;' id='content'>
+		<div style='display: none;' id='content'>
 
-	<div data-name="general-data">
+			<div data-name="general-data">
 
-		<div data-name="menu">
+				<div data-name="menu">
 
-			<div data-name="contact">
+					<div data-name="contact">
 
-				<div data-name="headline">Contact</div>
+						<div data-name="headline">Contact</div>
 
-				<div data-name="columns">
-					<div data-name="column">
-						Norgram ApS<br>
-						Skt. Jørgens Allé 5D<br>
-						DK-1615<br>
-						Copenhagen<br>
-						<br>
-						Vestergade 58T<br>
-						DK-8000<br>
-						Aarhus C<br>
+						<div data-name="columns">
+							<div data-name="column">
+								Norgram ApS<br>
+								Skt. Jørgens Allé 5D<br>
+								DK-1615<br>
+								Copenhagen<br>
+								<br>
+								Vestergade 58T<br>
+								DK-8000<br>
+								Aarhus C<br>
+							</div>
+							<div data-name="column">
+								+45 5337 7537<br>
+								<a href="mailto:hi@norgram.co?Subject=Hi%20Norgram" target="_top">hi@norgram.co</a>
+
+							</div>
+							<div data-name="column">
+								For job and Intern<br>
+								inquiries please write<br>
+								<a href="mailto:hi@norgram.co?Subject=Hi%20Norgram" target="_top">hi@norgram.co</a><br><br>
+							</div>
+						</div>
 					</div>
-					<div data-name="column">
-						+45 5337 7537<br>
-						<a href="mailto:hi@norgram.co?Subject=Hi%20Norgram" target="_top">hi@norgram.co</a>
-						
+
+					<div data-name="footer">
+						<div data-name="copyright" >Copyright 2017 © Norgram</div>
+						<div data-name="cvr" >CVR—37503878</div>
 					</div>
-					<div data-name="column">
-						For job and Intern<br>
-						inquiries please write<br>
-						<a href="mailto:hi@norgram.co?Subject=Hi%20Norgram" target="_top">hi@norgram.co</a><br><br>
+
+					<div data-name="social">
+						<div data-name="facebook" data-link="https://www.facebook.com/norgramstudio/">Facebook</div>
+						<div data-name="linkedin" data-link="https://www.linkedin.com/company/10506419?trk=tyah&trkInfo=clickedVertical%3Acompany%2CclickedEntityId%3A10506419%2Cidx%3A1-1-1%2CtarId%3A1483546843258%2Ctas%3Anorgram">LinkedIn</div>
+						<div data-name="instagram" data-link="https://www.instagram.com/norgramstudio/">Instagram</div>
+						<div data-name="twitter" data-link="https://twitter.com/norgramstudio/">Twitter</div>
 					</div>
 				</div>
+
+				<div data-name="pagefooter">
+					<div data-name="email"><a href="mailto:hi@norgram.co?Subject=Hi%20Norgram" target="_top">hi@norgram.co</a></div>
+					<div data-name="phone">+45 5337 7537</div>
+				</div>
+
 			</div>
 
-			<div data-name="footer">
-				<div data-name="copyright" >Copyright 2017 © Norgram</div>
-				<div data-name="cvr" >CVR—37503878</div>
-			</div>
+			<div data-name="pages">
 
-			<div data-name="social">
-				<div data-name="facebook" data-link="https://www.facebook.com/norgramstudio/">Facebook</div>
-				<div data-name="linkedin" data-link="https://www.linkedin.com/company/10506419?trk=tyah&trkInfo=clickedVertical%3Acompany%2CclickedEntityId%3A10506419%2Cidx%3A1-1-1%2CtarId%3A1483546843258%2Ctas%3Anorgram">LinkedIn</div>
-				<div data-name="instagram" data-link="https://www.instagram.com/norgramstudio/">Instagram</div>
-				<div data-name="twitter" data-link="https://twitter.com/norgramstudio/">Twitter</div>
-			</div>
-		</div>
+				<div data-path='home' data-template="home">
+					<!--<div data-name="menu">Home</div>-->
 
-		<div data-name="pagefooter">
-			<div data-name="email"><a href="mailto:hi@norgram.co?Subject=Hi%20Norgram" target="_top">hi@norgram.co</a></div>
-			<div data-name="phone">+45 5337 7537</div>
-		</div>
+					<div data-name="frontpage">
+						<div data-name="founded">
+							Norgram® Studio is the Design Director duo of internationally recognized and awarded designers Sebastian Gram & Mathias Høst Normark.
+						</div>
 
-	</div>
+						<div data-name="link" data-link="projects">Selected Projects</div>
 
-	<div data-name="pages">
-
-		<div data-path='home' data-template="home">
-			<!--<div data-name="menu">Home</div>-->
-
-			<div data-name="frontpage">
-				<div data-name="founded">
-					Norgram® Studio is the Design Director duo of internationally recognized and awarded designers Sebastian Gram & Mathias Høst Normark.
-				</div>
-
-				<div data-name="link" data-link="projects">Selected Projects</div>
-
-				<div data-name="body">
-					Forming design<br>
-					languages<br>
-					for the<br>
-					digital era.
-				</div>
-			</div>
-
-
-			<div data-name="stories">
-				<div data-name="story">
-					<div data-name="date">December 1 — 2017</div>
-
-					<div data-name="headline">
-						Eurobest 2017<br>
-						Bronze
+						<div data-name="body">
+							Forming design<br>
+							languages<br>
+							for the<br>
+							digital era.
+						</div>
 					</div>
 
-				<div data-name="body">IKEA Place was awarded Bronze at the annual Eurobest Awards in London. It was awarded in the category: Augmented Mobile Experience and shortlistet in the category: Mobile Apps.</div>
 
-					<div data-name="image-tag-name">News</div>
-
-					<div data-name="images">	
-						<div data-name="image">assets/images/journal/ikea_place_eurobest_bronze.jpg</div>
-					</div>
-				</div>
-
-
-				<div data-name="story">
-					<div data-name="date">November 21 — 2017</div>
-
-					<div data-name="headline">
-						Natur by AVE
-					</div>
-
-				<div data-name="body">Nature is the perfect source of inspiration for a product of pleasure. Equally powerful, calm and unpredictable, it draws you in with its transformative qualities. With Natur by AVE we’ve tried to capture all of that in a design direction that is as beautiful as it is functional. In collaboration with Hong Kong based Creative Agency — Constant.</div>
-
-					<div data-name="image-tag-name">Project</div>
-
-					<div data-name="images">	
-						<div data-name="image">assets/images/journal/natur_by_ave_journal_01.jpg</div>
-						<div data-name="image">assets/images/journal/natur_by_ave_journal_02.jpg</div>
-					</div>
-				</div>
-
-				<div data-name="story">
-					<div data-name="date">September 28 — 2017</div>
-
-					<div data-name="headline">
-						IKEA Place
-					</div>
-
-				<div data-name="body">Our latest collaboration with SPACE10 and IKEA has just launched. Say hej to IKEA Place. The app lets people confidently experience, experiment and share how good design transforms any space. Using Apple’s newly released ARKit people can now place 3D objects in their own homes. <a class="normlink" href="http://norgram.co/#/projects/ikeaplace/" target="_self">View case</a> </div>
-
-					<div data-name="image-tag-name">Project</div>
-
-					<div data-name="images">	
-						<div data-name="image">assets/images/journal/IKEAplace_journal_01.jpg</div>
-					
-					</div>
-				</div>
-			
-			
-				<div data-name="story">
-					<div data-name="date">September 20 — 2017</div>
-
-					<div data-name="headline">
-						MUUTO.com
-					</div>
-
-				<div data-name="body">The new <a class="normlink" href="http://muuto.com/" target="blank">MUUTO.com</a> is now live and features a brand new design direction that we designed in collaboration with Muuto earlier this year. Video by Katja Boom</div>
-
-					<div data-name="image-tag-name">Project</div>
-
-					<div data-name="images">	
-						<div data-name="image">assets/images/journal/muuto_journal_02.gif</div>
-						<div data-name="image">assets/images/journal/muuto_journal_site_01.jpg</div>
-						<div data-name="image">assets/images/journal/muuto_journal_site_02.jpg</div>
-						<div data-name="image">assets/images/journal/muuto_journal_site_03.jpg</div>
-						
-					
-					</div>
-				</div>
-			<div data-name="story">
-					<div data-name="date">August 28 — 2017</div>
-
-					<div data-name="headline">
-						IKEA<br>
-						
-					</div>
-
-				<div data-name="body">Together with <a class="normlink" href="http://space10.io/" target="blank">SPACE10</a> we’ll be exploring and defining new ways of how digital design and digital products can support IKEA’s long-term vision in making an everyday better life for the many people. Stay tuned.</div>
-
-					<div data-name="image-tag-name">News</div>
-
-					<div data-name="images">	
-						<div data-name="image">assets/images/journal/IKEA_01.png</div>
-					
-					</div>
-				</div>
-			<div data-name="story">
-					<div data-name="date">June 02 — 2017</div>
-
-					<div data-name="headline">
-						Meet Röst: <br>
-						your personal <br>
-						guide to IKEA 
-					</div>
-
-				<div data-name="body">Röst is a personal assistant for IKEA: an assistant that gives you location-based audio customized for you as you walk around the store, making the experience more immersive and helping you out along the way. This summer you can test-drive the prototype at the IKEA Museum in Älmhult.  <a class="normlink" href="http://space10.io/" target="blank">Made with SPACE10.</a> </div>
-
-					<div data-name="image-tag-name">Project</div>
-
-					<div data-name="images">	
-						<div data-name="image">assets/images/journal/rost_01.jpg</div>
-					
-					</div>
-				</div>
-			
-			<div data-name="story">
-					<div data-name="date">May 29 — 2017</div>
-
-					<div data-name="headline">
-						2x Creative<br>
-						Circle Awards 
-					</div>
-
-				<div data-name="body">Two of our projects was awarded a bronze circle at Creative Circle Awards in May. 1x for <a class="normlink" href="http://www.creativecircle.dk/da/vindere/arbejde/cca17-5891ad30714ef" target="blank">J.Views, 401 Days.</a> 1x for SPACE10 (IKEA’s Innovation Lab), <a class="normlink" href="http://www.creativecircle.dk/da/vindere/arbejde/cca17-58933c16b1091" target="blank">Conversational Forms.</a></div>
-
-					<div data-name="image-tag-name">News</div>
-
-					<div data-name="images">	
-						<div data-name="image">assets/images/journal/CCA_2017.jpg</div>
-					</div>
-				</div>
-			
-			
-			<div data-name="story">
-					<div data-name="date">May 01 — 2017</div>
-
-					<div data-name="headline">
-						Democratising <br>
-						tomorrow's AI
-					</div>
-
-				<div data-name="body">SPACE10, IKEA’s external future living lab, are curious to learn how the many people feel about Artificial Intelligence. We helped SPACE10 launch a worldwide survey called <a class="normlink" href="http://doyouspeakhuman.com/" target="blank">Do You Speak Human?</a> Photo: Adrià Goula/Ikea</div>
-
-					<div data-name="image-tag-name">Project</div>
-
-					<div data-name="images">
-						<div data-name="image">assets/images/journal/DYSH_01.gif</div>	
-						<div data-name="image">assets/images/journal/DYSH_02.gif</div>
-					</div>
-				</div>
-			<div data-name="story">
-					<div data-name="date">April 08 — 2017</div>
-
-					<div data-name="headline">
-						Sharing our process<br>
-						on SPACE10.io
-					</div>
-
-				<div data-name="body">Last Thursday we had the pleasure of presenting the thoughts, design and technology behind the upcoming <a class="normlink" href="https://rwatgg.com/" target="blank">@space10_journal</a> framework: Space I/O. Thanks to everybody who showed up and the people behind it all <a class="normlink" href="https://rwatgg.com/" target="blank">@relaxwearethegoodguys</a> <a class="normlink" href="https://twitter.com/kwadwoadu" target="blank">@kwadwo</a> <a class="normlink" href="https://www.space10.io/" target="blank">@space10_journal</a> Photos by Victor Stawicki</div>
-
-					<div data-name="image-tag-name">News</div>
-
-					<div data-name="images">	
-						<div data-name="image">assets/images/journal/space10_event_01.jpg</div>
-						<div data-name="image">assets/images/journal/space10_event_02.jpg</div>
-						<div data-name="image">assets/images/journal/space10_event_03.jpg</div>
-						<div data-name="image">assets/images/journal/space10_event_04.jpg</div>
-						<div data-name="image">assets/images/journal/space10_event_05.jpg</div>
-						<div data-name="image">assets/images/journal/space10_event_06.jpg</div>
-						<div data-name="image">assets/images/journal/space10_event_07.jpg</div>
-					</div>
-				</div>
-			<div data-name="story">
-					<div data-name="date">March 10 — 2017</div>
-
-					<div data-name="headline">
-						SPACE10.io<br>
-						Digital Framework
-					</div>
-
-				<div data-name="body">We''re about to launch a new digital framework for IKEA's Innovation Hub SPACE10 in close collaboration our friends at RWATGG.</div>
-
-					<div data-name="image-tag-name">Project</div>
-
-					<div data-name="images">	
-						<div data-name="image">assets/images/journal/space10_journal_pre_launch_01.jpg</div>
-						<div data-name="image">assets/images/journal/space10_journal_pre_launch_02.jpg</div>
-						<div data-name="image">assets/images/journal/space10_journal_pre_launch_03.jpg</div>
-					</div>
-				</div>
-				<div data-name="story">
-					<div data-name="date">March 6 — 2017</div>
-
-					<div data-name="headline">
-						MUUTO<br>
-						Design Direction
-					</div>
-
-				<div data-name="body">We've been collaborating with the scandinavian design brand: Muuto, to establish a new digital design direction. The direction serves as the guiding star for Muuto to develop and design their future digital platform.</div>
-
-					<div data-name="image-tag-name">Project</div>
-
-					<div data-name="images">	
-						<div data-name="image">assets/images/journal/muuto_journal_01.jpg</div>
-						
-					</div>
-				</div>
+					<div data-name="stories">
 						<div data-name="story">
-					<div data-name="date">December 22 — 2016</div>
-
-					<div data-name="headline">
-						The Pop Up <br>Agency
-					</div>
-
-				<div data-name="body">We've defined a new design direction for our London friends "Pop Up" who's on a mission to democratize creativity.</div>
-
-					<div data-name="image-tag-name">Project</div>
-
-					<div data-name="images">	
-						<div data-name="image">assets/images/journal/popup_journal_01.gif</div>		
-					</div>
-				</div>
-				<div data-name="story">
-					<div data-name="date">December 22 — 2016</div>
-
-					<div data-name="headline">
-						On Air<br>
-						Radio24Syv
-					</div>
-
-				<div data-name="body">Yesterday evening we were live on <a class="normlink" href="http://bit.ly/2hIfmcS" target="blank">Radio24Syv</a> talking about the J.Views 401 Days album design that has been nominated for the 59TH Annual Grammy® Awards which takes place the 12th February 2016 in LA. <a class="normlink" href="http://bit.ly/2hIfmcS" target="blank">Have a listen</a>, in danish only.</div>
-
-					<div data-name="image-tag-name">News</div>
-
-					<div data-name="images">
-						<div data-name="image">assets/images/journal/radio24syv_journal_02.jpg</div>
-					</div>
-				</div>
-				<div data-name="story">
-					<div data-name="date">September 15 — 2016</div>
-
-					<div data-name="headline">
-						Setio®<br>
-						Digital Identity
-					</div>
-
-					<div data-name="body">We've helped the danish startup Setio® explore and define a new brand platform and design direction. Setio® is launching in 2017.</div>
-
-					<div data-name="image-tag-name">Project</div>
-
-					<div data-name="images">
-						<div data-name="image">assets/images/journal/setio_journal_01.jpg</div>
-					</div>
-				</div>
-
-				<div data-name="story">
-					<div data-name="date">August 22 — 2016</div>
-
-					<div data-name="headline">
-						Mitte®<br>
-						Digital Identity
-					</div>
-
-					<div data-name="body">Since our trip to Berlin in March we’ve formed a close collaboration with the team in Berlin on defining the brand of Mitte® — who is on a mission to improve life through better water.</div>
-
-					<div data-name="image-tag-name">Project</div>
-
-					<div data-name="images">
-						
-						<div data-name="image">assets/images/journal/mitte_journal_00.jpg</div>
-						<div data-name="image">assets/images/journal/mitte_journal_04.png</div>
-						<div data-name="image">assets/images/journal/mitte_journal_03.gif</div>
-						<div data-name="image">assets/images/journal/mitte_journal_01.jpg</div>
-						
-						
-					</div>
-				</div>
-
-				<div data-name="story">
-					<div data-name="date">August 30 — 2016 </div>
-
-					<div data-name="headline">
-						SPACE10 x Norgram<br>
-					</div>
-
-					<div data-name="body">We're partnering with IKEA's innovation lab SPACE10 to explore and define their future digital platform.</div>
-
-					<div data-name="image-tag-name">News</div>
-
-					<div data-name="images">
-						<div data-name="image">assets/images/journal/space10_journal_01.jpg</div>
-					</div>
-				</div>
-
-				<div data-name="story">
-					<div data-name="date">August 15 — 2016</div>
-
-					<div data-name="headline">
-						Adobe<br>
-						Interview
-					</div>
-
-					<div data-name="body">Mathias was awarded the Nordic Creative Talent Award in November 2015 by Adobe. Adobe did sat down with Mathias for an interview. <a class="normlink" href="http://blogs.adobe.com/creative/nordic-creative-talent-award-winners-mathias-hoest-normark-is-combining-creativity-with-technology/" target="blank">Watch on Adobe.com</a></div>
-
-					<div data-name="image-tag-name">News</div>
-
-					<div data-name="images">
-						<div data-name="image">assets/images/journal/adobe_journal_01.gif</div>
-					</div>
-
-				</div>
-
-				<div data-name="story">
-					<div data-name="date">June 01 — 2016</div>
-
-					<div data-name="headline">
-						TwentyThree™<br>
-						Digital Identity
-					</div>
-
-					<div data-name="body">Digital Identiy for Copenhagen based tech-company TwentyThree. TwentyThree is on a mission reinvent the way brands use video. TwentyThree recently launched their product gloablly by opening an office in San Francisco.</div>
-
-					<div data-name="image-tag-name">Project</div>
-
-					<div data-name="images">
-						<div data-name="image">assets/images/journal/twentythree_journal_01.gif</div>
-					</div>
-				</div>
-				<div data-name="story">
-					<div data-name="date">March 28 — 2016</div>
-
-					<div data-name="headline">
-						j.views<br>
-						401 Days album 
-					</div>
-
-					<div data-name="body">We've had the pleasure of working closely together with Jonathan since December on ideating, designing and producing the new album cover as a book format documenting the life that happened throughout 401 Days.</div>
-
-					<div data-name="image-tag-name">Project</div>
-
-					<div data-name="images">
-						<div data-name="image">assets/images/journal/jviews_journal_05.jpg</div>
-						<div data-name="image">assets/images/journal/jviews_journal_02.jpg</div>
-						<div data-name="image">assets/images/journal/jviews_journal_03.jpg</div>
-						<div data-name="image">assets/images/journal/jviews_journal_04.jpg</div>
-					</div>
-
-				</div>
-			
-			
-				<div data-name="story">
-					<div data-name="date">April 22 — 2016</div>
-
-					<div data-name="headline">
-						The—Dots<br>
-						Digital Platform
-					</div>
-
-					<div data-name="body">We've been working together with the Founder & CEO of The—Dots, Pip Jamieson and her team on defining a new foundation and design direction for The—Dots' digital platform and brand.</div>
-
-					<div data-name="image-tag-name">Project</div>
-
-					<div data-name="images">
-						<div data-name="image">assets/images/journal/the_dots_00.jpg</div>
-						<div data-name="image">assets/images/journal/the_dots_01.jpg</div>
-						<div data-name="image">assets/images/journal/the_dots_02.jpg</div>
-						<div data-name="image">assets/images/journal/the_dots_03.jpg</div>		
-					</div>
-
-				</div>
-
-				<div data-name="story">
-					<div data-name="date">March 28 — 2016</div>
-
-					<div data-name="headline">
-						Phosphene™<br>
-						New digital precence
-					</div>
-
-					<div data-name="body">Together with our friends at Koalition we've designed and build a new digital presence for award-winning New York based VFX Studio Phosphene. <a class="normlink" href="http://www.phosphenefx.com/" target="blank">phosphenefx.com</a></div>
-
-					<div data-name="image-tag-name">Project</div>
-
-					<div data-name="images">
-						<div data-name="image">assets/images/journal/phosphene_journal.gif</div>
-					</div>
-
-				</div>
-
-
-				<div data-name="story">
-					<div data-name="date">March 28 — 2016</div>
-
-					<div data-name="headline">
-						Foundation Workshop<br>
-						in Berlin
-					</div>
-
-					<div data-name="body">We're off to Berlin for the next 3 days to facilitate our foundation workshop as the kick-off on a new exciting brand identity project for an upcoming IOT product.</div>
-
-					<div data-name="image-tag-name">News</div>
-
-					<div data-name="images">
-						<div data-name="image">assets/images/journal/off_to_berlin_journal_01.jpg</div>
-					</div>
-
-				</div>
-
-				<div data-name="story">
-					<div data-name="date">March 01 — 2016</div>
-
-					<div data-name="headline">
-						We're Norgram®<br>Studio
-					</div>
-
-					<div data-name="body">We're Norgram — we're forming design languages for the digital era. Norgram is the fusion of Design Director duo — Mathias Høst Normark and Sebastian Gram.</div>
-
-					<div data-name="image-tag-name">News</div>
-
-					<div data-name="images">
-						<div data-name="image">assets/images/journal/we_are_norgram.jpg</div>
-					</div>
-
-				</div>
-
-
-			</div>
-
-
-		</div>
-
-
-		<div data-path='studio' data-template="profile">
-			<div data-name="menu">Studio</div>
-
-
-
-			<div data-name="frontpage">
-				<div data-name="founded">
-					Norgram® is founded in 2016 by Sebastian Gram & Mathias Høst Normark. Located in Aarhus & Copenhagen, Denmark.
-				</div>
-
-				<div data-name="story">
-					Norgram is the fusion of Design Director duo — Mathias Høst Normark and Sebastian Gram. We exist to build the next generation of digital brands and experiences.
-
-Our process is defined by collaboration. We work with brands, start-ups, and people to create meaningful work with a strong sense of purpose. Our work is defined by the value we create rather than output we make.
-<br>
-					Together we have have over 20 years of experience working with global brands. During that time we’ve collaborated with brands such as Google, Nasa and the Guggenheim to deliver unique work that have been celebrated and rewarded globally.
-					<br><br>
-					We are a Design Studio for the Digital Era.
-				</div>
-
-				<div data-name="body">
-					Norgram® is a design studio that creates the next generation of digital brands and experiences. Exploration through collaboration sits at the heart of our design process and we strive to create timeless work that surprises.
-				</div>
-			</div>
-
-			<div data-name="employees">
-
-				<div data-name="employee">
-					<div data-name="info">
-						<div data-name="name">Sebastian Gram</div>
-						<div data-name="title">Co—founder &<br>Design Director</div>
-						<div data-name="mail"><a href="mailto:sg@norgram.co?Subject=Hi%20Sebastian" target="_top">sg@norgram.co</a></div>
-						<div data-name="phone">+45 60228703</div>
-
-						<div data-name="linkedin">https://www.linkedin.com/in/sebastiangram</div>
-						<div data-name="twitter">https://twitter.com/sebastiangram</div>
-					</div>
-
-					<div data-name="image">assets/images/profile/profile_seb.png</div>
-				</div>
-
-				<div data-name="employee">
-					<div data-name="info">
-						<div data-name="name">Mathias Høst Normark</div>
-						<div data-name="title">Co—founder &<br>Design Director</div>
-						<div data-name="mail"><a href="mailto:mhn@norgram.co?Subject=Hi%20Mathias" target="_top">mhn@norgram.co</a></div>
-						<div data-name="phone">+45 53377537</div>
-
-						<div data-name="linkedin">https://www.linkedin.com/in/mathiashnormark</div>
-						<div data-name="twitter">https://twitter.com/MathiasHN</div>
-					</div>
-
-					<div data-name="image">assets/images/profile/profile_mat.png</div>
-				</div>
-
-			</div>
-
-			<div data-name="service">
-				<div data-name="headline">Our services</div>
-				<div data-name="body">We help brands shape their businesses and create unique design languages. We use a combination of our offerings to craft an approach that works best for each project. Independent of the output, we strive to offer new perspectives on established methods and solutions.</div>
-
-				<div data-name="circles" data-type="round">
-					<div data-name="circle">Our services</div>
-					<div data-name="circle">Digital Products</div>
-					<div data-name="circle">Workshops & Lectures</div>
-					<div data-name="circle">Digital Identity</div>
-					<div data-name="circle">Digital Experiences</div>
-				</div>
-
-
-			</div>
-
-			<div data-name="process">
-				<div data-name="headline">Process</div>
-				<div data-name="body">Our approach to projects follow these 4 basic phases, each phase is carefully tailored to match the given project. At the heart of each phase lies a transparent, iterative and collaborative approach that sets the stage for a successful final output.</div>
-
-				<div data-name="circles" data-type="straight">
-					<div data-name="circle">Concept</div>
-					<div data-name="circle">Implementation</div>
-					<div data-name="circle">Foundation</div>
-					<div data-name="circle">Design</div>		
-				</div>
-
-			</div>
-
-		</div>
-
-
-		<div data-path='ethos' data-template="principles">
-			<div data-name="menu">Ethos</div>
-
-			<div data-name="frontpage">
-				<div data-name="founded">
-					Norgram® Studio is the Design Director duo of internationally recognized and awarded designers Sebastian Gram & Mathias Høst Normark.
-				</div>
-
-				<div data-name="body">At Norgram® we use 5 principles that guide and define the type of work we believe in. The principles function as our northern star and inform the choices we make throughout our creative process.</div>
-			</div>
-
-			<div data-name="sections">
-				<div data-name="section">
-					<div data-name="headline">Purpose</div>
-					<div data-name="body">Our work comes from a clear sense of purpose and authenticity. The foundation of our work comes from working with the questions — Why are you here and why do you exist? Once we’ve established the answer to those questions we look at the reason the target audience should care.</div>
-					<div data-name="image">roundrect</div>
-				</div>
-
-				<div data-name="section">
-					<div data-name="headline">Innovation</div>
-					<div data-name="body">The exploration into purpose creates the foundation for an authentic end result that encapsulates the brand and what it stands for. This leads us to a design process where we create work with an authentic story that is driven by the value it creates. </div>
-					<div data-name="image">doubletriangle</div>
-				</div>
-
-				<div data-name="section">
-					<div data-name="headline">Collaboration</div>
-					<div data-name="body">The output of our work is defined by the explorative nature of collaboration. Independent on skill-set and function we work with our clients to get the to core of the challenge and establish a way forward that keeps our clients highly involved in the process. We believe that by building a tight relationship with our collaborators and clients we create better results. </div>
-					<div data-name="image">rectbyrect</div>
-				</div>
-
-				<div data-name="section">
-					<div data-name="headline">Exploration</div>
-					<div data-name="body">The nature of our collaborative process opens up the opportunity to explore alternate solutions that surprises the consumer — creating a stronger sense of attachment to the end result. We give ourselves time to explore and identify the path forward that we believe will make consumers look twice.</div>
-					<div data-name="image">triangle</div>
-				</div>
-
-				<div data-name="section">
-					<div data-name="headline">Timeless</div>
-					<div data-name="body">We always strive for our work to be timeless, we reach that by making sure every details exists for a reason through craft and thought. The result of our efforts embodies a level of aesthetic quality that at its foundation feels honest and surprising in the eyes of the beholder.</div>
-					<div data-name="image">rect</div>
-				</div>
-
-			</div>
-
-
-		</div>
-
-
-		<div data-path='projects' data-template="projects-0">
-			<div data-name="menu">Projects</div>
-
-			<div data-path='ikeaplace' data-template="case-0" >
-				<div data-name="info">
-					<div data-name="headline">
-						IKEA Place</br>
-						App
-					</div>
-					<div data-name="client">IKEA/SPACE10</div>
-					<div data-name="project">App</div>
-					<div data-name="year">2017</div>
-				</div>
-
-				<div data-name="overviewimage">assets/images/cases/ikeaplace/Ikea_place.jpg</div>
-
-				<div data-name="home">
-					<div data-name="headline">IKEA Place</div>
-
-					<div data-name="details">
-					Concept<br>
-					Creative Direction<br>
-					User Experience Design<br>
-					Design Direction<br>
-					Visual Design<br>
-					Iconography<br>
-					Animation<br><br>
-					Credits: SPACE10, TWNKLS, Plan8, Set Snail, IKEA.
-					</div>
-
-					<div data-name="body">
-						IKEA Place lets people confidently experience, experiment and share how good design transforms any space. Using Apple’s newly released ARKit people can now place 3D objects in their own homes.
-					</div>
-				</div>
-
-				<div data-name="modules">
-					<div data-name="moduleImage" width="3198" height="1800">assets/images/cases/ikeaplace/Ikea_place.jpg</div>
-					<div data-name="moduleText">
-						<!--<div data-name="top"></div>-->
-						<div data-name="mid">
-							Objective<br>
-							The idea of placing virtual objects in the real world has been around for sometime but the technology has never really been good enough. With the launch of Apple’s newly relased ARKit we we’re asked to conceptualize, art direct and design the AR app of IKEA.
-
-							<br><br>
-							Concept<br>
-							Allowing the many people to virtually place furniture in the own homes will help them unleash their imagination of home furnishing. While at the same time enabling IKEA to “open” millions of new showrooms globally trough people’s smartphones. The power of the smartphone and argumented reality brings IKEA closer to the people and people closer to IKEA.</div>
-						<div data-name="bot">
-							Design<br>
-							Our approach of the design has been to create an interface that feels as natural and intuitive as possible. IKEA is after all for the many. Aesthetically we’ve focused on bringing the IKEA brand to life trough small details while making sure the core experience is so simple, almost invisible —allowing people to focus on unleashing their imagination.
+							<div data-name="date">December 1 — 2017</div>
+
+							<div data-name="headline">
+								Eurobest 2017<br>
+								Bronze
 							</div>
-					</div>
-					<div data-name="moduleImage" width="3188" height="1800">assets/images/cases/ikeaplace/Ikea_place_app_UI_01.png</div>
-				  	<div data-name="moduleImage" width="1118" height="1800">assets/images/cases/ikeaplace/UI_Animation_01.gif</div>
-				  	<div data-name="moduleImage" width="3870" height="1800">assets/images/cases/ikeaplace/Ikea_place_app_UI_02.png</div>
-					  <div data-name="moduleText" data-width-scale="0.6" >
-						<div data-name="top">For most people, IKEA Place will be their first interaction with AR.
-							</br></br>
-When designing the app our focus has been to design a natural and familiar interface using traditional UI elements and conversational interaces in context of the camera.
-					</br></br>
-In this way people will know what to expect and feel confident when placing their first virtual object in real-life.</div>
-						<div data-name="bot"><a href="https://itunes.apple.com/us/app/ikea-place/id1279244498?mt=8" target="blank">Download the app</a></div>
-					</div>
-					<div data-name="moduleImage" width="3200" height="1800">assets/images/cases/ikeaplace/Ikea_place_03.jpg</div>
-					<div data-name="moduleImage" width="5549" height="1800">assets/images/cases/ikeaplace/Ikea_place_app_04.png</div>
-					  <div data-name="moduleText" data-width-scale="0.6" >
-						<div data-name="top">Experiencing furniture trough AR is the currently the closest we can get to experiencing it in real-life. The app enables people to not only view furniture from one angle – it allows you to walk around it, see it from above and below. You can even explore the details of the materials by walking close to the furniture.</div>
-						
-					</div>
-					<div data-name="moduleImage" width="3198" height="1800">assets/images/cases/ikeaplace/Ikea_place_app_05.jpg</div>
-					<div data-name="moduleText" data-width-scale="0.6" >
-						<div data-name="top">The design is centered around the experience of the camera and the furniture people place within. Dynamically the design system adapts to multiple devices and sizes — allowing everyone in the world with an iPhone 6s and up to use the app.</div>
-						<div data-name="bot"></div>
-					</div>
-					<div data-name="moduleImage" width="8082" height="1800">assets/images/cases/ikeaplace/Ikea_place_app_06.jpg</div>
-					
 
-					<!-- </div> -->
+							<div data-name="body">IKEA Place was awarded Bronze at the annual Eurobest Awards in London. It was awarded in the category: Augmented Mobile Experience and shortlistet in the category: Mobile Apps.</div>
 
-				</div>
-			</div>
+							<div data-name="image-tag-name">News</div>
 
-			
-			
-			
-			<div data-path='space10' data-template="case-0" >
-				<div data-name="info">
-					<div data-name="headline">
-						SPACE10.io<br>
-						Digital Platform
-					</div>
-					<div data-name="client">SPACE10</div>
-					<div data-name="project">Digital Platform</div>
-					<div data-name="year">2017</div>
-				</div>
-
-				<div data-name="overviewimage">assets/images/cases/space10/space10_00_overview.jpg</div>
-
-				<div data-name="home">
-					<div data-name="headline">SPACE10.io</div>
-
-					<div data-name="details">
-					Concept<br>
-					User Experience<br>
-					Design Direction<br>
-					Digital Design<br>
-					Iconography<br>
-					</div>
-
-					<div data-name="body">
-						The purpose of SPACE10 is  to enable a better, more meaningful and sustainable life for the many people. We are on a mission to explore and design new ways of living.
-					</div>
-				</div>
-
-				<div data-name="modules">
-					<div data-name="moduleImage" width="2796" height="1800">assets/images/cases/space10/space10_01.jpg</div>
-					<div data-name="moduleText">
-						<!--<div data-name="top"></div>-->
-						<div data-name="mid">
-							Objective<br>
-							Redefine the space10.io framework with a modular approach making it easy to update and maintain while providing users with an ever changing playful experience of content, user interaction and community engagement. 
-
-							<br><br>
-							Concept<br>
-							Our strategy was to bulid a design system that was based on the idea of spaces. Spaces meaning a free area of expanse which consists of width (X), height (Y) and depth (Z). Spaces are in a sense another word for using modules but spaces allows for a more felixible system. This strategy left us with the challenge to explore and define what digital spaces are, how they relate, connect, animate and behave.
-
-This strategy left us with the challenge to explore and define what digital spaces are, how they relate, connect, animate and behave.</div>
-						<div data-name="bot">
-							Result<br>
-							The design direction is inspired by swiss graphic design from the 1960’s where the focus was to create a strong system of typography, colors and compositions. Given that there is a vast amount of content the approach of the style is to define an editorial and timeless aesthetics with room for details using both layout, functionality and animation.
+							<div data-name="images">
+								<div data-name="image">assets/images/journal/ikea_place_eurobest_bronze.jpg</div>
 							</div>
-					</div>
-					<div data-name="moduleImage" width="3000" height="1800">assets/images/cases/space10/space10_02.jpg</div>
-					  <div data-name="moduleText" data-width-scale="0.6" >
-						<div data-name="top">Conceptually and visually the spaces works with 3 dimensions width (X), height (Y) and depth (Z). Depth is used by layering the spaces on top of each-other. These layers all have a functionality.</div>
-						<div data-name="bot"><a href="http://www.space10.io" target="blank">space10.io</a></div>
-					</div>
-					<div data-name="moduleImage" width="2792" height="1800">assets/images/cases/space10/space10_03.gif</div>
-					 <div data-name="moduleText" data-width-scale="0.6" >
-						<div data-name="top">Helvetica Neue is used in 5 different weights to form a solid hierarchy and relation between the written and visual content. Weights used: Light, Regular, Medium, Bold & Bold outline.</div>
-						<div data-name="bot"><a href="http://www.space10.io" target="blank">space10.io</a></div>
-					</div>
-					
-					<div data-name="moduleImage" width="4982" height="1800">assets/images/cases/space10/space10_04.png</div>
-					  <div data-name="moduleText" data-width-scale="0.6" >
-						<div data-name="top">Combining the grid, typography, colors and iconography gives us the base design, in a sense these are our “spaces” that can be used to build the entire platform.</div>
-						<div data-name="bot"><a href="http://www.space10.io" target="blank">space10.io</a></div>
-					</div>
-					<div data-name="moduleImage" width="2800" height="1800">assets/images/cases/space10/space10_05.gif</div>
-					<div data-name="moduleText" data-width-scale="0.6" >
-						<div data-name="top">The design direction is inspired by swiss graphic design from the 1960’s where the focus was to create a strong system of typography, colors and compositions. Given that there is a vast amount of content the approach of the style is to define an editorial and timeless aesthetics with room for details using both layout, functionality and animation. All in all the design direction's most important function is to facilitate the content.</div>
-						<div data-name="bot"></div>
-					</div>
-					<div data-name="moduleImage" width="5814" height="1800">assets/images/cases/space10/space10_07.jpg</div>
-					<div data-name="moduleText" data-width-scale="0.6" >
-						<div data-name="top">The discover page of SPACE10.io gathers multiple content from the different areas of the platform.</div>
-						<div data-name="bot"></div>
-					</div>
-					<div data-name="moduleImage" width="2800" height="1800">assets/images/cases/space10/space10_08.jpg</div>
-					<div data-name="moduleText" data-width-scale="0.6" >
-						<div data-name="top">The platform has been designed for screen-sizes making sure the user gets a unified experience across devices and platforms and at the same time gives a vast flexibility for creating unique pages.</div>
-						<div data-name="bot"></div>
-					</div>
-					<div data-name="moduleImage" width="3626" height="1800">assets/images/cases/space10/space10_09.jpg</div>
-					<div data-name="moduleText" data-width-scale="0.6" >
-						<div data-name="top">The sum of all the spaces and elements marks a dynamic and timeless design system that can be used to build new pages in the future.</div>
-						<div data-name="bot"></div>
-					</div>
-					<div data-name="moduleImage" width="4876" height="1800">assets/images/cases/space10/space10_10.jpg</div>
-
-					<!-- </div> -->
-
-				</div>
-			</div>
+						</div>
 
 
+						<div data-name="story">
+							<div data-name="date">November 21 — 2017</div>
 
-
-
-			<div data-path='setio' data-template="case-0" >
-				<div data-name="info">
-					<div data-name="headline">
-						Setio®<br>
-						Digital Identity
-					</div>
-					<div data-name="client">Setio®</div>
-					<div data-name="project">Digital Identity</div>
-					<div data-name="year">2016</div>
-				</div>
-
-				<div data-name="overviewimage">assets/images/cases/setio/setio_00_overview.jpg</div>
-
-				<div data-name="home">
-					<div data-name="headline">Setio®</div>
-
-					<div data-name="details">
-						Brand Strategy & Platform<br>
-						Brand Naming<br>
-						Brand Signature<br>
-						Typographic System<br>
-						Colorpalette<br>
-						iOS App Design<br>
-						Photography<br>
-						Iconography<br>
-						Illustration<br>
-						Packaging<br>
-						Digital Identity Guidelines<br>
-					</div>
-
-					<div data-name="body">
-						Empowering runners with tailor made advices and precision metrics is at the heart of what Setio® does. Bridging data, expert knowledge, technology and connecting runners to a global network of dedicated professionals will make runners become runners in control.
-					</div>
-				</div>
-
-				<div data-name="modules">
-					<div data-name="moduleImage" width="2511" height="1620">assets/images/cases/setio/setio_01.jpg</div>
-					<div data-name="moduleText">
-						<!--<div data-name="top"></div>-->
-						<div data-name="mid">
-							Objective<br>
-							Explore, develop and define a brand vision for a new running brand providing a learning experience for runners to gain control and obtain a new and better running behaviour.
-							<br><br>
-							Concept<br>
-							The Setio® identity is build from the concept of "Control". Becoming a runner in control of mind and feet is a process of progress. The first step to becoming a runner in control is to acknowledge that you can become better and enter a zone of progress. Once you start to progress you get closer and closer to control.</div>
-						<div data-name="bot">
-							Design<br>
-							The design direction seeks to clarify the complexitity of the product by keeping a simple design language but at the same time blend into a runners lifestyle and involve progressive elements such as raw nature and techical data.</div>
-					</div>
-					<div data-name="moduleImage" width="3298" height="1800">assets/images/cases/setio/setio_02.png</div>
-                    <div data-name="moduleText" data-width-scale="0.6" >
-						<div data-name="top">The brand signature is constructed from a monospace typography that forms an invisible rectangle. This rectangle is used to form a super graphic of multiples steps. These are the steps towards control.</div>
-					</div>
-                    <div data-name="moduleImage" width="3512" height="1800">assets/images/cases/setio/setio_03.png</div>
-                   
-					<div data-name="moduleImage" width="3688" height="1800">assets/images/cases/setio/setio_03.gif</div>
-                    <div data-name="moduleText" data-width-scale="0.6" >
-						<div data-name="top">The Setio® supergraphic interprets the invisible frame of the logotype. This frame is visualized and dublicated into multiples steps forming a supergrahic that visualizes the steps towards control. The shape of the frames adapts to the invivleble frame of the dynamic logotypes.</div>
-					</div>
-                    <div data-name="moduleImage" width="3662" height="1800">assets/images/cases/setio/setio_04_01.gif</div>
-                    <div data-name="moduleImage" width="2613" height="1620">assets/images/cases/setio/setio_04.jpg</div>
-                    <div data-name="moduleText" data-width-scale="0.6" >
-						<div data-name="top">The Setio® photography direction explores the progressive and uncontrollable environments of nature and urban environments in which it welcomes a runner in control.</div>
-						<div data-name="bot"><a href="http://www.andreashoumann.com/" target="blank">Photographer, Andreas Houmann.</a></div>
-					</div>
-                    <div data-name="moduleImage" width="2939" height="1620">assets/images/cases/setio/setio_08.jpg</div>
-                      <div data-name="moduleImage" width="2201" height="1620">assets/images/cases/setio/setio_06.jpg</div>
-					<div data-name="moduleImage" width="2749" height="1620">assets/images/cases/setio/setio_07.jpg</div>
-                    <div data-name="moduleText" data-width-scale="0.6" >
-						<div data-name="top">Bridging data, expert knowledge, technology and connecting runners to a global network of dedicated professionals all happens trough the Setio® App. Exploring and defining the design direction of the app was a crusial part of helping Setio® unlock the potential both from a design and business perspective.</div>
-					</div>
-                    <div data-name="moduleImage" width="4326" height="1710">assets/images/cases/setio/setio_05.jpg</div>
-                  
-					<!-- </div> -->
-
-				</div>
-			</div>
-			
-			<div data-path='doyouspeakhuman' data-template="case-0" >
-				<div data-name="info">
-					<div data-name="headline">
-						Do You Speak Human?<br>
-						Website
-					</div>
-					<div data-name="client">SPACE10</div>
-					<div data-name="project">Website</div>
-					<div data-name="year">2017</div>
-				</div>
-
-				<div data-name="overviewimage">assets/images/cases/dysh/dysh_00_overview.jpg</div>
-
-				<div data-name="home">
-					<div data-name="headline">Do You Speak Human?</div>
-
-					<div data-name="details">
-					Design Direction<br>
-					Creative Direction<br>
-					Digital Design
-					</div>
-
-					<div data-name="body">
-						One day soon, we might talk to our devices the way we talk to our friends. And the devices will talk back. This fundamentally changes our relationship with technology and opens up for some very important questions.
-					</div>
-				</div>
-
-				<div data-name="modules">
-					<div data-name="moduleImage" width="2511" height="1620">assets/images/cases/dysh/dysh_01.jpg</div>
-					<div data-name="moduleText">
-						<!--<div data-name="top"></div>-->
-						<div data-name="mid">
-							Objective<br>
-							SPACE10, IKEA’s external future living lab, wanted to learn how the many people feel about Artificial Intelligence. The idea was to launch a world-wide survey centered around the topic of democratising tomorrow’s AI.
-							<br><br>
-							Concept & Design<br>
-							The design is build around the style of the iconic IKEA assembly character and manuals using only black and white colors. Each area of the site is layered in boxes hinting suddle references computer operating systems where windoes are stacked on top of each-other. The survey is completed trough a conversational interface making the experience of participating a playful and engaging experience.</div>
-						<div data-name="bot">
-							Result<br>
-							Over 10.000 people have participated during a period of 1 month.  Do You Speak Human? has been featured on Co.Design, WIRED, Mashable, The Verge, CNET, The Next Web, PSFK and MSN.
+							<div data-name="headline">
+								Natur by AVE
 							</div>
-					</div>
-					<div data-name="moduleImage" width="2572" height="1800">assets/images/cases/dysh/dysh_02.gif</div>
-                    
-                    <div data-name="moduleImage" width="2511" height="1489">assets/images/cases/dysh/dysh_03.jpg</div>
-                   <div data-name="moduleText" data-width-scale="0.6" >
-						<div data-name="top">Do You Speak Human? has been exhibited at various conferences and festivals like Internet Age Media and Made In Space where people could enter the custom made boths and take part in democratising tomorrow’s AI.</div>
-						<div data-name="bot"><a href="http://www.doyouspeakhuman.com" target="blank">doyouspeakhuman.com</a></div>
-					</div>
-					<div data-name="moduleImage" width="6400" height="1800">assets/images/cases/dysh/dysh_04.jpg</div>
-					<!-- </div> -->
-				</div>
-			</div>
-			
-			<div data-path='mitte' data-template="case-0" >
-				<div data-name="info">
-					<div data-name="headline">
-						Mitte®<br>
-						Digital Identity
-					</div>
-					<div data-name="client">Mitte®</div>
-					<div data-name="project">Digital Identity</div>
-					<div data-name="year">2016</div>
-				</div>
 
-				<div data-name="overviewimage">assets/images/cases/mitte/mitte_00_overview.jpg</div>
+							<div data-name="body">Nature is the perfect source of inspiration for a product of pleasure. Equally powerful, calm and unpredictable, it draws you in with its transformative qualities. With Natur by AVE we’ve tried to capture all of that in a design direction that is as beautiful as it is functional. In collaboration with Hong Kong based Creative Agency — Constant.</div>
 
-				<div data-name="home">
-					<div data-name="headline">Mitte®</div>
+							<div data-name="image-tag-name">Project</div>
 
-					<div data-name="details">
-						Brand Strategy & Platform<br>
-						Brand Naming<br>
-						Brand Signature & Brandmark<br>
-						Typographic System<br>
-						Colorpalette<br>
-						Photography Style<br>
-						Iconography<br>
-						Illustration<br>
-						iOS App Design<br>
-						Website<br>
-					</div>
-
-					<div data-name="body">
-						Improving life with better water. The quality of water is vital for human well-being. Mitte® introduces a ground-breaking, smart, and sustainable water appliance for your home.
-					</div>
-				</div>
-
-				<div data-name="modules">
-					<div data-name="moduleImage" width="2090" height="1620">assets/images/cases/mitte/mitte_01.png</div>
-					<div data-name="moduleText">
-						<!--<div data-name="top"></div>-->
-						<div data-name="mid">
-							Objective<br>
-							Explore, develop and define a brandname, vision and design direction for a new Berlin based IOT startup on a journey to build the world’s first home water system to purify and vitalize your daily drinking water.
-							<br><br>
-							Concept<br>
-							The brandname mitte® means "middle" in german. It's a reflection of finding balance. It's also the name of the area where the brand resides.</div>
-						<div data-name="bot">
-							Design<br>
-							The design direction is defined as an approachable, natural and new classic brand tapping into a simple and functional aesthetic that caters to the lifestyle of young global citizens.</div>
-					</div>
-					<div data-name="moduleImage" width="2380" height="1620">assets/images/cases/mitte/mitte_02.png</div>
-					 <div data-name="moduleText" data-width-scale="0.8" >
-						<div data-name="top">Brandmark & signature<br>
-							The brandmark serves as the icnoic element of the mitte® identity. It's a simple graphic translation of the brandname which is created by placing a solid circle in the middle of a rounded sqaure. The idea of the mark is adopted from the negative space that appers between the "i" and the "t" of the brandsiganature.
+							<div data-name="images">
+								<div data-name="image">assets/images/journal/natur_by_ave_journal_01.jpg</div>
+								<div data-name="image">assets/images/journal/natur_by_ave_journal_02.jpg</div>
 							</div>
-							
+						</div>
+
+						<div data-name="story">
+							<div data-name="date">September 28 — 2017</div>
+
+							<div data-name="headline">
+								IKEA Place
+							</div>
+
+							<div data-name="body">Our latest collaboration with SPACE10 and IKEA has just launched. Say hej to IKEA Place. The app lets people confidently experience, experiment and share how good design transforms any space. Using Apple’s newly released ARKit people can now place 3D objects in their own homes. <a class="normlink" href="http://norgram.co/#/projects/ikeaplace/" target="_self">View case</a> </div>
+
+							<div data-name="image-tag-name">Project</div>
+
+							<div data-name="images">
+								<div data-name="image">assets/videos/ikea-video.mp4</div>
+								<!--<div data-name="image">assets/images/journal/IKEAplace_journal_01.jpg</div>-->
+
+							</div>
+						</div>
+
+
+						<div data-name="story">
+							<div data-name="date">September 20 — 2017</div>
+
+							<div data-name="headline">
+								MUUTO.com
+							</div>
+
+							<div data-name="body">The new <a class="normlink" href="http://muuto.com/" target="blank">MUUTO.com</a> is now live and features a brand new design direction that we designed in collaboration with Muuto earlier this year. Video by Katja Boom</div>
+
+							<div data-name="image-tag-name">Project</div>
+
+							<div data-name="images">
+								<div data-name="image">assets/images/journal/muuto_journal_02.gif</div>
+								<div data-name="image">assets/images/journal/muuto_journal_site_01.jpg</div>
+								<div data-name="image">assets/images/journal/muuto_journal_site_02.jpg</div>
+								<div data-name="image">assets/images/journal/muuto_journal_site_03.jpg</div>
+
+
+							</div>
+						</div>
+						<div data-name="story">
+							<div data-name="date">August 28 — 2017</div>
+
+							<div data-name="headline">
+								IKEA<br>
+
+							</div>
+
+							<div data-name="body">Together with <a class="normlink" href="http://space10.io/" target="blank">SPACE10</a> we’ll be exploring and defining new ways of how digital design and digital products can support IKEA’s long-term vision in making an everyday better life for the many people. Stay tuned.</div>
+
+							<div data-name="image-tag-name">News</div>
+
+							<div data-name="images">
+								<div data-name="image">assets/images/journal/IKEA_01.png</div>
+
+							</div>
+						</div>
+						<div data-name="story">
+							<div data-name="date">June 02 — 2017</div>
+
+							<div data-name="headline">
+								Meet Röst: <br>
+								your personal <br>
+								guide to IKEA
+							</div>
+
+							<div data-name="body">Röst is a personal assistant for IKEA: an assistant that gives you location-based audio customized for you as you walk around the store, making the experience more immersive and helping you out along the way. This summer you can test-drive the prototype at the IKEA Museum in Älmhult.  <a class="normlink" href="http://space10.io/" target="blank">Made with SPACE10.</a> </div>
+
+							<div data-name="image-tag-name">Project</div>
+
+							<div data-name="images">
+								<div data-name="image">assets/images/journal/rost_01.jpg</div>
+
+							</div>
+						</div>
+
+						<div data-name="story">
+							<div data-name="date">May 29 — 2017</div>
+
+							<div data-name="headline">
+								2x Creative<br>
+								Circle Awards
+							</div>
+
+							<div data-name="body">Two of our projects was awarded a bronze circle at Creative Circle Awards in May. 1x for <a class="normlink" href="http://www.creativecircle.dk/da/vindere/arbejde/cca17-5891ad30714ef" target="blank">J.Views, 401 Days.</a> 1x for SPACE10 (IKEA’s Innovation Lab), <a class="normlink" href="http://www.creativecircle.dk/da/vindere/arbejde/cca17-58933c16b1091" target="blank">Conversational Forms.</a></div>
+
+							<div data-name="image-tag-name">News</div>
+
+							<div data-name="images">
+								<div data-name="image">assets/images/journal/CCA_2017.jpg</div>
+							</div>
+						</div>
+
+
+						<div data-name="story">
+							<div data-name="date">May 01 — 2017</div>
+
+							<div data-name="headline">
+								Democratising <br>
+								tomorrow's AI
+							</div>
+
+							<div data-name="body">SPACE10, IKEA’s external future living lab, are curious to learn how the many people feel about Artificial Intelligence. We helped SPACE10 launch a worldwide survey called <a class="normlink" href="http://doyouspeakhuman.com/" target="blank">Do You Speak Human?</a> Photo: Adrià Goula/Ikea</div>
+
+							<div data-name="image-tag-name">Project</div>
+
+							<div data-name="images">
+								<div data-name="image">assets/images/journal/DYSH_01.gif</div>
+								<div data-name="image">assets/images/journal/DYSH_02.gif</div>
+							</div>
+						</div>
+						<div data-name="story">
+							<div data-name="date">April 08 — 2017</div>
+
+							<div data-name="headline">
+								Sharing our process<br>
+								on SPACE10.io
+							</div>
+
+							<div data-name="body">Last Thursday we had the pleasure of presenting the thoughts, design and technology behind the upcoming <a class="normlink" href="https://rwatgg.com/" target="blank">@space10_journal</a> framework: Space I/O. Thanks to everybody who showed up and the people behind it all <a class="normlink" href="https://rwatgg.com/" target="blank">@relaxwearethegoodguys</a> <a class="normlink" href="https://twitter.com/kwadwoadu" target="blank">@kwadwo</a> <a class="normlink" href="https://www.space10.io/" target="blank">@space10_journal</a> Photos by Victor Stawicki</div>
+
+							<div data-name="image-tag-name">News</div>
+
+							<div data-name="images">
+								<div data-name="image">assets/images/journal/space10_event_01.jpg</div>
+								<div data-name="image">assets/images/journal/space10_event_02.jpg</div>
+								<div data-name="image">assets/images/journal/space10_event_03.jpg</div>
+								<div data-name="image">assets/images/journal/space10_event_04.jpg</div>
+								<div data-name="image">assets/images/journal/space10_event_05.jpg</div>
+								<div data-name="image">assets/images/journal/space10_event_06.jpg</div>
+								<div data-name="image">assets/images/journal/space10_event_07.jpg</div>
+							</div>
+						</div>
+						<div data-name="story">
+							<div data-name="date">March 10 — 2017</div>
+
+							<div data-name="headline">
+								SPACE10.io<br>
+								Digital Framework
+							</div>
+
+							<div data-name="body">We''re about to launch a new digital framework for IKEA's Innovation Hub SPACE10 in close collaboration our friends at RWATGG.</div>
+
+							<div data-name="image-tag-name">Project</div>
+
+							<div data-name="images">
+								<div data-name="image">assets/images/journal/space10_journal_pre_launch_01.jpg</div>
+								<div data-name="image">assets/images/journal/space10_journal_pre_launch_02.jpg</div>
+								<div data-name="image">assets/images/journal/space10_journal_pre_launch_03.jpg</div>
+							</div>
+						</div>
+						<div data-name="story">
+							<div data-name="date">March 6 — 2017</div>
+
+							<div data-name="headline">
+								MUUTO<br>
+								Design Direction
+							</div>
+
+							<div data-name="body">We've been collaborating with the scandinavian design brand: Muuto, to establish a new digital design direction. The direction serves as the guiding star for Muuto to develop and design their future digital platform.</div>
+
+							<div data-name="image-tag-name">Project</div>
+
+							<div data-name="images">
+								<div data-name="image">assets/images/journal/muuto_journal_01.jpg</div>
+
+							</div>
+						</div>
+						<div data-name="story">
+							<div data-name="date">December 22 — 2016</div>
+
+							<div data-name="headline">
+								The Pop Up <br>Agency
+							</div>
+
+							<div data-name="body">We've defined a new design direction for our London friends "Pop Up" who's on a mission to democratize creativity.</div>
+
+							<div data-name="image-tag-name">Project</div>
+
+							<div data-name="images">
+								<div data-name="image">assets/images/journal/popup_journal_01.gif</div>
+							</div>
+						</div>
+						<div data-name="story">
+							<div data-name="date">December 22 — 2016</div>
+
+							<div data-name="headline">
+								On Air<br>
+								Radio24Syv
+							</div>
+
+							<div data-name="body">Yesterday evening we were live on <a class="normlink" href="http://bit.ly/2hIfmcS" target="blank">Radio24Syv</a> talking about the J.Views 401 Days album design that has been nominated for the 59TH Annual Grammy® Awards which takes place the 12th February 2016 in LA. <a class="normlink" href="http://bit.ly/2hIfmcS" target="blank">Have a listen</a>, in danish only.</div>
+
+							<div data-name="image-tag-name">News</div>
+
+							<div data-name="images">
+								<div data-name="image">assets/images/journal/radio24syv_journal_02.jpg</div>
+							</div>
+						</div>
+						<div data-name="story">
+							<div data-name="date">September 15 — 2016</div>
+
+							<div data-name="headline">
+								Setio®<br>
+								Digital Identity
+							</div>
+
+							<div data-name="body">We've helped the danish startup Setio® explore and define a new brand platform and design direction. Setio® is launching in 2017.</div>
+
+							<div data-name="image-tag-name">Project</div>
+
+							<div data-name="images">
+								<div data-name="image">assets/images/journal/setio_journal_01.jpg</div>
+							</div>
+						</div>
+
+						<div data-name="story">
+							<div data-name="date">August 22 — 2016</div>
+
+							<div data-name="headline">
+								Mitte®<br>
+								Digital Identity
+							</div>
+
+							<div data-name="body">Since our trip to Berlin in March we’ve formed a close collaboration with the team in Berlin on defining the brand of Mitte® — who is on a mission to improve life through better water.</div>
+
+							<div data-name="image-tag-name">Project</div>
+
+							<div data-name="images">
+
+								<div data-name="image">assets/images/journal/mitte_journal_00.jpg</div>
+								<div data-name="image">assets/images/journal/mitte_journal_04.png</div>
+								<div data-name="image">assets/images/journal/mitte_journal_03.gif</div>
+								<div data-name="image">assets/images/journal/mitte_journal_01.jpg</div>
+
+
+							</div>
+						</div>
+
+						<div data-name="story">
+							<div data-name="date">August 30 — 2016 </div>
+
+							<div data-name="headline">
+								SPACE10 x Norgram<br>
+							</div>
+
+							<div data-name="body">We're partnering with IKEA's innovation lab SPACE10 to explore and define their future digital platform.</div>
+
+							<div data-name="image-tag-name">News</div>
+
+							<div data-name="images">
+								<div data-name="image">assets/images/journal/space10_journal_01.jpg</div>
+							</div>
+						</div>
+
+						<div data-name="story">
+							<div data-name="date">August 15 — 2016</div>
+
+							<div data-name="headline">
+								Adobe<br>
+								Interview
+							</div>
+
+							<div data-name="body">Mathias was awarded the Nordic Creative Talent Award in November 2015 by Adobe. Adobe did sat down with Mathias for an interview. <a class="normlink" href="http://blogs.adobe.com/creative/nordic-creative-talent-award-winners-mathias-hoest-normark-is-combining-creativity-with-technology/" target="blank">Watch on Adobe.com</a></div>
+
+							<div data-name="image-tag-name">News</div>
+
+							<div data-name="images">
+								<div data-name="image">assets/images/journal/adobe_journal_01.gif</div>
+							</div>
+
+						</div>
+
+						<div data-name="story">
+							<div data-name="date">June 01 — 2016</div>
+
+							<div data-name="headline">
+								TwentyThree™<br>
+								Digital Identity
+							</div>
+
+							<div data-name="body">Digital Identiy for Copenhagen based tech-company TwentyThree. TwentyThree is on a mission reinvent the way brands use video. TwentyThree recently launched their product gloablly by opening an office in San Francisco.</div>
+
+							<div data-name="image-tag-name">Project</div>
+
+							<div data-name="images">
+								<div data-name="image">assets/images/journal/twentythree_journal_01.gif</div>
+							</div>
+						</div>
+						<div data-name="story">
+							<div data-name="date">March 28 — 2016</div>
+
+							<div data-name="headline">
+								j.views<br>
+								401 Days album
+							</div>
+
+							<div data-name="body">We've had the pleasure of working closely together with Jonathan since December on ideating, designing and producing the new album cover as a book format documenting the life that happened throughout 401 Days.</div>
+
+							<div data-name="image-tag-name">Project</div>
+
+							<div data-name="images">
+								<div data-name="image">assets/images/journal/jviews_journal_05.jpg</div>
+								<div data-name="image">assets/images/journal/jviews_journal_02.jpg</div>
+								<div data-name="image">assets/images/journal/jviews_journal_03.jpg</div>
+								<div data-name="image">assets/images/journal/jviews_journal_04.jpg</div>
+							</div>
+
+						</div>
+
+
+						<div data-name="story">
+							<div data-name="date">April 22 — 2016</div>
+
+							<div data-name="headline">
+								The—Dots<br>
+								Digital Platform
+							</div>
+
+							<div data-name="body">We've been working together with the Founder & CEO of The—Dots, Pip Jamieson and her team on defining a new foundation and design direction for The—Dots' digital platform and brand.</div>
+
+							<div data-name="image-tag-name">Project</div>
+
+							<div data-name="images">
+								<div data-name="image">assets/images/journal/the_dots_00.jpg</div>
+								<div data-name="image">assets/images/journal/the_dots_01.jpg</div>
+								<div data-name="image">assets/images/journal/the_dots_02.jpg</div>
+								<div data-name="image">assets/images/journal/the_dots_03.jpg</div>
+							</div>
+
+						</div>
+
+						<div data-name="story">
+							<div data-name="date">March 28 — 2016</div>
+
+							<div data-name="headline">
+								Phosphene™<br>
+								New digital precence
+							</div>
+
+							<div data-name="body">Together with our friends at Koalition we've designed and build a new digital presence for award-winning New York based VFX Studio Phosphene. <a class="normlink" href="http://www.phosphenefx.com/" target="blank">phosphenefx.com</a></div>
+
+							<div data-name="image-tag-name">Project</div>
+
+							<div data-name="images">
+								<div data-name="image">assets/images/journal/phosphene_journal.gif</div>
+							</div>
+
+						</div>
+
+
+						<div data-name="story">
+							<div data-name="date">March 28 — 2016</div>
+
+							<div data-name="headline">
+								Foundation Workshop<br>
+								in Berlin
+							</div>
+
+							<div data-name="body">We're off to Berlin for the next 3 days to facilitate our foundation workshop as the kick-off on a new exciting brand identity project for an upcoming IOT product.</div>
+
+							<div data-name="image-tag-name">News</div>
+
+							<div data-name="images">
+								<div data-name="image">assets/images/journal/off_to_berlin_journal_01.jpg</div>
+							</div>
+
+						</div>
+
+						<div data-name="story">
+							<div data-name="date">March 01 — 2016</div>
+
+							<div data-name="headline">
+								We're Norgram®<br>Studio
+							</div>
+
+							<div data-name="body">We're Norgram — we're forming design languages for the digital era. Norgram is the fusion of Design Director duo — Mathias Høst Normark and Sebastian Gram.</div>
+
+							<div data-name="image-tag-name">News</div>
+
+							<div data-name="images">
+								<div data-name="image">assets/images/journal/we_are_norgram.jpg</div>
+							</div>
+
+						</div>
+
+
 					</div>
-                    <div data-name="moduleImage" width="2062" height="1620">assets/images/cases/mitte/mitte_02_01.png</div>
-                 
-                   
-                    <div data-name="moduleImage" width="4774" height="1800">assets/images/cases/mitte/mitte_04.png</div>
-                       
-                    <div data-name="moduleText">
-						<!--<div data-name="top"></div>-->
-						<div data-name="top" data-width-scale="0.6">
-							Mitte® use a simple, modern and functional typeface making an approaclble expression across platforms, communication and products.
+
+
+				</div>
+
+
+				<div data-path='studio' data-template="profile">
+					<div data-name="menu">Studio</div>
+
+
+
+					<div data-name="frontpage">
+						<div data-name="founded">
+							Norgram® is founded in 2016 by Sebastian Gram & Mathias Høst Normark. Located in Aarhus & Copenhagen, Denmark.
+						</div>
+
+						<div data-name="story">
+							Norgram is the fusion of Design Director duo — Mathias Høst Normark and Sebastian Gram. We exist to build the next generation of digital brands and experiences.
+
+							Our process is defined by collaboration. We work with brands, start-ups, and people to create meaningful work with a strong sense of purpose. Our work is defined by the value we create rather than output we make.
 							<br>
-							<br>
-					The primary colors is based on a set of monochromatic tones with a secondary set of functional colors to enhance UI elements.  The palette enables a strong basic brand and functional focus.	
-							</div>
-							
-					</div>
-                    
-                    <div data-name="moduleImage" width="2934" height="1620">assets/images/cases/mitte/mitte_05.jpg</div>
-                    <div data-name="moduleText" data-width-scale="0.6" >
-						<div data-name="top">As a part of the brand vision we explored the potential for an interface enabling users to gain self awareness, knowledge and hydration insights about their water consumption.</div>
-					</div>
-                    <div data-name="moduleImage" width="3055" height="1620">assets/images/cases/mitte/mitte_06.jpg</div>
-                      <div data-name="moduleText">
-						<!--<div data-name="top"></div>-->
-						<div data-name="top" data-width-scale="0.6">
-							The brand vision involved a phase of exploring materials and potential ways of applicating the design direction across different touchpoints such as stationery, print, hardware and packaging. 
-							<br>
-							
-							</div>
-							
-					</div>
-                    <div data-name="moduleImage" width="4784" height="1620">assets/images/cases/mitte/mitte_07.jpg</div>
-                  	<div data-name="moduleText" data-width-scale="0.6" >
-						<div data-name="top">To gain awareness before launching the product in 2017 we designed and developed a simple responsive platform enabling mitte® to tease the brand and product while at the same time being able to provide updates trough a simple journal and newsletter.</div>
-						<div data-name="bot"><a href="http://www.mitte.co" target="_blank">Visit mitte.co</a></div>
-					</div>
-                    <div data-name="moduleImage" width="2466" height="1620">assets/images/cases/mitte/mitte_08.jpg</div>
-                    
-                    <div data-name="moduleImage" width="3825" height="1620">assets/images/cases/mitte/mitte_09.jpg</div>
-                    <div data-name="moduleImage" width="4198" height="1620">assets/images/cases/mitte/mitte_10.jpg</div>
-				</div>
-			</div>
-
-			<div data-path='twentythree' data-template="case-0" >
-				<div data-name="info">
-					<div data-name="headline">
-						Twentythree™<br>
-						Digital Identity
-					</div>
-					<div data-name="client">Twentythree™</div>
-					<div data-name="project">Digital Identity</div>
-					<div data-name="year">2016</div>
-				</div>
-
-				<div data-name="overviewimage">assets/images/cases/twentythree/twentythree_01.gif</div>
-
-				<div data-name="home">
-					<div data-name="headline">TwentyThree™</div>
-
-					<div data-name="details">
-						Brand Signature & Brandmark<br>
-						Creative & Art Direction<br>
-						Typographic System<br>
-						Colorpalette<br>
-						Photography Style<br>
-						Iconography<br>
-						Illustration<br>
-						Data Visualization<br>
-						Brandmark animation<br>
-						Keynote<br>
-					</div>
-
-					<div data-name="body">
-						TwentyThree™ is a tech company focused on making great tools for visual sharing on the web. Founded by Thomas Madsen-Mygdal and Steffen Christensen, TwentyThree has offices in San Francisco and Copenhagen.
-					</div>
-				</div>
-
-				<div data-name="modules">
-					<div data-name="moduleImage" width="2232" height="1440">assets/images/cases/twentythree/twentythree_01.gif</div>
-					<div data-name="moduleText">
-						<!--<div data-name="top"></div>-->
-						<div data-name="mid">
-							Objective<br>
-							Analyze, reflect and explore the opportunities of redesigning the TwentyThree™ brand architecture and visual design. The key objetive is to simplify and tighten the brand across all touch points before launching TwentyThree™ globally.
+							Together we have have over 20 years of experience working with global brands. During that time we’ve collaborated with brands such as Google, Nasa and the Guggenheim to deliver unique work that have been celebrated and rewarded globally.
 							<br><br>
-							Concept<br>
-							The concept of the visual identity is build around the idea of a canvas. A canvas being a frame to facilitate content. The canvas resembles the purpose of the company which is to facilitate visual sharing.
+							We are a Design Studio for the Digital Era.
+						</div>
+
+						<div data-name="body">
+							Norgram® is a design studio that creates the next generation of digital brands and experiences. Exploration through collaboration sits at the heart of our design process and we strive to create timeless work that surprises.
+						</div>
+					</div>
+
+					<div data-name="employees">
+
+						<div data-name="employee">
+							<div data-name="info">
+								<div data-name="name">Sebastian Gram</div>
+								<div data-name="title">Co—founder &<br>Design Director</div>
+								<div data-name="mail"><a href="mailto:sg@norgram.co?Subject=Hi%20Sebastian" target="_top">sg@norgram.co</a></div>
+								<div data-name="phone">+45 60228703</div>
+
+								<div data-name="linkedin">https://www.linkedin.com/in/sebastiangram</div>
+								<div data-name="twitter">https://twitter.com/sebastiangram</div>
 							</div>
-						<div data-name="bot">
-							Design<br>
-							Focusing on the concept of the canvas we wanted to create a design system that provided TwentyThree™ with simple tools. We developed a design system inspired by common wayfinding principles. These principles acts as guideance troughout the visual language of typography, colors, iconograpy and grid systems.</div>
+
+							<div data-name="image">assets/images/profile/profile_seb.png</div>
+						</div>
+
+						<div data-name="employee">
+							<div data-name="info">
+								<div data-name="name">Mathias Høst Normark</div>
+								<div data-name="title">Co—founder &<br>Design Director</div>
+								<div data-name="mail"><a href="mailto:mhn@norgram.co?Subject=Hi%20Mathias" target="_top">mhn@norgram.co</a></div>
+								<div data-name="phone">+45 53377537</div>
+
+								<div data-name="linkedin">https://www.linkedin.com/in/mathiashnormark</div>
+								<div data-name="twitter">https://twitter.com/MathiasHN</div>
+							</div>
+
+							<div data-name="image">assets/images/profile/profile_mat.png</div>
+						</div>
+
 					</div>
-					<div data-name="moduleImage" width="1389" height="1440">assets/images/cases/twentythree/twentythree_02.png</div>
-					<div data-name="moduleText" data-width-scale="0.6">
-						<div data-name="top">
-						The brandmark is created based on the idea of a canvas. A canvas being a frame to facilitate content. The canvas resembles the purpose of the company which is to facilitate visual sharing.
-Technically the TwentyThree™ brandmark using is build using the 16:9 ratio.
-					
+
+					<div data-name="service">
+						<div data-name="headline">Our services</div>
+						<div data-name="body">We help brands shape their businesses and create unique design languages. We use a combination of our offerings to craft an approach that works best for each project. Independent of the output, we strive to offer new perspectives on established methods and solutions.</div>
+
+						<div data-name="circles" data-type="round">
+							<div data-name="circle">Our services</div>
+							<div data-name="circle">Digital Products</div>
+							<div data-name="circle">Workshops & Lectures</div>
+							<div data-name="circle">Digital Identity</div>
+							<div data-name="circle">Digital Experiences</div>
+						</div>
+
+
+					</div>
+
+					<div data-name="process">
+						<div data-name="headline">Process</div>
+						<div data-name="body">Our approach to projects follow these 4 basic phases, each phase is carefully tailored to match the given project. At the heart of each phase lies a transparent, iterative and collaborative approach that sets the stage for a successful final output.</div>
+
+						<div data-name="circles" data-type="straight">
+							<div data-name="circle">Concept</div>
+							<div data-name="circle">Implementation</div>
+							<div data-name="circle">Foundation</div>
+							<div data-name="circle">Design</div>
+						</div>
+
+					</div>
+
+				</div>
+
+
+				<div data-path='ethos' data-template="principles">
+					<div data-name="menu">Ethos</div>
+
+					<div data-name="frontpage">
+						<div data-name="founded">
+							Norgram® Studio is the Design Director duo of internationally recognized and awarded designers Sebastian Gram & Mathias Høst Normark.
+						</div>
+
+						<div data-name="body">At Norgram® we use 5 principles that guide and define the type of work we believe in. The principles function as our northern star and inform the choices we make throughout our creative process.</div>
+					</div>
+
+					<div data-name="sections">
+						<div data-name="section">
+							<div data-name="headline">Purpose</div>
+							<div data-name="body">Our work comes from a clear sense of purpose and authenticity. The foundation of our work comes from working with the questions — Why are you here and why do you exist? Once we’ve established the answer to those questions we look at the reason the target audience should care.</div>
+							<div data-name="image">roundrect</div>
+						</div>
+
+						<div data-name="section">
+							<div data-name="headline">Innovation</div>
+							<div data-name="body">The exploration into purpose creates the foundation for an authentic end result that encapsulates the brand and what it stands for. This leads us to a design process where we create work with an authentic story that is driven by the value it creates. </div>
+							<div data-name="image">doubletriangle</div>
+						</div>
+
+						<div data-name="section">
+							<div data-name="headline">Collaboration</div>
+							<div data-name="body">The output of our work is defined by the explorative nature of collaboration. Independent on skill-set and function we work with our clients to get the to core of the challenge and establish a way forward that keeps our clients highly involved in the process. We believe that by building a tight relationship with our collaborators and clients we create better results. </div>
+							<div data-name="image">rectbyrect</div>
+						</div>
+
+						<div data-name="section">
+							<div data-name="headline">Exploration</div>
+							<div data-name="body">The nature of our collaborative process opens up the opportunity to explore alternate solutions that surprises the consumer — creating a stronger sense of attachment to the end result. We give ourselves time to explore and identify the path forward that we believe will make consumers look twice.</div>
+							<div data-name="image">triangle</div>
+						</div>
+
+						<div data-name="section">
+							<div data-name="headline">Timeless</div>
+							<div data-name="body">We always strive for our work to be timeless, we reach that by making sure every details exists for a reason through craft and thought. The result of our efforts embodies a level of aesthetic quality that at its foundation feels honest and surprising in the eyes of the beholder.</div>
+							<div data-name="image">rect</div>
+						</div>
+
+					</div>
+
+
+				</div>
+
+
+				<div data-path='projects' data-template="projects-0">
+					<div data-name="menu">Projects</div>
+
+					<div data-path='ikeaplace' data-template="case-0" >
+						<div data-name="info">
+							<div data-name="headline">
+								IKEA Place</br>
+								App
+							</div>
+							<div data-name="client">IKEA/SPACE10</div>
+							<div data-name="project">App</div>
+							<div data-name="year">2017</div>
+						</div>
+
+						<div data-name="overviewimage">assets/images/cases/ikeaplace/Ikea_place.jpg</div>
+
+						<div data-name="home">
+							<div data-name="headline">IKEA Place</div>
+
+							<div data-name="details">
+								Concept<br>
+								Creative Direction<br>
+								User Experience Design<br>
+								Design Direction<br>
+								Visual Design<br>
+								Iconography<br>
+								Animation<br><br>
+								Credits: SPACE10, TWNKLS, Plan8, Set Snail, IKEA.
+							</div>
+
+							<div data-name="body">
+								IKEA Place lets people confidently experience, experiment and share how good design transforms any space. Using Apple’s newly released ARKit people can now place 3D objects in their own homes.
+							</div>
+						</div>
+
+						<div data-name="modules">
+							<div data-name="moduleVideo" width="854" height="480">
+								<div data-name="mode">MANUEL</div> /* MANUEL, AUTOPLAY, AUTOPLAY_ON_SCREEN */
+								<div data-name="coverImage">assets/images/cases/ikeaplace/Ikea_place.jpg</div>
+								<div data-name="source">assets/videos/ikea-video.mp4</div>
+							</div>
+							<!--<div data-name="moduleImage" width="3198" height="1800">assets/images/cases/ikeaplace/Ikea_place.jpg</div>-->
+							<div data-name="moduleText">
+								<!--<div data-name="top"></div>-->
+								<div data-name="mid">
+									Objective<br>
+									The idea of placing virtual objects in the real world has been around for sometime but the technology has never really been good enough. With the launch of Apple’s newly relased ARKit we we’re asked to conceptualize, art direct and design the AR app of IKEA.
+
+									<br><br>
+									Concept<br>
+									Allowing the many people to virtually place furniture in the own homes will help them unleash their imagination of home furnishing. While at the same time enabling IKEA to “open” millions of new showrooms globally trough people’s smartphones. The power of the smartphone and argumented reality brings IKEA closer to the people and people closer to IKEA.</div>
+								<div data-name="bot">
+									Design<br>
+									Our approach of the design has been to create an interface that feels as natural and intuitive as possible. IKEA is after all for the many. Aesthetically we’ve focused on bringing the IKEA brand to life trough small details while making sure the core experience is so simple, almost invisible —allowing people to focus on unleashing their imagination.
+								</div>
+							</div>
+							<div data-name="moduleImage" width="3188" height="1800">assets/images/cases/ikeaplace/Ikea_place_app_UI_01.png</div>
+							<div data-name="moduleImage" width="1118" height="1800">assets/images/cases/ikeaplace/UI_Animation_01.gif</div>
+							<div data-name="moduleImage" width="3870" height="1800">assets/images/cases/ikeaplace/Ikea_place_app_UI_02.png</div>
+							<div data-name="moduleText" data-width-scale="0.6" >
+								<div data-name="top">For most people, IKEA Place will be their first interaction with AR.
+									</br></br>
+									When designing the app our focus has been to design a natural and familiar interface using traditional UI elements and conversational interaces in context of the camera.
+									</br></br>
+									In this way people will know what to expect and feel confident when placing their first virtual object in real-life.</div>
+								<div data-name="bot"><a href="https://itunes.apple.com/us/app/ikea-place/id1279244498?mt=8" target="blank">Download the app</a></div>
+							</div>
+							<div data-name="moduleImage" width="3200" height="1800">assets/images/cases/ikeaplace/Ikea_place_03.jpg</div>
+							<div data-name="moduleImage" width="5549" height="1800">assets/images/cases/ikeaplace/Ikea_place_app_04.png</div>
+							<div data-name="moduleText" data-width-scale="0.6" >
+								<div data-name="top">Experiencing furniture trough AR is the currently the closest we can get to experiencing it in real-life. The app enables people to not only view furniture from one angle – it allows you to walk around it, see it from above and below. You can even explore the details of the materials by walking close to the furniture.</div>
+
+							</div>
+							<div data-name="moduleImage" width="3198" height="1800">assets/images/cases/ikeaplace/Ikea_place_app_05.jpg</div>
+							<div data-name="moduleText" data-width-scale="0.6" >
+								<div data-name="top">The design is centered around the experience of the camera and the furniture people place within. Dynamically the design system adapts to multiple devices and sizes — allowing everyone in the world with an iPhone 6s and up to use the app.</div>
+								<div data-name="bot"></div>
+							</div>
+							<div data-name="moduleImage" width="8082" height="1800">assets/images/cases/ikeaplace/Ikea_place_app_06.jpg</div>
+
+
+							<!-- </div> -->
+
 						</div>
 					</div>
-					<div data-name="moduleImage" width="2714" height="1440">assets/images/cases/twentythree/twentythree_03.png</div>
-					
-					
-					<div data-name="moduleImage" width="1741" height="1440">assets/images/cases/twentythree/twentythree_03_01.png</div>
-					<div data-name="moduleText" data-width-scale="0.7">
-						<div data-name="top">
-							The primary colors consists of a "Spring" and "Racing" green. These two colors symbolize the balance between innovation and stability.<br><br>
-							
-TwentyThree™ uses the typeface—NB Inter-national™. Designed by Stefan Gandl. Published by Neubau in 2008. NB International™ pays tribute to popular Grotesk typefaces of the ‘international style’ era. 
+
+
+
+
+					<div data-path='space10' data-template="case-0" >
+						<div data-name="info">
+							<div data-name="headline">
+								SPACE10.io<br>
+								Digital Platform
+							</div>
+							<div data-name="client">SPACE10</div>
+							<div data-name="project">Digital Platform</div>
+							<div data-name="year">2017</div>
+						</div>
+
+						<div data-name="overviewimage">assets/images/cases/space10/space10_00_overview.jpg</div>
+
+						<div data-name="home">
+							<div data-name="headline">SPACE10.io</div>
+
+							<div data-name="details">
+								Concept<br>
+								User Experience<br>
+								Design Direction<br>
+								Digital Design<br>
+								Iconography<br>
+							</div>
+
+							<div data-name="body">
+								The purpose of SPACE10 is  to enable a better, more meaningful and sustainable life for the many people. We are on a mission to explore and design new ways of living.
+							</div>
+						</div>
+
+						<div data-name="modules">
+							<div data-name="moduleImage" width="2796" height="1800">assets/images/cases/space10/space10_01.jpg</div>
+							<div data-name="moduleText">
+								<!--<div data-name="top"></div>-->
+								<div data-name="mid">
+									Objective<br>
+									Redefine the space10.io framework with a modular approach making it easy to update and maintain while providing users with an ever changing playful experience of content, user interaction and community engagement.
+
+									<br><br>
+									Concept<br>
+									Our strategy was to bulid a design system that was based on the idea of spaces. Spaces meaning a free area of expanse which consists of width (X), height (Y) and depth (Z). Spaces are in a sense another word for using modules but spaces allows for a more felixible system. This strategy left us with the challenge to explore and define what digital spaces are, how they relate, connect, animate and behave.
+
+									This strategy left us with the challenge to explore and define what digital spaces are, how they relate, connect, animate and behave.</div>
+								<div data-name="bot">
+									Result<br>
+									The design direction is inspired by swiss graphic design from the 1960’s where the focus was to create a strong system of typography, colors and compositions. Given that there is a vast amount of content the approach of the style is to define an editorial and timeless aesthetics with room for details using both layout, functionality and animation.
+								</div>
+							</div>
+							<div data-name="moduleImage" width="3000" height="1800">assets/images/cases/space10/space10_02.jpg</div>
+							<div data-name="moduleText" data-width-scale="0.6" >
+								<div data-name="top">Conceptually and visually the spaces works with 3 dimensions width (X), height (Y) and depth (Z). Depth is used by layering the spaces on top of each-other. These layers all have a functionality.</div>
+								<div data-name="bot"><a href="http://www.space10.io" target="blank">space10.io</a></div>
+							</div>
+							<div data-name="moduleImage" width="2792" height="1800">assets/images/cases/space10/space10_03.gif</div>
+							<div data-name="moduleText" data-width-scale="0.6" >
+								<div data-name="top">Helvetica Neue is used in 5 different weights to form a solid hierarchy and relation between the written and visual content. Weights used: Light, Regular, Medium, Bold & Bold outline.</div>
+								<div data-name="bot"><a href="http://www.space10.io" target="blank">space10.io</a></div>
+							</div>
+
+							<div data-name="moduleImage" width="4982" height="1800">assets/images/cases/space10/space10_04.png</div>
+							<div data-name="moduleText" data-width-scale="0.6" >
+								<div data-name="top">Combining the grid, typography, colors and iconography gives us the base design, in a sense these are our “spaces” that can be used to build the entire platform.</div>
+								<div data-name="bot"><a href="http://www.space10.io" target="blank">space10.io</a></div>
+							</div>
+							<div data-name="moduleImage" width="2800" height="1800">assets/images/cases/space10/space10_05.gif</div>
+							<div data-name="moduleText" data-width-scale="0.6" >
+								<div data-name="top">The design direction is inspired by swiss graphic design from the 1960’s where the focus was to create a strong system of typography, colors and compositions. Given that there is a vast amount of content the approach of the style is to define an editorial and timeless aesthetics with room for details using both layout, functionality and animation. All in all the design direction's most important function is to facilitate the content.</div>
+								<div data-name="bot"></div>
+							</div>
+							<div data-name="moduleImage" width="5814" height="1800">assets/images/cases/space10/space10_07.jpg</div>
+							<div data-name="moduleText" data-width-scale="0.6" >
+								<div data-name="top">The discover page of SPACE10.io gathers multiple content from the different areas of the platform.</div>
+								<div data-name="bot"></div>
+							</div>
+							<div data-name="moduleImage" width="2800" height="1800">assets/images/cases/space10/space10_08.jpg</div>
+							<div data-name="moduleText" data-width-scale="0.6" >
+								<div data-name="top">The platform has been designed for screen-sizes making sure the user gets a unified experience across devices and platforms and at the same time gives a vast flexibility for creating unique pages.</div>
+								<div data-name="bot"></div>
+							</div>
+							<div data-name="moduleImage" width="3626" height="1800">assets/images/cases/space10/space10_09.jpg</div>
+							<div data-name="moduleText" data-width-scale="0.6" >
+								<div data-name="top">The sum of all the spaces and elements marks a dynamic and timeless design system that can be used to build new pages in the future.</div>
+								<div data-name="bot"></div>
+							</div>
+							<div data-name="moduleImage" width="4876" height="1800">assets/images/cases/space10/space10_10.jpg</div>
+
+							<!-- </div> -->
+
 						</div>
 					</div>
-					<div data-name="moduleImage" width="3348" height="1440">assets/images/cases/twentythree/twentythree_04.png</div>
-					
-					<div data-name="moduleImage" width="3786" height="1440">assets/images/cases/twentythree/twentythree_05.png</div>
-					<div data-name="moduleImage" width="1205" height="1440">assets/images/cases/twentythree/twentythree_06.jpg</div>
-					<div data-name="moduleText" data-width-scale="0.6" >
-						<div data-name="top">The brand vision involved a phase of exploring materials and potential ways of applicating the design direction across different touchpoints such as stationery, print, hardware and digital.
+
+
+
+
+
+					<div data-path='setio' data-template="case-0" >
+						<div data-name="info">
+							<div data-name="headline">
+								Setio®<br>
+								Digital Identity
+							</div>
+							<div data-name="client">Setio®</div>
+							<div data-name="project">Digital Identity</div>
+							<div data-name="year">2016</div>
+						</div>
+
+						<div data-name="overviewimage">assets/images/cases/setio/setio_00_overview.jpg</div>
+
+						<div data-name="home">
+							<div data-name="headline">Setio®</div>
+
+							<div data-name="details">
+								Brand Strategy & Platform<br>
+								Brand Naming<br>
+								Brand Signature<br>
+								Typographic System<br>
+								Colorpalette<br>
+								iOS App Design<br>
+								Photography<br>
+								Iconography<br>
+								Illustration<br>
+								Packaging<br>
+								Digital Identity Guidelines<br>
+							</div>
+
+							<div data-name="body">
+								Empowering runners with tailor made advices and precision metrics is at the heart of what Setio® does. Bridging data, expert knowledge, technology and connecting runners to a global network of dedicated professionals will make runners become runners in control.
+							</div>
+						</div>
+
+						<div data-name="modules">
+							<div data-name="moduleImage" width="2511" height="1620">assets/images/cases/setio/setio_01.jpg</div>
+							<div data-name="moduleText">
+								<!--<div data-name="top"></div>-->
+								<div data-name="mid">
+									Objective<br>
+									Explore, develop and define a brand vision for a new running brand providing a learning experience for runners to gain control and obtain a new and better running behaviour.
+									<br><br>
+									Concept<br>
+									The Setio® identity is build from the concept of "Control". Becoming a runner in control of mind and feet is a process of progress. The first step to becoming a runner in control is to acknowledge that you can become better and enter a zone of progress. Once you start to progress you get closer and closer to control.</div>
+								<div data-name="bot">
+									Design<br>
+									The design direction seeks to clarify the complexitity of the product by keeping a simple design language but at the same time blend into a runners lifestyle and involve progressive elements such as raw nature and techical data.</div>
+							</div>
+							<div data-name="moduleImage" width="3298" height="1800">assets/images/cases/setio/setio_02.png</div>
+							<div data-name="moduleText" data-width-scale="0.6" >
+								<div data-name="top">The brand signature is constructed from a monospace typography that forms an invisible rectangle. This rectangle is used to form a super graphic of multiples steps. These are the steps towards control.</div>
+							</div>
+							<div data-name="moduleImage" width="3512" height="1800">assets/images/cases/setio/setio_03.png</div>
+
+							<div data-name="moduleImage" width="3688" height="1800">assets/images/cases/setio/setio_03.gif</div>
+							<div data-name="moduleText" data-width-scale="0.6" >
+								<div data-name="top">The Setio® supergraphic interprets the invisible frame of the logotype. This frame is visualized and dublicated into multiples steps forming a supergrahic that visualizes the steps towards control. The shape of the frames adapts to the invivleble frame of the dynamic logotypes.</div>
+							</div>
+							<div data-name="moduleImage" width="3662" height="1800">assets/images/cases/setio/setio_04_01.gif</div>
+							<div data-name="moduleImage" width="2613" height="1620">assets/images/cases/setio/setio_04.jpg</div>
+							<div data-name="moduleText" data-width-scale="0.6" >
+								<div data-name="top">The Setio® photography direction explores the progressive and uncontrollable environments of nature and urban environments in which it welcomes a runner in control.</div>
+								<div data-name="bot"><a href="http://www.andreashoumann.com/" target="blank">Photographer, Andreas Houmann.</a></div>
+							</div>
+							<div data-name="moduleImage" width="2939" height="1620">assets/images/cases/setio/setio_08.jpg</div>
+							<div data-name="moduleImage" width="2201" height="1620">assets/images/cases/setio/setio_06.jpg</div>
+							<div data-name="moduleImage" width="2749" height="1620">assets/images/cases/setio/setio_07.jpg</div>
+							<div data-name="moduleText" data-width-scale="0.6" >
+								<div data-name="top">Bridging data, expert knowledge, technology and connecting runners to a global network of dedicated professionals all happens trough the Setio® App. Exploring and defining the design direction of the app was a crusial part of helping Setio® unlock the potential both from a design and business perspective.</div>
+							</div>
+							<div data-name="moduleImage" width="4326" height="1710">assets/images/cases/setio/setio_05.jpg</div>
+
+							<!-- </div> -->
+
 						</div>
 					</div>
-					<div data-name="moduleImage" width="1350" height="1440">assets/images/cases/twentythree/twentythree_07.jpg</div>
-					<div data-name="moduleImage" width="4192" height="1440">assets/images/cases/twentythree/twentythree_08.jpg</div>
-					<div data-name="moduleImage" width="864" height="1080">assets/images/cases/twentythree/twentythree_09.jpg</div>
-					<div data-name="moduleText" data-width-scale="0.6" >
-						<div data-name="top">
-						Defining and designing a core set of rules and modules for TwentyThree™ to start building their new digital presence.  
+
+					<div data-path='doyouspeakhuman' data-template="case-0" >
+						<div data-name="info">
+							<div data-name="headline">
+								Do You Speak Human?<br>
+								Website
+							</div>
+							<div data-name="client">SPACE10</div>
+							<div data-name="project">Website</div>
+							<div data-name="year">2017</div>
+						</div>
+
+						<div data-name="overviewimage">assets/images/cases/dysh/dysh_00_overview.jpg</div>
+
+						<div data-name="home">
+							<div data-name="headline">Do You Speak Human?</div>
+
+							<div data-name="details">
+								Design Direction<br>
+								Creative Direction<br>
+								Digital Design
+							</div>
+
+							<div data-name="body">
+								One day soon, we might talk to our devices the way we talk to our friends. And the devices will talk back. This fundamentally changes our relationship with technology and opens up for some very important questions.
+							</div>
+						</div>
+
+						<div data-name="modules">
+							<div data-name="moduleImage" width="2511" height="1620">assets/images/cases/dysh/dysh_01.jpg</div>
+							<div data-name="moduleText">
+								<!--<div data-name="top"></div>-->
+								<div data-name="mid">
+									Objective<br>
+									SPACE10, IKEA’s external future living lab, wanted to learn how the many people feel about Artificial Intelligence. The idea was to launch a world-wide survey centered around the topic of democratising tomorrow’s AI.
+									<br><br>
+									Concept & Design<br>
+									The design is build around the style of the iconic IKEA assembly character and manuals using only black and white colors. Each area of the site is layered in boxes hinting suddle references computer operating systems where windoes are stacked on top of each-other. The survey is completed trough a conversational interface making the experience of participating a playful and engaging experience.</div>
+								<div data-name="bot">
+									Result<br>
+									Over 10.000 people have participated during a period of 1 month.  Do You Speak Human? has been featured on Co.Design, WIRED, Mashable, The Verge, CNET, The Next Web, PSFK and MSN.
+								</div>
+							</div>
+							<div data-name="moduleImage" width="2572" height="1800">assets/images/cases/dysh/dysh_02.gif</div>
+
+							<div data-name="moduleImage" width="2511" height="1489">assets/images/cases/dysh/dysh_03.jpg</div>
+							<div data-name="moduleText" data-width-scale="0.6" >
+								<div data-name="top">Do You Speak Human? has been exhibited at various conferences and festivals like Internet Age Media and Made In Space where people could enter the custom made boths and take part in democratising tomorrow’s AI.</div>
+								<div data-name="bot"><a href="http://www.doyouspeakhuman.com" target="blank">doyouspeakhuman.com</a></div>
+							</div>
+							<div data-name="moduleImage" width="6400" height="1800">assets/images/cases/dysh/dysh_04.jpg</div>
+							<!-- </div> -->
 						</div>
 					</div>
-					<div data-name="moduleImage" width="2629" height="1440">assets/images/cases/twentythree/twentythree_10.jpg</div>
-					<div data-name="moduleImage" width="2202" height="1440">assets/images/cases/twentythree/twentythree_11.jpg</div>
+
+					<div data-path='mitte' data-template="case-0" >
+						<div data-name="info">
+							<div data-name="headline">
+								Mitte®<br>
+								Digital Identity
+							</div>
+							<div data-name="client">Mitte®</div>
+							<div data-name="project">Digital Identity</div>
+							<div data-name="year">2016</div>
+						</div>
+
+						<div data-name="overviewimage">assets/images/cases/mitte/mitte_00_overview.jpg</div>
+
+						<div data-name="home">
+							<div data-name="headline">Mitte®</div>
+
+							<div data-name="details">
+								Brand Strategy & Platform<br>
+								Brand Naming<br>
+								Brand Signature & Brandmark<br>
+								Typographic System<br>
+								Colorpalette<br>
+								Photography Style<br>
+								Iconography<br>
+								Illustration<br>
+								iOS App Design<br>
+								Website<br>
+							</div>
+
+							<div data-name="body">
+								Improving life with better water. The quality of water is vital for human well-being. Mitte® introduces a ground-breaking, smart, and sustainable water appliance for your home.
+							</div>
+						</div>
+
+						<div data-name="modules">
+							<div data-name="moduleImage" width="2090" height="1620">assets/images/cases/mitte/mitte_01.png</div>
+							<div data-name="moduleText">
+								<!--<div data-name="top"></div>-->
+								<div data-name="mid">
+									Objective<br>
+									Explore, develop and define a brandname, vision and design direction for a new Berlin based IOT startup on a journey to build the world’s first home water system to purify and vitalize your daily drinking water.
+									<br><br>
+									Concept<br>
+									The brandname mitte® means "middle" in german. It's a reflection of finding balance. It's also the name of the area where the brand resides.</div>
+								<div data-name="bot">
+									Design<br>
+									The design direction is defined as an approachable, natural and new classic brand tapping into a simple and functional aesthetic that caters to the lifestyle of young global citizens.</div>
+							</div>
+							<div data-name="moduleImage" width="2380" height="1620">assets/images/cases/mitte/mitte_02.png</div>
+							<div data-name="moduleText" data-width-scale="0.8" >
+								<div data-name="top">Brandmark & signature<br>
+									The brandmark serves as the icnoic element of the mitte® identity. It's a simple graphic translation of the brandname which is created by placing a solid circle in the middle of a rounded sqaure. The idea of the mark is adopted from the negative space that appers between the "i" and the "t" of the brandsiganature.
+								</div>
+
+							</div>
+							<div data-name="moduleImage" width="2062" height="1620">assets/images/cases/mitte/mitte_02_01.png</div>
+
+
+							<div data-name="moduleImage" width="4774" height="1800">assets/images/cases/mitte/mitte_04.png</div>
+
+							<div data-name="moduleText">
+								<!--<div data-name="top"></div>-->
+								<div data-name="top" data-width-scale="0.6">
+									Mitte® use a simple, modern and functional typeface making an approaclble expression across platforms, communication and products.
+									<br>
+									<br>
+									The primary colors is based on a set of monochromatic tones with a secondary set of functional colors to enhance UI elements.  The palette enables a strong basic brand and functional focus.
+								</div>
+
+							</div>
+
+							<div data-name="moduleImage" width="2934" height="1620">assets/images/cases/mitte/mitte_05.jpg</div>
+							<div data-name="moduleText" data-width-scale="0.6" >
+								<div data-name="top">As a part of the brand vision we explored the potential for an interface enabling users to gain self awareness, knowledge and hydration insights about their water consumption.</div>
+							</div>
+							<div data-name="moduleImage" width="3055" height="1620">assets/images/cases/mitte/mitte_06.jpg</div>
+							<div data-name="moduleText">
+								<!--<div data-name="top"></div>-->
+								<div data-name="top" data-width-scale="0.6">
+									The brand vision involved a phase of exploring materials and potential ways of applicating the design direction across different touchpoints such as stationery, print, hardware and packaging.
+									<br>
+
+								</div>
+
+							</div>
+							<div data-name="moduleImage" width="4784" height="1620">assets/images/cases/mitte/mitte_07.jpg</div>
+							<div data-name="moduleText" data-width-scale="0.6" >
+								<div data-name="top">To gain awareness before launching the product in 2017 we designed and developed a simple responsive platform enabling mitte® to tease the brand and product while at the same time being able to provide updates trough a simple journal and newsletter.</div>
+								<div data-name="bot"><a href="http://www.mitte.co" target="_blank">Visit mitte.co</a></div>
+							</div>
+							<div data-name="moduleImage" width="2466" height="1620">assets/images/cases/mitte/mitte_08.jpg</div>
+
+							<div data-name="moduleImage" width="3825" height="1620">assets/images/cases/mitte/mitte_09.jpg</div>
+							<div data-name="moduleImage" width="4198" height="1620">assets/images/cases/mitte/mitte_10.jpg</div>
+						</div>
+					</div>
+
+					<div data-path='twentythree' data-template="case-0" >
+						<div data-name="info">
+							<div data-name="headline">
+								Twentythree™<br>
+								Digital Identity
+							</div>
+							<div data-name="client">Twentythree™</div>
+							<div data-name="project">Digital Identity</div>
+							<div data-name="year">2016</div>
+						</div>
+
+						<div data-name="overviewimage">assets/images/cases/twentythree/twentythree_01.gif</div>
+
+						<div data-name="home">
+							<div data-name="headline">TwentyThree™</div>
+
+							<div data-name="details">
+								Brand Signature & Brandmark<br>
+								Creative & Art Direction<br>
+								Typographic System<br>
+								Colorpalette<br>
+								Photography Style<br>
+								Iconography<br>
+								Illustration<br>
+								Data Visualization<br>
+								Brandmark animation<br>
+								Keynote<br>
+							</div>
+
+							<div data-name="body">
+								TwentyThree™ is a tech company focused on making great tools for visual sharing on the web. Founded by Thomas Madsen-Mygdal and Steffen Christensen, TwentyThree has offices in San Francisco and Copenhagen.
+							</div>
+						</div>
+
+						<div data-name="modules">
+							<div data-name="moduleImage" width="2232" height="1440">assets/images/cases/twentythree/twentythree_01.gif</div>
+							<div data-name="moduleText">
+								<!--<div data-name="top"></div>-->
+								<div data-name="mid">
+									Objective<br>
+									Analyze, reflect and explore the opportunities of redesigning the TwentyThree™ brand architecture and visual design. The key objetive is to simplify and tighten the brand across all touch points before launching TwentyThree™ globally.
+									<br><br>
+									Concept<br>
+									The concept of the visual identity is build around the idea of a canvas. A canvas being a frame to facilitate content. The canvas resembles the purpose of the company which is to facilitate visual sharing.
+								</div>
+								<div data-name="bot">
+									Design<br>
+									Focusing on the concept of the canvas we wanted to create a design system that provided TwentyThree™ with simple tools. We developed a design system inspired by common wayfinding principles. These principles acts as guideance troughout the visual language of typography, colors, iconograpy and grid systems.</div>
+							</div>
+							<div data-name="moduleImage" width="1389" height="1440">assets/images/cases/twentythree/twentythree_02.png</div>
+							<div data-name="moduleText" data-width-scale="0.6">
+								<div data-name="top">
+									The brandmark is created based on the idea of a canvas. A canvas being a frame to facilitate content. The canvas resembles the purpose of the company which is to facilitate visual sharing.
+									Technically the TwentyThree™ brandmark using is build using the 16:9 ratio.
+
+								</div>
+							</div>
+							<div data-name="moduleImage" width="2714" height="1440">assets/images/cases/twentythree/twentythree_03.png</div>
+
+
+							<div data-name="moduleImage" width="1741" height="1440">assets/images/cases/twentythree/twentythree_03_01.png</div>
+							<div data-name="moduleText" data-width-scale="0.7">
+								<div data-name="top">
+									The primary colors consists of a "Spring" and "Racing" green. These two colors symbolize the balance between innovation and stability.<br><br>
+
+									TwentyThree™ uses the typeface—NB Inter-national™. Designed by Stefan Gandl. Published by Neubau in 2008. NB International™ pays tribute to popular Grotesk typefaces of the ‘international style’ era.
+								</div>
+							</div>
+							<div data-name="moduleImage" width="3348" height="1440">assets/images/cases/twentythree/twentythree_04.png</div>
+
+							<div data-name="moduleImage" width="3786" height="1440">assets/images/cases/twentythree/twentythree_05.png</div>
+							<div data-name="moduleImage" width="1205" height="1440">assets/images/cases/twentythree/twentythree_06.jpg</div>
+							<div data-name="moduleText" data-width-scale="0.6" >
+								<div data-name="top">The brand vision involved a phase of exploring materials and potential ways of applicating the design direction across different touchpoints such as stationery, print, hardware and digital.
+								</div>
+							</div>
+							<div data-name="moduleImage" width="1350" height="1440">assets/images/cases/twentythree/twentythree_07.jpg</div>
+							<div data-name="moduleImage" width="4192" height="1440">assets/images/cases/twentythree/twentythree_08.jpg</div>
+							<div data-name="moduleImage" width="864" height="1080">assets/images/cases/twentythree/twentythree_09.jpg</div>
+							<div data-name="moduleText" data-width-scale="0.6" >
+								<div data-name="top">
+									Defining and designing a core set of rules and modules for TwentyThree™ to start building their new digital presence.
+								</div>
+							</div>
+							<div data-name="moduleImage" width="2629" height="1440">assets/images/cases/twentythree/twentythree_10.jpg</div>
+							<div data-name="moduleImage" width="2202" height="1440">assets/images/cases/twentythree/twentythree_11.jpg</div>
+						</div>
+					</div>
+
+
 				</div>
 			</div>
-
-
 		</div>
-	</div>
-</div>
+
 
 
 <script>

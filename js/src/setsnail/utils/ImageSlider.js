@@ -23,6 +23,10 @@ function ImageSlider( urls ) {
 	var _currImgId = 0;
 	var _totalWidth = 0;
 
+	var _isActive = false;
+
+	var _currIndex = 0;
+
 	_instance.init = function() {
 		TweenMax.set( _mask, {width:_width, height:_height} );
 		setupImages();
@@ -31,21 +35,49 @@ function ImageSlider( urls ) {
 	_instance.setSize = function( width, height ) {
 		_width = width;
 		_height = height;
-
 		resizeContent();
 	};
 
 	_instance.nextImg = function() {
+		muteCurrent();
 		_currImgId++;
 		tweenToImgId();
 	};
 
 	_instance.prevImg = function() {
+		muteCurrent();
 		_currImgId--;
 		tweenToImgId();
 	};
 
+	_instance.setActive = function() { 
+		_isActive = true; 
+		updateMute();
+	};
+	_instance.setInactive = function() { 
+		_isActive = false; 
+		updateMute();
+	};
+
+	function muteCurrent() {
+		if(_images[_currIndex]["mute"] != undefined){
+			_images[_currIndex].mute();
+		}
+	}
+
+	function updateMute() {
+		if(_images[_currIndex]["mute"] != undefined){
+			if( _isActive ) {
+				_images[_currIndex].unmute();
+			} else {
+				_images[_currIndex].mute();
+			}
+		}
+	}
+
 	function tweenToImgId() {
+		_currIndex = Math.abs(_currImgId % _images.length);
+		updateMute();
 		TweenMax.to(_imageContainer, 1, {x:(_width + _spacing) * _currImgId, onUpdate:updateImgPos, ease:Expo.easeOut});
 	}
 
@@ -94,13 +126,26 @@ function ImageSlider( urls ) {
 		var xPos = 0;
 
 		for( var i = 0; i < l; i++ ) {
-			var img = new RetinaImage( urls[i] );
-			img.init();
-			img.setPreloader(new SlidePreloader( "#f4f4f4", "#e9e9e9"));
-			img.setResizeMode("insideBox");
-			img.setPosition("center/center");
-			img.setSize(_width, _height);
+			var type = urls[i].split(".").pop();
+			var img;
 
+			if( type == "mp4" ) {
+				console.log("SÆLKDFJLKSDJFLKSJDFLKDJS");
+				img = new VideoPlayer( urls[i] );
+				img.init( "AUTOPLAY" );
+				img.setScaleMode("OUTSIDE");
+				img.enableLoop();
+				img.mute();
+				img.play();
+			} else {
+				img = new RetinaImage( urls[i] );
+				img.init();
+				img.setPreloader(new SlidePreloader( "#f4f4f4", "#e9e9e9"));
+				img.setResizeMode("insideBox");
+				img.setPosition("center/center");
+			}
+			
+			img.setSize(_width, _height);
 			TweenMax.set( img, { x:xPos } );
 
 			_images.push(img);

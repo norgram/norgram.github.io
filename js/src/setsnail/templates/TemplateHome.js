@@ -153,6 +153,13 @@ function TemplateHome( data ) {
 			TweenMax.to( _offsetEase, 0.6, { x:Assets.RESIZE_MANAGER.getWindowWidth(), delay:0.1, onUpdate:updateOffsetToEase, ease:Expo.easeOut });
 			_isPhychoOpen = true;
 			_psycho.startRender();
+
+			if( typeof ga !== null ) {
+				// Google Analytics tracking
+				var getLocation = "#/home/" + "psycho";
+				ga('send', "pageview", getLocation);
+			}
+
 		} else {
 			if(_isPhychoOpen) {
 				return;

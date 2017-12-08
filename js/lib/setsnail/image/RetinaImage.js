@@ -51,6 +51,8 @@ function RetinaImage(src, retinaHandle, callbackLoad, callbackError) {
 	var _instance = document.createElement("div");
 	_instance.style.position = "absolute";
 
+	_instance.onPreloaderAnimationDone;
+
 	var _src				= src;
 	var _retinaHandle		= retinaHandle ? retinaHandle : null;
 	var _image				;
@@ -406,6 +408,9 @@ function RetinaImage(src, retinaHandle, callbackLoad, callbackError) {
 			TweenMax.to(_preLoader, 1, {x:-_width, onComplete:function() {
 				_midContainer.removeChild(_preLoader);
 				_preLoader = null;
+				if(_instance.onPreloaderAnimationDone != null) {
+					_instance.onPreloaderAnimationDone();
+				}
 			}, ease:Expo.easeInOut});
 		}
 

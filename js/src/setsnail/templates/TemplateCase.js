@@ -1,4 +1,4 @@
-function TemplateCase( data ) {
+function TemplateCase( data, coverImg ) {
 	var _instance							= Snail.extend( new PageTemplate( data ) );
 	_instance.style.backgroundColor         = UIColors.DRAK_GRAY;
 
@@ -77,6 +77,7 @@ function TemplateCase( data ) {
 				_imgId++;
 				return new CaseImageModule( moduleData, _imgId );
 			case "moduleText" : return new CaseTextModule( moduleData );
+			case "moduleVideo" : return new CaseVideoModule( moduleData );
 		}
 
 		console.error( "The module id:" + id + " does not excist; Check your spelling." );

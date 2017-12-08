@@ -155,6 +155,9 @@ function ScrollController() {
 			_scrollToSpeed = speed != null ? speed : -1;
 			_scrollToEase = ease;
 
+			if( ease == null ) {
+				_instance.currentScroll.y = pos;
+			}
 			window.scrollTo(0, pos);
 		}
 

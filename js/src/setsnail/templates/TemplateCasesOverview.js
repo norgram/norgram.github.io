@@ -115,7 +115,7 @@ function TemplateCasesOverview( data ) {
 		_numOfCases = casesData.length;
 
 		for( var i = 0; i < _numOfCases; i++ ) {
-			console.log(ContentManager.getChildrenByAttr(casesData[i], "name", "info"));
+			// console.log(ContentManager.getChildrenByAttr(casesData[i], "name", "info"));
 			infoData.push(ContentManager.getChildrenByAttr(casesData[i], "name", "info"));
 
 			var project = new OverviewCaseModule(casesData[i], 0.75, i);
