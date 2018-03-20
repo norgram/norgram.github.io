@@ -277,6 +277,12 @@ BrowserDetect.MOBILE = false;
 BrowserDetect.TABLET = false;
 BrowserDetect.DESKTOP = true;
 
+
+
+BrowserDetect.isSafari = function() {
+    return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+};
+
 BrowserDetect.TRANSLATE3D_SUPPORT = 'WebKitCSSMatrix' in window && 'm11' in new WebKitCSSMatrix();
 
 BrowserDetect.init();

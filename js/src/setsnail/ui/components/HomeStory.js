@@ -31,6 +31,8 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 
 	var _overrideRatioToOne = false;
 
+	var _ratioWidthOverflow = 0;
+
 	var _buttonContainer = document.createElement("div");
 	_buttonContainer.style.position = "absolute";
 
@@ -78,10 +80,14 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 
 	_instance.setRatioOffset = function(offsetStart) {
 		_ratioOffset = offsetStart;
+
+		// console.log( "Ratio " + _ratioOffset );
 	};
 
 	_instance.setRatioNoOffset = function(ratio, forceUpdate) {
 		_ratio = ratio;
+
+		// console.log(_ratio);
 
 		if( _isLastStory ) {
 			if(ratio < 0) {
@@ -103,7 +109,6 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 			if(_hasReverseStories) {
 				// console.log(_ratio);
 				if(ratio > 0) {
-
 					updateCollapseStories();
 				}
 			}
@@ -121,8 +126,16 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 	};
 
 	_instance.setRatio = function(ratio, forceUpdate) {
-		// if(_isLastStory) {
-		// }
+		_ratioWidthOverflow = ratio - _ratioOffset - 1;
+
+		if( _ratioWidthOverflow < 0.5 && _ratioWidthOverflow > -0.5 ) {
+			// console.log("SET ACTIVE");
+			_imageSlider.setActive();
+		} else {
+			// console.log("SET IN ACTIVE");
+			_imageSlider.setInactive();
+		}
+
 		_instance.setRatioNoOffset(
 			MathUtils.ratioFromRatio(_ratioOffset, _ratioOffset + 1, ratio, !_isLastStory),
 			forceUpdate
@@ -290,7 +303,7 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 	function addImageSlide() {
 		var slideData = ContentManager.getChildByAttr(data, "name", "images");
 		var slides = ContentManager.getChildrenByAttr(slideData, "name", "image");
-
+		
 		var urls = [];
 		var l = slides.length;
 		for( var i = 0; i < l; i++) {
@@ -298,9 +311,9 @@ function HomeStory( data, storyNumber, bodyTextModel ) {
 		}
 
 		_imageSlider = new ImageSlider(urls);
+		_instance.appendChild(_imageSlider);
 		_imageSlider.init();
 
-		_instance.appendChild(_imageSlider);
 	}
 
 	function addNumber() {
