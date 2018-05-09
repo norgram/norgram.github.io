@@ -86,6 +86,9 @@ function EmployeeInfoText( data ) {
 
 	var _width, _height;
 
+	var _textWidth = 0;
+	var _textHeight = 0;
+
 	var _origFontSize = 28;
 
 	var _texts = [];
@@ -112,11 +115,12 @@ function EmployeeInfoText( data ) {
 		_width = width;
 		_height = height;
 
-		// updatePos();
 	};
 
 	function updatePos() {
 		var scale = _width / 700;
+
+
 
 		if( scale > 1 || isNaN(scale) ) {
 			scale = 1;
@@ -134,6 +138,8 @@ function EmployeeInfoText( data ) {
 			fontScale = _model.fontSize;
 		}
 
+		_textWidth = 0;
+
 		// console.log(scale);
 
 		var space = _name.offsetHeight;// * scale;
@@ -145,6 +151,8 @@ function EmployeeInfoText( data ) {
 			
 			TweenMax.set(_name, {y:currSpacing, roundProps:"x,y"} );
 			currSpacing += _name.offsetHeight;
+
+			_textWidth = _name.offsetWidth > _textWidth ? _name.offsetWidth : _textWidth;
 		}
 
 		if(_title != null) {
@@ -152,6 +160,8 @@ function EmployeeInfoText( data ) {
 			_title.updateLineHeight();
 			TweenMax.set(_title, {y:currSpacing, roundProps:"x,y"} );
 			currSpacing += _title.offsetHeight;
+
+			_textWidth = _title.offsetWidth > _textWidth ? _title.offsetWidth : _textWidth;
 		}
 
 		currSpacing += space;
@@ -161,6 +171,8 @@ function EmployeeInfoText( data ) {
 			_mail.updateLineHeight();
 			TweenMax.set(_mail, {y:currSpacing, roundProps:"x,y"} );
 			currSpacing += _mail.offsetHeight;
+
+			_textWidth = _mail.offsetWidth > _textWidth ? _mail.offsetWidth : _textWidth;
 		}
 
 		if( _phone != null ) {
@@ -168,6 +180,8 @@ function EmployeeInfoText( data ) {
 			_phone.updateLineHeight();
 			TweenMax.set(_phone, {y:currSpacing, roundProps:"x,y"});
 			currSpacing += _phone.offsetHeight;
+
+			_textWidth = _phone.offsetWidth > _textWidth ? _phone.offsetWidth : _textWidth;
 		}
 
 		currSpacing += space;
@@ -177,16 +191,27 @@ function EmployeeInfoText( data ) {
 			_linkedIn.updateLineHeight();
 			TweenMax.set(_linkedIn, {y:currSpacing, roundProps:"x,y"} );
 			currSpacing += _linkedIn.offsetHeight;
+
+			_textWidth = _linkedIn.offsetWidth > _textWidth ? _linkedIn.offsetWidth : _textWidth;
 		}
 
 		if( _twitter != null ) {
 			_twitter.style.fontSize = fontScale + "px";
 			_twitter.updateLineHeight();
 			TweenMax.set(_twitter, {y:currSpacing, roundProps:"x,y"});
-			// currSpacing += _twitter.offsetHeight;
+			currSpacing += _twitter.offsetHeight;
+
+			_textWidth = _twitter.offsetWidth > _textWidth ? _twitter.offsetWidth : _textWidth;
 		}
 
+		_textHeight = currSpacing;
+		// console.log("TextWidth = " + _textWidth);
+
 	}
+
+	_instance.getTextWidth = function() {
+		return _textWidth;
+	};
 
 	function addName() {
 		var name = ContentManager.getChildByAttr( data, "name", "name");
@@ -196,7 +221,7 @@ function EmployeeInfoText( data ) {
 
 
 		_name = getText(name.innerHTML);
-		_name.style.color = UIColors.WHITE;
+		_name.style.color = UIColors.FONT_DARK;
 
 		_instance.appendChild(_name);
 
@@ -239,7 +264,7 @@ function EmployeeInfoText( data ) {
 			return;
 		}
 
-		_linkedIn = new TextButton(getText(name.innerHTML), UIColors.FONT_MED_ON_DARK, link.innerHTML );
+		_linkedIn = new TextButton(getText(name.innerHTML), UIColors.FONT_DARK, link.innerHTML );
 		_linkedIn.addClass("sliding-grey-small");
 		_instance.appendChild(_linkedIn);
 		_linkedIn.setText("LinkedIn");
@@ -252,7 +277,7 @@ function EmployeeInfoText( data ) {
 			return;
 		}
 
-		_twitter = new TextButton(getText(""), UIColors.FONT_MED_ON_DARK, link.innerHTML );
+		_twitter = new TextButton(getText(""), UIColors.FONT_DARK, link.innerHTML );
 		_twitter.addClass("sliding-grey-small");
 		_instance.appendChild(_twitter);
 		_twitter.setText("Twitter");
@@ -263,7 +288,7 @@ function EmployeeInfoText( data ) {
 		var textInstance = Text.getNewLight( _origFontSize );
 		textInstance.innerHTML = text;
 		textInstance.style.whiteSpace = "nowrap";
-		textInstance.style.color = UIColors.FONT_MED_ON_DARK;
+		textInstance.style.color = UIColors.FONT_DARK;
 		return textInstance;
 	}
 

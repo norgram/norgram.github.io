@@ -1,7 +1,7 @@
 function PrincipleSectionModule( data, bodyModel, modelMode ) {
 
 	var _instance = Snail.extend(new Module());
-	_instance.style.backgroundColor = UIColors.DARK;
+	_instance.style.backgroundColor = UIColors.WHITE;
 
 	var _line;
 	var _width, _height;
@@ -64,7 +64,7 @@ function PrincipleSectionModule( data, bodyModel, modelMode ) {
 	function addSiteLine() {
 		_line = document.createElement("div");
 		_line.style.position = "absolute";
-		_line.style.backgroundColor = UIColors.LINE_ON_DARK;
+		_line.style.backgroundColor = UIColors.LINE_ON_WHITE;
 
 		_instance.appendChild(_line);
 	}
@@ -73,7 +73,7 @@ function PrincipleSectionModule( data, bodyModel, modelMode ) {
 		var textData = ContentManager.getChildByAttr( data, "name", "headline" );
 
 		_headline = new TextArea( textData.innerHTML, Text.getNewLight(28) );
-		_headline.style.color = UIColors.WHITE;
+		_headline.style.color = UIColors.FONT_DARK;
 		_headline.getTextInstance().style.whiteSpace = "nowrap";
 
 		_headline.init();
@@ -85,7 +85,7 @@ function PrincipleSectionModule( data, bodyModel, modelMode ) {
 		var textData = ContentManager.getChildByAttr( data, "name", "body" );
 
 		_body = new TextArea( textData.innerHTML, Text.getNewLight(28) );
-		_body.style.color = UIColors.FONT_MED_ON_DARK;
+		_body.style.color = UIColors.FONT_DARK;
 		_body.init( bodyModel, modelMode );
 
 		_instance.appendChild(_body);

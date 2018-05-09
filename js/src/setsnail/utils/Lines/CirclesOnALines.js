@@ -4,8 +4,8 @@ var defaultThickness = 1;
 
 function CirclesOnALine(radius, spacing, numOfCircles) {
 
-	var lineGroup = new LineMaskGroup( defaultOffset, defaultThickness, defaultNextOffset, UIColors.LINES_DARK );
-	var lineGroupTwo = new LineMaskGroup( defaultOffset, defaultThickness, 0, UIColors.LINES_DARK );
+	var lineGroup = new LineMaskGroup( defaultOffset, defaultThickness, defaultNextOffset, UIColors.LINES_WITH_TEXT );
+	var lineGroupTwo = new LineMaskGroup( defaultOffset, defaultThickness, 0, UIColors.LINES_WITH_TEXT );
 
 	var xPos = 0;
 
@@ -37,14 +37,14 @@ function CirclesInACircle(radius, distance, numOfCircles) {
 
 	var offSize = SiteGuides.getDesignHeightRatio() * 30;
 
-	var lineGroup = new LineMaskGroup( defaultOffset, defaultThickness, defaultNextOffset, UIColors.LINES_DARK_LIGHTER );
+	var lineGroup = new LineMaskGroup( defaultOffset, defaultThickness, defaultNextOffset, UIColors.LINES_WITH_TEXT );
 	var line = new LineCircle();
 	line.x = offsetX + offSize;
 	line.y = offsetY + offSize;
 	line.radius = radius - offSize;
 	lineGroup.addShape(line);
 
-	var lineGroupTwo = new LineMaskGroup( defaultOffset, defaultThickness, 0, UIColors.LINES_DARK );
+	var lineGroupTwo = new LineMaskGroup( defaultOffset, defaultThickness, 0, UIColors.LINES_WITH_TEXT );
 	var anglePart = 360 / numOfCircles / 180 * Math.PI;
 
 	for( var i = 0; i < numOfCircles; i++ ) {

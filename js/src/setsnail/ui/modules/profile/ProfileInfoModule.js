@@ -1,7 +1,11 @@
-function ProfileInfoModule( data, infoShow, slideNumber ) {
+function ProfileInfoModule( data, infoShow, slideNumber, addLine ) {
+
+	if(addLine === undefined) {
+		addLine = false;
+	}
 
 	var _instance = Snail.extend(new Module());
-	_instance.style.backgroundColor = UIColors.DARK;
+	_instance.style.backgroundColor = UIColors.WHITE;
 
 	var START_OFFSET_X = 0;
 
@@ -26,12 +30,14 @@ function ProfileInfoModule( data, infoShow, slideNumber ) {
 		_instance.super.init();
 
 		_instance.moduleId = "INFO" + slideNumber;
-		addSiteLine();
+		if(addLine) {
+			addSiteLine();
+		}
 		addSlideNumber();
 
 		addCircles();
 
-		addHeadlineText();
+		// addHeadlineText();
 		addBodyText();
 	};
 
@@ -40,24 +46,27 @@ function ProfileInfoModule( data, infoShow, slideNumber ) {
 			mode = TextAreaModel.MODE_CONTROL;
 		}
 		_body.addModel( model, mode );
-	}
+	};
 
 	_instance.resize_desktop = function (width, height) {
 		_width = Math.floor(height * 1.3);
 		_height = height;
 
 		_body.setSize( _width / 3, _height / 4 );
-		_headline.getTextInstance().style.fontSize = _body.getTextInstance().style.fontSize;
-		_headline.getTextInstance().updateLineHeight();
+		// _headline.getTextInstance().style.fontSize = _body.getTextInstance().style.fontSize;
+		// _headline.getTextInstance().updateLineHeight();
 
-		var headOffsetY = SiteGuides.OFFSET_TOP - Text.getOffsetY(_headline.getTextInstance());
-		TweenMax.set( _headline, { x:11, y:headOffsetY } );
-		TweenMax.set( _body, { x:11, y:headOffsetY + parseInt(_body.getTextInstance().style.lineHeight) + 8 } );
+		var headOffsetY = SiteGuides.OFFSET_TOP - Text.getOffsetY(_body.getTextInstance());
+		// TweenMax.set( _headline, { x:11, y:headOffsetY } );
+		// TweenMax.set( _body, { x:11, y:headOffsetY + parseInt(_headline.getTextInstance().style.lineHeight) + 8 } );
+		TweenMax.set( _body, { x:11, y:headOffsetY } );
 
 		_instance.style.width = _instance.getWidth() + "px";
 		_instance.style.height = height + "px";
 
-		TweenMax.set( _line, { width:1, height:_height, x:1 });
+		if(_line) {
+			TweenMax.set( _line, { width:1, height:_height, x:1 });
+		}
 
 		if( _groupedCircle != null ) {
 			switch( _circleType ) {
@@ -133,7 +142,8 @@ function ProfileInfoModule( data, infoShow, slideNumber ) {
 
 		for( var i = 0; i < numOfCirles; i++ ) {
 			var text = Text.getNewLight(18);
-			text.style.color = UIColors.LINE_ON_WHITE;
+			text.style.color = UIColors.FONT_DARK;
+			text.style.textAlign = "center";
 			text.innerHTML = circleData.children[i].innerHTML;
 			_instance.appendChild(text);
 			_circleText.push( text );
@@ -166,10 +176,12 @@ function ProfileInfoModule( data, infoShow, slideNumber ) {
 			}
 
 			_circleText[i].style.fontSize = fontSize + "px";
+			_circleText[i].updateLineHeight();
+			// console.log(_circleText[i].offsetWidth);
 
 			TweenMax.set( _circleText[i], {
-				x:group.getShapeAt(currShapeIndex).getScaledPosition().x + _groupedCircle._gsTransform.x + _groupedCircle.getCanvasOffset().x - _circleText[i].offsetWidth * 0.5,
-				y:group.getShapeAt(currShapeIndex).getScaledPosition().y + _groupedCircle._gsTransform.y + _groupedCircle.getCanvasOffset().y - parseInt(_circleText[i].style.fontSize ) * 0.5
+				x:group.getShapeAt(currShapeIndex).getScaledPosition().x + _groupedCircle._gsTransform.x + _groupedCircle.getCanvasOffset().x - _circleText[i].offsetWidth * 0.5 + 5 * SiteGuides.getDesignHeightRatio(),
+				y:group.getShapeAt(currShapeIndex).getScaledPosition().y + _groupedCircle._gsTransform.y + _groupedCircle.getCanvasOffset().y - parseInt(_circleText[i].style.fontSize ) * 0.5// - _circleText[i].offsetHeight * 0.5
 			} );
 
 
@@ -183,7 +195,7 @@ function ProfileInfoModule( data, infoShow, slideNumber ) {
 	function addSiteLine() {
 		_line = document.createElement("div");
 		_line.style.position = "absolute";
-		_line.style.backgroundColor = UIColors.LINE_ON_DARK;
+		_line.style.backgroundColor = UIColors.LINE_ON_WHITE;
 
 		_instance.appendChild(_line);
 	}
@@ -191,28 +203,31 @@ function ProfileInfoModule( data, infoShow, slideNumber ) {
 	function addSlideNumber() {
 		_slideNumber = Text.getNewMed(90);
 		_slideNumber.innerHTML = slideNumber;
-		_slideNumber.style.color = UIColors.WHITE;
+		_slideNumber.style.color = UIColors.FONT_DARK;
 
 		_instance.appendChild(_slideNumber);
 	}
 
-	function addHeadlineText() {
-		var textData = ContentManager.getChildByAttr( data, "name", "headline" );
-
-		_headline = new TextArea( textData.innerHTML, Text.getNewLight(28) );
-		_headline.style.color = UIColors.WHITE;
-		_headline.getTextInstance().style.whiteSpace = "nowrap";
-
-		_headline.init();
-
-		_instance.appendChild(_headline);
-	}
+	// function addHeadlineText() {
+	// 	var textData = ContentManager.getChildByAttr( data, "name", "headline" );
+	//
+	// 	_headline = new TextArea( textData.innerHTML, Text.getNewLight(28) );
+	// 	_headline.style.color = UIColors.FONT_DARK;
+	// 	_headline.getTextInstance().style.whiteSpace = "nowrap";
+	//
+	// 	_headline.init();
+	//
+	// 	_instance.appendChild(_headline);
+	// }
 
 	function addBodyText() {
-		var textData = ContentManager.getChildByAttr( data, "name", "body" );
+		var bodyData = ContentManager.getChildByAttr( data, "name", "body" );
+		var headlineData = ContentManager.getChildByAttr( data, "name", "headline" );
 
-		_body = new TextArea( textData.innerHTML, Text.getNewLight(28) );
-		_body.style.color = UIColors.FONT_MED_ON_DARK;
+		var text = headlineData.innerHTML + "<br>" + bodyData.innerHTML;
+
+		_body = new TextArea( text, Text.getNewLight(28) );
+		_body.style.color = UIColors.FONT_DARK;
 		_body.init();
 
 		_instance.appendChild(_body);

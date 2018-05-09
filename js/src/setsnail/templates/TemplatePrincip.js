@@ -36,7 +36,10 @@ function TemplatePrincip( data ) {
 			_instance.addModule( new PrincipleSectionModule( sections[i], bodyModel, mode ) );
 		}
 
-		_instance.addModule( new ReturnModule() );
+
+		var returnModule = new ReturnModule();
+		returnModule.addLine( UIColors.LINE_ON_WHITE );
+		_instance.addModule( returnModule );
 	}
 
 	function onNextClick() {

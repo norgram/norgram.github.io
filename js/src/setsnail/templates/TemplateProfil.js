@@ -28,14 +28,19 @@ function TemplateProfil( data ) {
 		var processData = ContentManager.getChildByAttr( data.getXML(), "name", "process" );
 
 		var profilInfoOne = new ProfileInfoModule(serviceData, null, 2);
-		var profilInfoTwo = new ProfileInfoModule(processData, null, 3);
-		var employeeModule = new ProfileEmployeeModule( employeeData );
+		var profilInfoTwo = new ProfileInfoModule(processData, null, 3, true);
+
+		// var employeeModule = new ProfileEmployeeModule( employeeData );
+		var employeeModule = new ProfileEmployeeModuleTwo( employeeData );
 
 		_instance.addModule( new BasicHomeModule( frontpageData, onNextClick ) );
 		_instance.addModule( employeeModule );
 		_instance.addModule( profilInfoOne );
 		_instance.addModule( profilInfoTwo );
-		_instance.addModule( new ReturnModule() );
+
+		var returnModule = new ReturnModule();
+		returnModule.addLine( UIColors.LINE_ON_WHITE );
+		_instance.addModule( returnModule );
 
 		var model = new TextAreaModel();
 		profilInfoOne.setBodyTextModel( model );
