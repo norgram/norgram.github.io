@@ -8,7 +8,7 @@ header {
   z-index: 999;
   width: 100%;
   line-height: 30px;
-  background-color: #fff;
+  background-color: #EA4035;
   -webkit-transition: .25s ease-in;
   -moz-transition: .25s ease-in;
   -o-transition: .25s ease-in;
@@ -81,11 +81,8 @@ body.menu-open header #menu-button span {
 	background-color: #000;
 }
 
-body.manual-menu-black.menu-open header #menu-button span,
-body.manual-menu-green.menu-open header #menu-button span,
-body.manual-menu-black.menu-hiding header #menu-button span,
-body.manual-menu-green.menu-hiding header #menu-button span {
-	background-color: #fff;
+body.manual-menu-black.menu-open  {
+  background-color: #1F1F1F;
 }
 
 body.menu-open #menu-button span {
@@ -241,7 +238,7 @@ body.menu-hiding #menu .manual-norgram-credit-container {
 
 #menu .menu-list > li:before {
   content: counters(customlistcounter, " ", decimal-leading-zero);
-  font-family: Courier New, Courier, monospace;
+  font-family: 'Post Grotesk';
   width: 3em;
 }
 
