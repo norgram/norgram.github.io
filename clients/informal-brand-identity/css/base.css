@@ -3,6 +3,16 @@
   font-family: 'Post Grotesk';
 }
 
+::-moz-selection { /* Code for Firefox */
+    color: #1F1F1F;
+    background: #EA4035;
+}
+
+::selection {
+    color: #1F1F1F;
+    background: #EA4035;
+}
+
 header {
   position: fixed;
   z-index: 999;
