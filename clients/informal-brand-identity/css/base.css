@@ -57,10 +57,10 @@ body.menu-open {
 #menu-button span {
   display: block;
   position: absolute;
-  height: 1px;
+  height: 2px;
   width: 100%;
   background: #000;
-  border-radius: 1px;
+  border-radius: 2px;
   opacity: 1;
   left: 0;
   -webkit-transform: rotate(0deg);
