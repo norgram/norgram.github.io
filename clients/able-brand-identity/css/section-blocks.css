@@ -1,0 +1,135 @@
+.manual-section {
+	margin-bottom: 50px;
+	padding-top: 30px;
+}
+
+.manual-section .manual-paragraph {
+	font-size: 16px;
+}
+
+.manual-section-download-container {
+	text-align: right;
+}
+
+a.manual-section-download,
+a.manual-section-download:hover {
+	position: relative;
+	color: #000;
+	text-decoration: none;
+}
+
+a.manual-section-download > img {
+	width: 18px;
+	vertical-align: initial;
+}
+
+a.manual-section-download > span:after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 20px;
+	width: 0%;
+	border-bottom: 1px solid #2f3035;
+	transition: 0.4s;
+}
+
+a.manual-section-download:hover > span:after {
+	width: 80%;
+}
+
+.manual-section-paragraph-container {
+	margin-bottom: 20px;
+}
+
+@media (min-width: 992px) {
+	.manual-section-paragraph-container {
+		margin-top: -20px;
+	}
+}
+
+/* HERO BLOCK */
+.section-hero {
+	height: 100vh;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.section-hero-header-block {
+	margin-top: 10%;
+}
+
+.section-hero-body.manual-paragraph {
+	font-size: 22px;
+	line-height: 25px;
+	margin-top: 20px;
+}
+
+.section-hero-body-container > .manual-norgram-credit-container {
+	margin-top: 40px;
+	margin-bottom: 20px;
+} 
+
+@media (min-width: 668px) {
+	.section-hero > .section-inner {
+		position: relative;
+		height: 100%;
+	}
+
+	.section-hero-body-container {
+		position: absolute;
+		bottom: 0px;
+		left: 0px;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+
+	.section-hero-body.manual-paragraph {
+		margin-top: 0;
+	}
+}
+
+/* ASSET BLOCK */
+.section-asset {}
+
+.section-asset-image {
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+/* COLOR BLOCK */
+.section-color-table {
+	padding-left: 10px;
+	padding-right: 10px;
+	overflow: hidden;
+}
+
+.section-color-item {
+	color: #fff;
+	margin-left: -20px;
+	margin-right: -20px;
+	padding-top: 10px;
+	padding-bottom: 30px;
+	font-weight: 200;
+}
+
+.section-color-item-hex > a,
+.section-color-item-hex > a:hover,
+.section-color-item-hex > a:active,
+.section-color-item-hex > a:visited {
+	color: #fff;
+	text-decoration: none;
+}
+
+.section-color-item-hex > a:hover {
+	opacity: 0.8;
+}
+
+/* GRID BLOCK */
+.section-grid {}
+
+.section-grid-image-container {}
+
+.section-grid-image {
+	width: 100%;
+	margin-bottom: 20px;
+}
