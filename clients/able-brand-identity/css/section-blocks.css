@@ -4,7 +4,7 @@
 }
 
 .manual-section .manual-paragraph {
-	font-size: 16px;
+	font-size: 14px;
 }
 
 .manual-section-download-container {
@@ -49,7 +49,7 @@ a.manual-section-download:hover > span:after {
 
 /* HERO BLOCK */
 .section-hero {
-	height: 100vh;
+	height: 85vh;
 	background-repeat: no-repeat;
 	background-size: cover;
 }
@@ -109,7 +109,7 @@ a.manual-section-download:hover > span:after {
 	margin-right: -20px;
 	padding-top: 10px;
 	padding-bottom: 30px;
-	font-weight: 200;
+	font-weight: normal;
 }
 
 .section-color-item-hex > a,
