@@ -31,6 +31,11 @@ header .container-fluid,
   max-width: 90%;
 }
 
+.section-wrapper
+{
+  background: #f1f1f1;
+}
+
 .wow {
   visibility: hidden;
 }
