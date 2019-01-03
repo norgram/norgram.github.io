@@ -197,6 +197,11 @@ body.manual-menu-green #menu .menu-list a {
   color: #1F1F1F;
 }
 
+.seperator
+{
+  border-color: #222;
+}
+
 #menu h1 {
   margin-top: 15%;
   font-size: 24px;

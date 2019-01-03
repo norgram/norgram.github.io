@@ -3,8 +3,8 @@
 	padding-top: 30px;
 }
 
-.manual-section .manual-paragraph {
-	font-size: 14px;
+.manual-section .manual-paragraph .manual-section-number, .manual-section-name, .manual-section-number, .manual-section-download {
+	font-size: 18px;
 }
 
 .manual-section-download-container {
