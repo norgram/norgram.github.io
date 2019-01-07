@@ -1,4 +1,5 @@
 .section-hero {
 	background-image: url(../assets/herobg.jpg);
+	background-position: center;
 	color: #fff;
 }
