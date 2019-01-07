@@ -254,7 +254,7 @@ body.menu-hiding #menu .manual-norgram-credit-container {
 
 #menu .menu-list > li:before {
   content: counters(customlistcounter, " ", decimal-leading-zero);
-  font-family: 'Post Grotesk';
+  font-family: helvetica;
   width: 3em;
 }
 
