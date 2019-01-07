@@ -3,6 +3,10 @@
   font-family: helvetica;
 }
 
+html {
+  background: #f1f1f1;
+}
+
 header {
   position: fixed;
   z-index: 999;
