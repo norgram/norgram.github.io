@@ -274,7 +274,7 @@ body.menu-open #menu .menu-list li {
   position: relative;
   display: inline-block;
   width: 83.3333333%;
-  margin-left: calc(16.6666667% - 2px - 1em);
+  margin-left: calc(16.6666667% - 4px - 1em);
   text-decoration: none;
 }
 
