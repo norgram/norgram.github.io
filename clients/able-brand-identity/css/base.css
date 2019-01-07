@@ -28,11 +28,13 @@ body.over-hero header {
   max-width: 1440px;
 }
 
-header .container-fluid,
-.section-wrapper .container-fluid,
-#menu .container-fluid
- {
-  max-width: 90%;
+@media (min-width: 768px) {
+  header .container-fluid,
+  .section-wrapper .container-fluid,
+  #menu .container-fluid
+  {
+    max-width: 90%;
+  }
 }
 
 .section-wrapper
