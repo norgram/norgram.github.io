@@ -100,6 +100,10 @@ a.manual-section-download:hover > span:after {
 
 .section-asset-image {
 	width: 100%;
+	margin-bottom: 10px;
+}
+
+@media (min-width: 768px) {
 	margin-bottom: 20px;
 }
 
