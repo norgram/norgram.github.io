@@ -28,6 +28,13 @@
 	font-size: 44px;
 }
 
+@media (max-width: 768px) {
+	.manual-section-header,
+	.manual-section-sub-header {
+		font-size: 32px;
+	}
+}
+
 /* COLOR SECTION */
 .section-color-item-name {
 	font-family: 'Helvetica';
