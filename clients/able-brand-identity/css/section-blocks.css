@@ -116,11 +116,17 @@ a.manual-section-download:hover > span:after {
 
 .section-color-item {
 	color: #fff;
-	margin-left: -20px;
 	margin-right: -20px;
 	padding-top: 10px;
 	padding-bottom: 30px;
 	font-weight: normal;
+	font-size: 12px;
+}
+
+@media (min-width: 768px) {
+	.section-color-item {
+		margin-left: -20px;
+	}
 }
 
 .section-color-item-hex > a,
