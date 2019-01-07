@@ -3,8 +3,10 @@
 	padding-top: 30px;
 }
 
-.manual-section .manual-paragraph, .manual-section-number, .manual-section-name, .manual-section-number, .manual-section-download {
-	font-size: 18px;
+@media (min-width: 768px) {
+	.manual-section .manual-paragraph, .manual-section-number, .manual-section-name, .manual-section-number, .manual-section-download {
+		font-size: 18px;
+	}
 }
 
 .manual-paragraph-small {
