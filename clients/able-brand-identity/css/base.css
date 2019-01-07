@@ -216,11 +216,15 @@ body.manual-menu-green #menu .menu-list a {
   transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
+#menu .manual-menu-inner {
+  position: relative;
+  height: 100%;
+}
+
 #menu .manual-norgram-credit-container {
   position: absolute;
-  bottom: 20px;
+  bottom: 40px;
   width: 100%;
-  margin-left: -30px;
 }
 
 body.menu-open #menu h1,
@@ -270,7 +274,7 @@ body.menu-open #menu .menu-list li {
   position: relative;
   display: inline-block;
   width: 83.3333333%;
-  margin-left: calc(16.6666667% - 4px - 1em);
+  margin-left: calc(16.6666667% - 2px - 1em);
   text-decoration: none;
 }
 
