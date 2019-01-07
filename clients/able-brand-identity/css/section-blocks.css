@@ -24,7 +24,9 @@ a.manual-section-download:hover {
 
 a.manual-section-download > img {
 	width: 18px;
-	vertical-align: initial;
+	vertical-align: middle;
+	margin-right: 5px;
+	margin-bottom: 2px;
 }
 
 a.manual-section-download > span:after {
