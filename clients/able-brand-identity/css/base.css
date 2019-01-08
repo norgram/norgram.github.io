@@ -216,30 +216,28 @@ body.manual-menu-green #menu .menu-list a {
   transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-#menu .manual-menu-inner {
+#menu .menu-wrapper {
   position: relative;
   height: 100%;
 }
 
-#menu .manual-norgram-credit-container {
-  position: absolute;
-  bottom: 20px;
-  width: 100%;
+@media (min-width: 768px) {
+  #menu .manual-norgram-credit-container {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+  }
 }
 
 @media (max-width: 768px) {
   #menu .manual-menu-inner {
-    padding-top: 20%;
-  }
-
-  #menu .manual-menu-items-container {
     position: absolute;
-    bottom: 120px;
+    bottom: 40px;
     width: 100%;
   }
 
-  #menu .manual-norgram-credit-container {
-    bottom: 40px;
+  #menu .manual-menu-items-container {
+    margin-bottom: 30px;
   }
 }
 
