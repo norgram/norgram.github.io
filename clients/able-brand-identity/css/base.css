@@ -228,6 +228,16 @@ body.manual-menu-green #menu .menu-list a {
 }
 
 @media (max-width: 768px) {
+  #menu .manual-menu-inner {
+    padding-top: 10%;
+  }
+
+  #menu .manual-menu-items-container {
+    position: absolute;
+    bottom: 120px;
+    width: 100%;
+  }
+
   #menu .manual-norgram-credit-container {
     bottom: 40px;
   }
