@@ -3,6 +3,14 @@
 	padding-top: 30px;
 }
 
+#section-01 {
+	margin-bottom: 25px;
+}
+
+#section-02 {
+	padding-top: 15px;
+}
+
 @media (min-width: 768px) {
 	.manual-section .manual-paragraph, .manual-section-number, .manual-section-name, .manual-section-number, .manual-section-download {
 		font-size: 18px;
