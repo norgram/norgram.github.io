@@ -223,8 +223,14 @@ body.manual-menu-green #menu .menu-list a {
 
 #menu .manual-norgram-credit-container {
   position: absolute;
-  bottom: 40px;
+  bottom: 20px;
   width: 100%;
+}
+
+@media (max-width: 768px) {
+  #menu .manual-norgram-credit-container {
+    bottom: 40px;
+  }
 }
 
 body.menu-open #menu h1,
