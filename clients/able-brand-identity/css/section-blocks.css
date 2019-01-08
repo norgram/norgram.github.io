@@ -35,13 +35,8 @@ a.manual-section-download:hover {
 a.manual-section-download > img {
 	width: 18px;
 	vertical-align: middle;
-}
-
-@media (min-width: 768px) {
-	a.manual-section-download > img {
-		margin-right: 5px;
-		margin-bottom: 2px;
-	}
+	margin-right: 5px;
+	margin-bottom: 2px;
 }
 
 a.manual-section-download > span:after {
@@ -56,13 +51,6 @@ a.manual-section-download > span:after {
 
 a.manual-section-download:hover > span:after {
 	width: 80%;
-}
-
-@media (max-width: 768px) {
-	a.manual-section-download > span,
-	a.manual-section-download > span:after {
-		display: none;
-	}
 }
 
 .manual-section-paragraph-container {
