@@ -47,7 +47,7 @@ body.over-hero header {
 }
 
 body.menu-open {
-  overflow-y: scroll;
+  overflow-y: hidden;
 }
 
 #menu-button {
